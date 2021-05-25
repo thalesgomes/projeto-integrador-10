@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de usuário</title>
+    <link rel="stylesheet" href="../style/cadastro-usuario.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Cadastro do usuário</h1>
+        </div>
+    </header>
+    <main>
+        <section class="form-cadastro">
+            <div class="container">
+                <form action="#">
+                    <label for="nome">Nome:</label> <br>
+                    <input type="text" name="nome" id="nome" placeholder=" Insira nome completo" required><br>
+                    <label for="tel">Número de telefone:</label><br>
+                    <input pattern="^\d{2}-\d{4}-\d{4}$" type="tel" name="tel" placeholder=" 00-0000-0000"><br>
+                    <label for="email">E-mail</label><br>
+                    <input type="email" name="email" placeholder=" Insira seu e-mail"> <br>
+                    <label for="data-nasc">Data de Nascimento</label><br>
+                    <input type="text" class="form-control" placeholder=" Ex.: dd/mm/aaaa" data-mask=" 00/00/0000" maxlength="10" autocomplete="off"><br>
+                    <label for="cpf">CPF:</label> <br>
+                    <input type="text" name="cpf" placeholder=" Ex.: 000.000.000-00" required><br>
+                    <label for="matr">Matricula:</label> <br>
+                    <input type="text" name="matr" placeholder=" Insira sua mátricula"required> <br>
+                    <label for="escola">Escola:</label> <br>
+                    <input type="text" name="escola" placeholder=" Insira sua escola"required> <br>
+                    <label for="responsavel">Nome de um responsável:</label> <br>
+                    <input type="text" name="responsavel" placeholder=" Insira o nome de um responsável"required> <br>
+                    <label for="senha">Senha:</label> <br>
+                    <input type="password" name="senha" placeholder=" Insira sua senha"required> <br>
+                    <label for="conf-senha">Confirme sua senha:</label> <br>
+                    <input type="password" name="conf-senha" placeholder=" Repita sua senha"required> <br>
+
+                    <button type="submit">Concluir</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="informacoes">
+            <h2>© Copyright2021</h2>
+            <h2>Projeto integrador Grupo 10 - Todos os direitos reservados.</h2>
+        </div>
+    </footer>
+    
+</body>
+</html>
