@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap');
+
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    background: none;
+    color: #fdfaec;
+}
+.container {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+body {
+    background: linear-gradient(to right, #181b32, #202441);
+}
+
+/* HEADER */
+header{
+    background: linear-gradient(to right, #5d14a9, #89199c);
+    color: blanchedalmond;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+header .container .barra-pesquisa{
+    width: 400px;
+    border: none;
+}
+ 
+header .container .barra-pesquisa input{
+    width: 100%;
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+}
+
+
+/* MAIN */
+
+
+main .container-botoes{
+    background: linear-gradient(to right, #5d14a9, #89199c);
+    width: 100%;
+    border-top: solid 3px #181B32;
+}
+
+main .container-botoes .botoes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+
+}
+
+main .container-botoes .botoes button {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+main .container p {
+    color: blanchedalmond;
+    font-size: 25px;
+    padding-top: 60px;
+}
+
+/* main section.add-material form{
+    border: dotted 5px blanchedalmond;
+} */
+
+main .container .nome-curso strong{
+    background-color: #D6D6F6;
+    font-size: 40px;
+    color: black;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+main .container section.add-material {
+    border: dotted 1px #D6D6F6;
+    margin-top: 15px;
+}
+
+main .container section.add-material form {
+    width: 800px;
+    padding: 5px;
+}
+
+main .container section.add-material form label {
+    font-size: 25px;
+    color: blanchedalmond;
+}
+
+main .container section.add-material form input {
+    width: 600px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 17px;
+}
+
+main .container section.add-material form input.input-file {
+    color: blanchedalmond;
+    border-radius: 5px;
+}
+
+main .container section.add-material form textarea {
+    width: 600px;
+    height: 200px;
+    border: solid 2px blanchedalmond;
+}
+
+main .container section.add-material form button {
+    width: 100%;
+    background-color: #198754;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    height: 90px;
+    margin-top: 50px;
+    border-top: dashed 1px blanchedalmond;
+    background: linear-gradient(to right, #5D14A9, #89199C );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p {
+    color: blanchedalmond;
+}
