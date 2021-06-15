@@ -1,9 +1,26 @@
+const { request, response } = require('express');
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+
+router.get('/login', (resquest, response) => {
+  response.render('login');
+});
+
+router.get('/forum-geral', (resquest, response) => {
+  response.render('forum-geral')
+});
+
+router.get('/home-aula', (request, response) => {
+  response.render('home-aula')
+})
+
+router.get('/home-curso', (request, response) => {
+  response.render('home-curso')
+})
+
+router.get('/forum-materia', (request, response) => {
+  response.render('subtela-forum-materia')
 });
 
 module.exports = router;
