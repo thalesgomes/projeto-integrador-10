@@ -14,6 +14,12 @@ body {
     margin: 0;
 }
 
+.container {
+    width: 80%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
 header {
     display:flex;
     background: linear-gradient(to right, #5d14a9, #89199c);
@@ -40,6 +46,12 @@ main{
       
 }
 
+input {
+    height: 5em;
+    padding: 1em;
+    border-radius: 5px;
+}
+
 form  {
     display: flex;
     flex-direction: column;
@@ -58,26 +70,44 @@ form button {
     width: 100%;
     padding: 5px;
     font-size: 16px;
-    background: linear-gradient(to right, #5d14a9, #89199c);;
+    background: linear-gradient(to right, #5d14a9, #89199c);
     color: #fff;
     border: none;
+    height: 4em;
     text-transform: uppercase;
     border-radius: 20px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
-form button:hover{
-    background: #202441;
+form button:hover {
+    background: linear-gradient(to right, #5d14a9, #e07a5f);
+    transition: 0.3s;
+}
+
+button, input {
+    margin-bottom: 1em;
+}
+
+label {
+    margin-bottom:.5em;
 }
 
 
 footer{
-    
-    background: linear-gradient(to right, #5d14a9, #89199c);
-    padding: 50px;
+    text-align: center;
+    height: 90px;
+    margin-top: 50px;
+    background: #282d53;
     display: flex;
-    justify-content: space-around;
-    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
 }
 
 footer h2{
@@ -86,3 +116,7 @@ footer h2{
     font-size: 10px;
 
 }
+
+
+
+

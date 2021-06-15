@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Curso</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="../style/criar-curso.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h2>SaberDigital</h2>
+            </div>
+            <div class="barra-pesquisa">
+                <input type="text" placeholder="Buscar outras bases de conhecimento" id="barra-pesquisa" name="barra-pesquisa">
+            </div>
+            <div class="logado">
+                <button><i class="far fa-user"></i></button>
+            </div>
+        </div>
+    </header>
+    <main>
+
+        <div class="container-botoes">
+            <div class="container botoes">
+                <button>MEU DASHBOARD</button>
+                <button>BIBLIOTECA</button>
+                <button>FÓRUM</button>
+            </div>
+        </div>
+
+        <div class="content-container">
+        <div class="container">
+            
+            <p><strong> Criar novo curso / plano de estudo</strong>             </p>
+              <form id="curso"action="">
+                <input class="nome-curso" type="text" placeholder="Digite o nome do curso">
+                </form>
+
+            <section class="add-material">
+
+                <a href="#">
+                    <button class="add-aula"><strong>+ Adicionar Aula</strong></button>
+                </a>
+
+                <form id="aula"action="">
+                    <input type="text" placeholder="Digite o nome da aula">
+                    <br>
+                    <input type="url" placeholder="Insira a URL ou ID do vídeo: YouTube ou Vimeo">
+                    <br>
+                    <label><strong>Ou faça upload:</label>
+                    <input class="file-input file" type="file" multiple>
+                    <br>
+                    <label>Descrição e Referências</label>
+                    <br>
+                    <textarea name="descricao" id="" placeholder="Escreva aqui a descrição"></textarea>
+                    <br>
+                    <button type="submit">CRIAR CURSO</button>
+                </form>
+
+                
+            </section>
+
+            <a href="#">
+                <button class="add-aula"><strong>+ Adicionar Aula</strong></button>
+            </a>
+        </div>
+    </main>
+    <footer>
+        <p>
+            © Copyright 2021 <br> Projeto Integrador Grupo 10 - Todos os direitos reservados.
+        </p>
+    </footer>
+</body>
+</html>

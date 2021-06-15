@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Curso</title>
+    <title>Home Curso - Título do Curso</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="/style/criar-curso.css">
+    <link rel="stylesheet" href="../style/home-curso.css">
 </head>
 <body>
     <header>
         <div class="container">
             <div class="logo">
-                Logo
+                <h2>SaberDigital</h2>
             </div>
             <div class="barra-pesquisa">
                 <input type="text" placeholder="Buscar outras bases de conhecimento" id="barra-pesquisa" name="barra-pesquisa">
@@ -25,37 +25,32 @@
         </div>
     </header>
     <main>
+
         <div class="container-botoes">
-            <div class="botoes">
+            <div class="container botoes">
                 <button>MEU DASHBOARD</button>
                 <button>BIBLIOTECA</button>
                 <button>FÓRUM</button>
             </div>
         </div>
-        <div class="container">
-            <p>
-              <strong> Criar novo curso / plano de estudo</strong> 
-            </p>
-            <p class="nome-curso">
-               <strong>Nome do Curso</strong> 
-            </p>
-            <section class="add-material">
-                <form action="">
-                    <label><strong>+ Adicionar Material</strong></label>
-                    <br>
-                    <input type="text" placeholder="Digite o nome da aula">
-                    <br>
-                    <input type="text" placeholder="ID ou URL do vídeo/Fazer upload">
-                    <br>
-                    <input class="input-file" type="file" multiple>
-                    <br>
-                    <label>Descrição e Referências</label>
-                    <br>
-                    <textarea name="descricao" id="" placeholder="Escreva aqui a descrição"></textarea>
-                    <br>
-                    <button type="submit">CRIAR CURSO</button>
-                </form>
-            </section>
+
+        <div class="content container">
+            
+            <div class="featured-image-curso"></div>
+
+            <div class="nome-curso">
+                <h2>Título do Curso</h2>
+            </div>
+            
+            <div class="container-topicos-curso">
+            <ol class="topicos-curso">
+                <a href=""><li>Aula 1</li></a>
+                <a href=""><li>Aula 2</li></a>
+                <a href=""><li>Aula 3</li></a>
+                <a href=""><li>Aula 4</li></a>
+                <a href=""><li>Aula 5</li></a>
+            </div>
+           
         </div>
     </main>
     <footer>

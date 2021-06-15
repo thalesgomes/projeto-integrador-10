@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Aluno - SaberDigital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="../style/dashboard-aluno.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h2>SaberDigital</h2>
+            </div>
+            <div class="barra-pesquisa">
+                <input type="text" placeholder="Buscar outras bases de conhecimento" id="barra-pesquisa" name="barra-pesquisa">
+            </div>
+            <div class="logado">
+                <button><i class="far fa-user"></i></button>
+            </div>
+        </div>
+    </header>
+    <main>
+
+        <div class="container-botoes">
+            <div class="container botoes">
+                <button>MEU DASHBOARD</button>
+                <button>BIBLIOTECA</button>
+                <button>FÓRUM</button>
+            </div>
+        </div>
+
+        <div class="content-container">
+    
+            <div class="titulo">
+                <img class="profile-picture" src="https://avatarfiles.alphacoders.com/152/152922.jpg">
+                <h2>Bem-vindo, Fulaninho!</h2></div>
+        <div class="titulo meus-cursos">MEUS CURSOS</div>
+        <ul class="lista-cursos">
+            <a href="#"><li class="curso">português</li></a>
+            <a href="#"><li class="curso">história</li></a>
+            <a href="#"><li class="curso">matemática</li></a>
+            <a href="#"><li class="curso">filosofia</li></a>
+            <a href="#"><li class="curso">física</li></a>
+            <a href="#"><li class="curso">inglês</li></a>
+            <a href="#"><li class="curso">biologia</li></a>
+            <a href="#"><li class="curso">química</li></a>
+        </ul>
+    </div>
+        </div></div>
+    </main>
+    <footer>
+
+        <script type="text/javascript">
+            function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+} 
+        </script>
+        <p>
+            © Copyright 2021 <br> Projeto Integrador Grupo 10 - Todos os direitos reservados.
+        </p>
+    </footer>
+</body>
+</html>
