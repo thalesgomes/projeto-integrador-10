@@ -1,41 +1,41 @@
-const { request, response } = require('express');
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-router.get('/biblioteca', function(req, res) {
+const router = express.Router();
+
+router.get('/biblioteca', (req, res) => {
   res.render('biblioteca');
 });
 
-router.get('/cadastro', function(req, res) {
+router.get('/cadastro', (req, res) => {
   res.render('cadastro-usuario');
 });
 
-router.get('/curso', function(req, res) {
+router.get('/curso', (req, res) => {
   res.render('criar-curso');
 });
 
-router.get('/dashboard', function(req, res) {
+router.get('/dashboard', (req, res) => {
   res.render('dashboard-aluno');
 });
 
-router.get('/login', (resquest, response) => {
-  response.render('login');
+router.get('/login', (req, res) => {
+  res.render('login');
 });
 
-router.get('/forum-geral', (resquest, response) => {
-  response.render('forum-geral')
+router.get('/forum-geral', (req, res) => {
+  res.render('forum-geral');
 });
 
-router.get('/home-aula', (request, response) => {
-  response.render('home-aula')
-})
+router.get('/home-aula', (req, res) => {
+  res.render('home-aula');
+});
 
-router.get('/home-curso', (request, response) => {
-  response.render('home-curso')
-})
+router.get('/home-curso', (req, res) => {
+  res.render('home-curso');
+});
 
-router.get('/forum-materia', (request, response) => {
-  response.render('subtela-forum-materia')
+router.get('/forum-materia', (req, res) => {
+  res.render('subtela-forum-materia');
 });
 
 module.exports = router;
