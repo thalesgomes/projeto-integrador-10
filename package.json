@@ -13,5 +13,8 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.7"
+  },
+  "devDependencies": {
+    "eslint": "^7.29.0"
   }
 }
