@@ -1,70 +1,34 @@
 <%- include('./partials/head') %>
-  <link rel="stylesheet" href="/stylesheets/dashboard.css">
-  </head>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    </head>
 
-  <body>
-    <header>
-      <div class="container">
-        <div class="logo">
-          <h2>SaberDigital</h2>
-        </div>
-        <div class="barra-pesquisa">
-          <input type="text" placeholder="Buscar outras bases de conhecimento" id="barra-pesquisa"
-            name="barra-pesquisa">
-        </div>
-        <div class="logado">
-          <button><i class="far fa-user"></i></button>
-        </div>
-      </div>
-    </header>
-    <main>
+    <body>
+        <%- include('./partials/header') %>
+            <main>
+                <div class="container">
 
-      <div class="container-botoes">
-        <div class="container botoes">
-          <button>MEU DASHBOARD</button>
-          <button>BIBLIOTECA</button>
-          <button>FÓRUM</button>
-        </div>
-      </div>
+                    <div class="saudacoes">
+                        <img class="saudacoes-icone" src="https://avatarfiles.alphacoders.com/152/152922.jpg">
+                        <h2>Bem-vindo, Fulaninho!</h2>
+                    </div>
 
-      <div class="content-container">
+                    <div class="titulo-meus-cursos">meus cursos</div>
 
-        <div class="titulo">
-          <img class="profile-picture" src="https://avatarfiles.alphacoders.com/152/152922.jpg">
-          <h2>Bem-vindo, Fulaninho!</h2>
-        </div>
-        <div class="titulo meus-cursos">MEUS CURSOS</div>
-        <ul class="lista-cursos">
-          <a href="#">
-            <li class="curso">português</li>
-          </a>
-          <a href="#">
-            <li class="curso">história</li>
-          </a>
-          <a href="#">
-            <li class="curso">matemática</li>
-          </a>
-          <a href="#">
-            <li class="curso">filosofia</li>
-          </a>
-          <a href="#">
-            <li class="curso">física</li>
-          </a>
-          <a href="#">
-            <li class="curso">inglês</li>
-          </a>
-          <a href="#">
-            <li class="curso">biologia</li>
-          </a>
-          <a href="#">
-            <li class="curso">química</li>
-          </a>
-        </ul>
-      </div>
-      </div>
-      </div>
-    </main>
-    <!-- <script type="text/javascript">
+                    <div class="lista-cursos">
+                        <div class="curso"><a href="#"><li>português</li></a></div>
+                        <div class="curso"><a href="#"><li>português</li></a></div>
+                        <div class="curso"><a href="#"><li>português</li></a></div>
+                        <div class="curso"><a href="#"><li>português</li></a></div>
+                        <div class="curso"><a href="#"><li>português</li></a></div>
+                        <div class="curso"><a href="#"><li>português</li></a></div>
+                        <div class="curso"><a href="#"><li>português</li></a></div>
+                        <div class="curso"><a href="#"><li>português</li></a></div>
+                        <div class="curso"><a href="#"><li>português</li></a></div>
+                    </div>
+
+                </div>
+            </main>
+            <!-- <script type="text/javascript">
       function openCity(evt, cityName) {
         // Declare all variables
         var i, tabcontent, tablinks;
@@ -86,7 +50,7 @@
         evt.currentTarget.className += " active";
       }
     </script> -->
-  </body>
-  <%- include('./partials/footer') %>
+    </body>
+    <!-- <%- include('./partials/footer') %> -->
 
     </html>

@@ -1,213 +1,192 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap');
 
-*{
+/* RESETANDO CSS */
+* {
     margin: 0;
     border: 0;
     padding: 0;
+    outline: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    font-size: 62.5%;
 }
 
-.fab, .far {
-    font-weight: 400;
-    font-size: 2em;
+/* VARIÁVEIS */
+:root {
+    --azul-primario: #282d53;
+    --cinza-primario: #e6e6e6;
+    --azul-escuro-destaque: #181B32;
+    --rosa-roxo-gradiente: linear-gradient(to right, #5d14a9, #89199c);
+    --rosa-dark-magenta: #89199C;
+    --roxo-purple: #5d14a9;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--azul-primario);
+    height: 100vh;
+}
+
+header {
+    color: #fff;
 }
 
 button {
     background: none;
-    color: #fdfaec;
+    color: #fff;
+    cursor: pointer;
 }
+
+input {
+    border: none;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+::-webkit-input-placeholder{
+    color: var(--rosa-dark-magenta);
+    opacity: 0.5;
+}
+
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 .container {
     width: 80%;
     max-width: 100%;
     margin: 0 auto;
 }
 
-body {
-    background: linear-gradient(to right, #181b32, #202441);
-    height: 100vh;
-}
-
-/* HEADER */
-header{
-    background: linear-gradient(to right, #5d14a9, #89199c);
-    color: blanchedalmond;
+/* NAVBAR: logo, pesquisa e perfil */
+header .navbar-logo-pesquisa-perfil {
+    background: var(--rosa-roxo-gradiente);
 }
 
 header .container {
+    height: 6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
 }
 
-header .container .barra-pesquisa{
-    width: 80%;
-    border: none;
+header .logo h1 {
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+header .barra-pesquisa{
+    width: 50%;
 }
  
-header .container .barra-pesquisa input {
+header .barra-pesquisa input {
     width: 100%;
-    height: 3em;
-    border-radius: 10px;
-    border: none;
-    text-align: center;
-    font-size:1em;
+    height: 3.5rem;
+    color: var(--rosa-dark-magenta);
+    font-size: 1.7rem;
 }
 
-.profile-picture {
-    width: 4em;
-    border-radius: 50%;
+header .foto-perfil .far {
+    font-size: 2.5rem;
 }
 
-/* MAIN */
+/* HEADER: dashboard, biblioteca e fórum */
+header .navbar-dashboard-biblioteca-forum {
+    background: var(--azul-escuro-destaque);
+}
 
+header .navbar-dashboard-biblioteca-forum button {
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+/* MAIN: conteúdo principal */
 main {
     height: 100vh;
 }
 
-main .container-botoes{
-    background: #282d53;
-    width: 100%;
-    border-top: none;
+main .container {
+    padding-top: 10%;
+    padding-bottom: 10%;
 }
 
-main .container-botoes .botoes {
+main .saudacoes {
+    color: var(--cinza-primario);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 4em;
+    margin-bottom: 10%;
 }
 
-main .container-botoes .botoes button {
-    font-size: 18px;
-    cursor: pointer;
+main .saudacoes h2 {
+    font-size: 3.5rem;
+    font-weight: 600;
 }
 
-main .container p {
-    color: blanchedalmond;
-    font-size: 25px;
-    padding-top: 60px;
+main .saudacoes-icone {
+    width: 5rem;
+    border-radius: 50%;
+    margin-right: 1rem;
 }
 
-/* main section.add-material form{
-    border: dotted 5px blanchedalmond;
-} */
-
-main .container .nome-curso strong{
-    background-color: #D6D6F6;
-    font-size: 40px;
-    color: black;
-    border-radius: 15px;
-    padding: 5px;
+main .titulo-meus-cursos {
+    color: var(--cinza-primario);
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
-main .container section.add-material {
-    border: dotted 1px #D6D6F6;
-    margin-top: 15px;
+main .lista-cursos {
+    /* display: flex;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+    justify-content: center;
+    grid-gap: 2rem;
 }
 
-main .container section.add-material form {
-    width: 800px;
-    padding: 5px;
+main .curso {
+    width: 23rem;
+    height: 18rem;
+    background: var(--cinza-primario);
+    border-radius: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-main .container section.add-material form label {
-    font-size: 25px;
-    color: blanchedalmond;
+main .curso li {
+    color: var(--azul-primario);
+    font-size: 2.5rem;
 }
-
-main .container section.add-material form input {
-    width: 600px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 17px;
-}
-
-main .container section.add-material form input.input-file {
-    color: blanchedalmond;
-    border-radius: 5px;
-}
-
-main .container section.add-material form textarea {
-    width: 600px;
-    height: 200px;
-    border: solid 2px blanchedalmond;
-}
-
-main .container section.add-material form button {
-    width: 100%;
-    background-color: #198754;
-    font-size: 25px;
-    border-radius: 10px;
-}
-
 
 /* FOOTER */
+/* footer {
+    height: 3em;
+    background: #D6D6F6;
+}
 
-footer {
+footer .copyright {
+    color: var(--azul-escuro-destaque);
     text-align: center;
-    height: 90px;
-    margin-top: 50px;
-    background: #282d53;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    text-align: center;
-}
-
-footer p {
-    color: blanchedalmond;
-}
-
-.content-container {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 80%;
-    padding: 5% 0 5% 0;
-}
-
-.meus-cursos {
-    color: #d6d6f6;
-    font-weight: bold;
-}
-
-.titulo {
-    color: #d6d6f6;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.lista-cursos {
-    background: linear-gradient(to right, #181b32, #202441);
-    height: 400px;
-    /*display: flex;
-    flex-wrap: wrap;*/
-    align-items: center;
     justify-content: center;
 }
 
-.curso {
-    width: 24%;
-    height: 150px;
-    background: #d6d6f6;
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #181b32;
-    font-size: 25px;
-    float: left;
-    padding: 1%;
-    margin: 0 0.5% 0.5% 0;
-}
-/*RESPONSIVIDADE MATERIAS/CURSOS*/
+footer h2 {
+    font-size: 1em;
+    font-weight: 400;
+} */
+
+/*RESPONSIVIDADE*/
 
 /* Código geral, que será herdado por qualquer dispositivos.
    nesse caso, seria o código usado no desktop, na maioria das   vezes. 
@@ -218,55 +197,74 @@ footer p {
 /* 
  Pra dispositivos que tem uma largura máxima de 768 pixels. Tablets, por exemplo.
 */
-@media screen and (max-width: 768px) {
-    .curso {
-        width: 98%;}
-}
 
-/* 
- Pra dispositivos que tem uma largura mínima de 768 pixels. Tablets, por exemplo.
-*/
-@media screen and (min-width: 768px) {
-    .curso {
-        width: 48%;}
-}
-
-/* 
- Com uma largura mínima de 992 pixels. Monitores por exemplo.
-*/
-@media screen and (min-width: 992px) {
-    .curso {
-        width: 24%;
+@media (max-width: 745px) {
+    html {
+        font-size: 52.5%;
     }
 }
 
-/* 
- Dispositivos com largura mínima de 1200 pixels. Por exemplo TVs.
-*/
-@media screen and (min-width: 1200px) {
-  
+@media (max-width: 695px) {
+    main .container {
+        padding-top: 15%;
+        padding-bottom: 15%;
+    }
+    
+    main .saudacoes {
+        margin-bottom: 15%;
+    }
 }
 
-
-footer{
-    text-align: center;
-    height: 90px;
-    margin-top: 50px;
-    background: #282d53;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    text-align: center;
+@media (max-width: 522px) {
+    html {
+        font-size: 42.5%;
+    }
 }
 
-footer h2{
-    color: #fff;
-    text-align: center;
-    font-size: 10px;
+@media (max-width: 446px) {
+    main .saudacoes h2 {
+        font-weight: 400;
+    }
+
+    main .titulo-meus-cursos {
+        font-weight: 400;
+        margin-bottom: 2rem;
+        /* margin-top: 6rem; */
+    }
+}
+
+@media (max-width: 407px) {
+    main .lista-cursos {
+        grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+    }
+
+    main .curso {
+        width: 21rem;
+        height: 16rem;
+    }
+}
+
+@media (max-width: 384px) {
+    header .container {
+        height: 17rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    main .saudacoes h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+
+    main .titulo-meus-cursos {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    main .lista-cursos {
+        display: flex;
+        flex-wrap: wrap;
+    }
 
 }
