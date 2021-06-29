@@ -169,12 +169,12 @@ main .curso li {
     font-size: 2.5rem;
 }
 
-/* FOOTER */
-/* footer {
+FOOTER
+footer {
     height: 3em;
     background: #D6D6F6;
 }
-
+/* 
 footer .copyright {
     color: var(--azul-escuro-destaque);
     text-align: center;
