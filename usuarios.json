@@ -4,5 +4,11 @@
         "nome": "claudio",
         "email": "claudio@email.com",
         "senha": "$2b$10$SRrSDLz.A45AoxmNa7g6vuYMry7yBcAt/Mj9KttjdYCBAgnnUmNXG"
+    },
+    {
+        "id": "2e4f6832-6ec7-4d1d-b3ec-f990e7b83fe7",
+        "nome": "weldo carvalho",
+        "email": "weldocarvalho@outlook.com",
+        "senha": "$2b$10$mRSBBmGHy6UCgTKs.ZebpO01w2k4f.pWQvp5emcuX/D8mWVaK.fLi"
     }
 ]
