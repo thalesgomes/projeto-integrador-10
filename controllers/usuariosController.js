@@ -24,7 +24,7 @@ const usuariosController = {
     const dadosJson = JSON.stringify(usuarios);
     fs.writeFileSync(usuariosPath, dadosJson);
 
-    return res.redirect('dashboard');
+    return res.redirect('');
   },
 };
 
