@@ -5,14 +5,6 @@ router.get('/dashboard', (req, res) => {
   res.render('dashboard');
 });
 
-router.get('/usuarios/cadastro', (req, res) => {
-  res.render('usuarios_cadastro');
-});
-
-router.get('/usuarios/login', (req, res) => {
-  res.render('usuarios_login');
-});
-
 router.get('/aulas/biblioteca', (req, res) => {
   res.render('aulas_biblioteca');
 });

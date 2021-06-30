@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "id": "c23949ff-3e81-4577-8e09-52da9982c264",
+        "nome": "claudio",
+        "email": "claudio@email.com",
+        "senha": "$2b$10$SRrSDLz.A45AoxmNa7g6vuYMry7yBcAt/Mj9KttjdYCBAgnnUmNXG"
+    }
+]

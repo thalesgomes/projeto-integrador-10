@@ -24,8 +24,16 @@ const usuariosController = {
     const dadosJson = JSON.stringify(usuarios);
     fs.writeFileSync(usuariosPath, dadosJson);
 
-    return res.redirect('');
+    return res.redirect('/usuarios/login');
   },
+
+  login: (req, res) => {
+    res.render('usuarios_login')
+  },
+
+  autenticacao: () => {
+
+  }
 };
 
 module.exports = usuariosController;

@@ -11,14 +11,14 @@
     <main>
       <section class="form-cadastro">
         <div class="container">
-          <form action="#">
+          <form action="/usuarios/cadastro" method="POST">
             <label for="nome">Nome:</label> <br>
             <input type="text" name="nome" id="nome" placeholder=" Insira nome completo" required><br>
-            <label for="tel">Número de telefone:</label><br>
-            <input pattern="^\d{2}-\d{4}-\d{4}$" type="tel" name="tel" placeholder=" 00-0000-0000"><br>
+            <!-- <label for="tel">Número de telefone:</label><br>
+            <input pattern="^\d{2}-\d{5}-\d{4}$" type="tel" name="tel" placeholder=" 00-00000-0000"><br> -->
             <label for="email">E-mail</label><br>
             <input type="email" name="email" placeholder=" Insira seu e-mail"> <br>
-            <label for="data-nasc">Data de Nascimento</label><br>
+            <!-- <label for="data-nasc">Data de Nascimento</label><br>
             <input type="text" class="form-control" placeholder=" Ex.: dd/mm/aaaa" data-mask=" 00/00/0000"
               maxlength="10" autocomplete="off"><br>
             <label for="cpf">CPF:</label> <br>
@@ -28,11 +28,11 @@
             <label for="escola">Escola:</label> <br>
             <input type="text" name="escola" placeholder=" Insira sua escola" required> <br>
             <label for="responsavel">Nome de um responsável:</label> <br>
-            <input type="text" name="responsavel" placeholder=" Insira o nome de um responsável" required> <br>
+            <input type="text" name="responsavel" placeholder=" Insira o nome de um responsável" required> <br> -->
             <label for="senha">Senha:</label> <br>
             <input type="password" name="senha" placeholder=" Insira sua senha" required> <br>
-            <label for="conf-senha">Confirme sua senha:</label> <br>
-            <input type="password" name="conf-senha" placeholder=" Repita sua senha" required> <br>
+            <!-- <label for="conf-senha">Confirme sua senha:</label> <br>
+            <input type="password" name="conf-senha" placeholder=" Repita sua senha" required> <br> -->
 
             <button type="submit">Concluir</button>
           </form>
