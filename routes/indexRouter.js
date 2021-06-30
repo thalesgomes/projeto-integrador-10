@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const criarAulaController = require('../controllers/criarAulaController');
 
 
 router.get('/dashboard', (req, res) => {
@@ -18,6 +19,8 @@ router.get('/aulas/topicos', (req, res) => {
 router.get('/aulas/edicao', (req, res) => {
   res.render('aulas_edicao');
 });
+
+router.post('/aulas/edicao', criarAulaController.criarAula);
 
 router.get('/aulas/emcurso', (req, res) => {
   res.render('aulas_em_curso');

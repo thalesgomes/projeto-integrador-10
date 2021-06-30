@@ -31,9 +31,9 @@
                 <div class="container">
 
                     <p><strong> Criar novo curso / plano de estudo</strong> </p>
-                    <form id="curso" action="">
-                        <input class="nome-curso" type="text" placeholder="Digite o nome do curso">
-                    </form>
+                    <!-- <form id="curso" action="">
+                        <input class="nome-curso" name="nome-curso" type="text" placeholder="Digite o nome do curso">
+                    </form> -->
 
                     <section class="add-material">
 
@@ -41,17 +41,17 @@
                             <button class="add-aula"><strong>+ Adicionar Aula</strong></button>
                         </a>
 
-                        <form id="aula" action="">
-                            <input type="text" placeholder="Digite o nome da aula">
+                        <form id="aula" action="/aulas/edicao" method="POST">
+                            <input type="text" name="nome" placeholder="Digite o nome da aula">
                             <br>
-                            <input type="url" placeholder="Insira a URL ou ID do vídeo: YouTube ou Vimeo">
+                            <input type="url" name="url" placeholder="Insira a URL ou ID do vídeo: YouTube ou Vimeo">
                             <br>
                             <label><strong>Ou faça upload:</label>
                             <input class="file-input file" type="file" multiple>
                             <br>
                             <label>Descrição e Referências</label>
                             <br>
-                            <textarea name="descricao" id="" placeholder="Escreva aqui a descrição"></textarea>
+                            <textarea name="descricao" id="descricao" placeholder="Escreva aqui a descrição"></textarea>
                             <br>
                             <button type="submit">CRIAR CURSO</button>
                         </form>
