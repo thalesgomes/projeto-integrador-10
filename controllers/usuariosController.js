@@ -31,7 +31,23 @@ const usuariosController = {
     res.render('usuarios_login')
   },
 
-  autenticacao: () => {
+  autenticacao: (req, res) => {
+
+    const {email, senha } = req.body;
+
+    let usuarioEncontrado = usuarios.find(usuario => usuario.email == email);
+
+    if(usuarioEncontrado && bcrypt.compareSync(senha, usuarioEncontrado.senha)) {
+      
+      req.session.usuarioLogado = usuarioEncontrado;
+
+      res.redirect('/dashboard')
+
+    } else {
+
+      res.redirect('/usuarios/login')
+
+    }
 
   }
 };
