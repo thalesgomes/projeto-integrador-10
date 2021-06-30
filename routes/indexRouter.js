@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+
 router.get('/dashboard', (req, res) => {
-  res.render('dashboard');
+  let dadosUser = req.session.usuarioLogado;
+  res.render('dashboard', {dadosUser}); 
 });
 
 router.get('/aulas/biblioteca', (req, res) => {
