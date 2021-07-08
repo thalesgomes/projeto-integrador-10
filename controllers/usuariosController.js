@@ -46,7 +46,7 @@ const usuariosController = {
     console.log(usuarioCriado);
 
     return res.redirect('/usuarios/login');
-    
+
   },
 
   login: (req, res) => {
@@ -71,6 +71,33 @@ const usuariosController = {
 
     }
 
+  },
+  autenticacaoNovo: async (req, res) => {
+    
+    const {email, senha } = req.body;
+
+    let usuarioEncontrado = await Usuario.findAll({
+
+      where: {email_usuario: email}
+
+    });
+
+    usuarioEncontrado = JSON.stringify(usuarioEncontrado);
+    usuarioEncontrado = JSON.parse(usuarioEncontrado);
+    // console.log(usuarioEncontrado[0].senha_usuario);
+
+    if(usuarioEncontrado && bcrypt.compareSync(senha, usuarioEncontrado[0].senha_usuario)) {
+      
+      req.session.usuarioLogado = usuarioEncontrado[0];
+
+      res.redirect('/dashboard')
+
+    } else {
+
+      res.redirect('/usuarios/login')
+
+    }
+ 
   }
 };
 

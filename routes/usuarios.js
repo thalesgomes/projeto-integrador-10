@@ -9,7 +9,7 @@ router.post('/cadastro', usuariosController.salvarNovo);
 
 /** http://localhost:3000/usuarios/login */
 router.get('/login', usuariosController.login);
-router.post('/login', usuariosController.autenticacao);
+router.post('/login', usuariosController.autenticacaoNovo);
 
 
 module.exports = router;
