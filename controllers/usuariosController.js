@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const fs = require('fs');
 const path = require('path');
 const { uuid } = require('uuidv4');
+const { Usuario, Sequelize } = require('../database/models');
 
 const usuariosPath = path.join('usuarios.json');
 let usuarios = fs.readFileSync(usuariosPath, { encoding: 'utf-8' });
@@ -25,6 +26,27 @@ const usuariosController = {
     fs.writeFileSync(usuariosPath, dadosJson);
 
     return res.redirect('/usuarios/login');
+  },
+
+  salvarNovo: async (req, res) => {
+     
+    const { nome, email, senha } = req.body;
+
+    const senhaCrypt = bcrypt.hashSync(senha, 10);
+
+    const usuarioCriado = await Usuario.create ({
+
+      id_usuario: uuid(),
+      nome_usuario: nome,
+      email_usuario: email,
+      senha_usuario: senhaCrypt
+
+    });
+
+    console.log(usuarioCriado);
+
+    return res.redirect('/usuarios/login');
+    
   },
 
   login: (req, res) => {
