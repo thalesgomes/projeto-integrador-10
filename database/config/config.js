@@ -1,10 +1,14 @@
 module.exports = {
-  "development": {
-    "username": "root",
-    "password": "",
-    "database": "saber_digital",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+  development: {
+    username: "root",
+    password: "1234",
+    database: "saber_digital",
+    host: "localhost",
+    dialect: "mysql",
+    define: {
+      timestamps: true,
+      underscored: true,
+    }
   }
 }
 
