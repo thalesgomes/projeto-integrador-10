@@ -8,7 +8,9 @@ const session = require('express-session');
 
 const indexRouter = require('./routes/indexRouter');
 const usuariosRouter = require('./routes/usuarios');
-const alunosRouter = require('./routes/alunos');
+const estudantesRouter = require('./routes/estudantesRouter');
+const topicosRouter = require('./routes/topicosRouter');
+const disciplinasRouter = require('./routes/disciplinasRouter');
 
 const app = express();
 
@@ -29,7 +31,9 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/usuarios', usuariosRouter);
-app.use('/alunos', alunosRouter);
+app.use('/estudantes', estudantesRouter);
+app.use('/disciplinas', disciplinasRouter);
+app.use('/disciplinas', topicosRouter);
 
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {
