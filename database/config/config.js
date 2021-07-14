@@ -10,10 +10,10 @@ module.exports = {
       underscored: true,
       underscoredAll: true,
     },
-    dialectOptions: {
-      timezone: 'America/Sao_Paulo'
-    },
-    timezone: 'America/Sao_Paulo'
+    timezone: '+03:00',
+    // dialectOptions: {
+    //   timezone: 'America/Sao_Paulo'
+    // },
   }
 }
 
