@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const disciplinasController = require('../controllers/disciplinasController');
 
-router.post('/', disciplinasController.store);
+router.get('/:professor_id/disciplinas', disciplinasController.index);
+router.post('/:professor_id/disciplinas', disciplinasController.store);
 
 module.exports = router;

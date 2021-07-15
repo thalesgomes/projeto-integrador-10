@@ -17,6 +17,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      fk_professor: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: { model: 'professores', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

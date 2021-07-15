@@ -14,6 +14,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        fk_professor: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: { model: 'professores', key: 'id' },
+            onUpdate: 'CASCADE',
+            onDelete: 'RESTRICT',
+        },
     },
         {
             tableName: "disciplinas",
@@ -24,6 +31,13 @@ module.exports = (sequelize, DataTypes) => {
         Disciplina.hasMany(models.Topico, {
             foreignKey: 'fk_disciplina',
             as: 'topicos'
+        })
+
+        Disciplina.belongsToMany(models.Professor, {
+            through: models.ProfessorDisciplina,
+            foreignKey: 'fk_disciplina',
+            otherKey: 'fk_professor',
+            as: 'professores'
         })
     }
 

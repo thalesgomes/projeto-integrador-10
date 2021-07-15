@@ -2,7 +2,7 @@ module.exports = {
   development: {
     username: "root",
     password: "1234",
-    database: "saber_digital",
+    database: "sd",
     host: "localhost",
     dialect: "mysql",
     define: {
@@ -10,7 +10,7 @@ module.exports = {
       underscored: true,
       underscoredAll: true,
     },
-    timezone: '+03:00',
+    timezone: '-03:00',
     // dialectOptions: {
     //   timezone: 'America/Sao_Paulo'
     // },
