@@ -5,6 +5,7 @@ const session = require('express-session');
 // import of routers
 const renderRouter = require('./routes/renderRouter');
 const professoresRouter = require('./routes/professoresRouter');
+const disciplinasRouter = require('./routes/disciplinasRouter');
 
 const app = express();
 
@@ -29,5 +30,6 @@ app.use(session({
 // routes and middlewares
 app.use('/', renderRouter);
 app.use('/', professoresRouter);
+app.use('/', disciplinasRouter);
 
 module.exports = app;
