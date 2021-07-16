@@ -1,7 +1,7 @@
 const { Professor } = require('../database/models/index');
 
 const professoresController = {
-  index: async (req, res) => {
+  show: async (req, res) => {
     const professores = await Professor.findAll();
 
     res.json(professores);

@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-const rotasAntigas = require('./rotasAntigas');
-const routes = require('./routes');
+
+// import of routers
+const renderRouter = require('./routes/renderRouter');
+const professoresRouter = require('./routes/professoresRouter');
 
 const app = express();
 
@@ -25,7 +27,7 @@ app.use(session({
 }));
 
 // routes and middlewares
-app.use('/', rotasAntigas);
-app.use('/', routes);
+app.use('/', renderRouter);
+app.use('/', professoresRouter);
 
 module.exports = app;
