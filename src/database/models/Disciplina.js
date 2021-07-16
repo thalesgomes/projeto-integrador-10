@@ -19,5 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'disciplinas',
   });
 
+  Disciplina.associate = (models) => {
+    Disciplina.hasMany(models.Topico, {
+      foreignKey: 'fk_disciplina',
+      as: 'topicos',
+    });
+  };
+
   return Disciplina;
 };

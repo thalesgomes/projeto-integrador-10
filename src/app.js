@@ -6,6 +6,7 @@ const session = require('express-session');
 const renderRouter = require('./routes/renderRouter');
 const professoresRouter = require('./routes/professoresRouter');
 const disciplinasRouter = require('./routes/disciplinasRouter');
+const topicosRouter = require('./routes/topicosRouter');
 
 const app = express();
 
@@ -31,5 +32,6 @@ app.use(session({
 app.use('/', renderRouter);
 app.use('/', professoresRouter);
 app.use('/', disciplinasRouter);
+app.use('/', topicosRouter);
 
 module.exports = app;
