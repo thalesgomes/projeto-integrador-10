@@ -12,7 +12,7 @@ const topicosController = {
 
     store: async (req, res) => {
         const { disciplina_id } = req.params;
-        const { id, nome } = req.body;
+        const { nome } = req.body;
 
         const disciplina = await Disciplina.findByPk(disciplina_id);
 
@@ -21,7 +21,6 @@ const topicosController = {
         }
 
         const topico = await Topico.create({
-            id,
             nome,
             fk_disciplina: disciplina_id
         })
