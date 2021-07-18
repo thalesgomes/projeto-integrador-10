@@ -17,11 +17,18 @@ module.exports = (sequelize, DataTypes) => {
     );
 
     Topico.associate = (models) => {
+        
         Topico.belongsTo(models.Disciplina, {
             foreignKey: 'fk_disciplina',
             as: 'disciplina'
         })
+
+        Topico.hasMany(models.Aula, {
+            foreignKey: 'fk_topico',
+            as: 'aula'
+        })
     }
+        
 
     return Topico;
 }

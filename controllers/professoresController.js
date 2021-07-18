@@ -3,12 +3,12 @@ const { Professor } = require('../database/models');
 const professoresController = {
     index: async (req, res) => {
         const professores = await Professor.findAll({
-            include: {
-                association: 'disciplinas',
-                // attributes: ['id', 'nome', 'fk_professor'],
-                // through: { attributes: [] }
-            },
-            // attributes: ['id', 'nome']
+            // include: {
+            //     association: 'disciplinas',
+            //     // attributes: ['id', 'nome', 'fk_professor'],
+            //     // through: { attributes: [] }
+            // },
+            // // attributes: ['id', 'nome']
         });
 
         res.json(professores)

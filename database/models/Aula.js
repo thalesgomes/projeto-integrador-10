@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Disciplina = sequelize.define("Aula", {
+  const Aula = sequelize.define("Aula", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -48,6 +48,24 @@ module.exports = (sequelize, DataTypes) => {
           tableName: "aulas",
       }
   );
+  
+  Aula.associate = (models) => {
+    
+    Aula.belongsTo(models.Topico, {
+        foreignKey: 'fk_topico',
+        as: 'topicos'
+    })
 
-  return Disciplina;
+    Aula.belongsTo(models.Disciplina, {
+      foreignKey: 'fk_disciplina',
+      as: 'disciplina'
+  })
+
+  Aula.belongsTo(models.Professor, {
+    foreignKey: 'fk_professor',
+    as: 'professor'
+  })
+}
+
+  return Aula;
 }
