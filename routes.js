@@ -4,6 +4,7 @@ const disciplinasController = require('./controllers/disciplinasController');
 const estudantesController = require('./controllers/estudantesController');
 const professoresController = require('./controllers/professoresController');
 const topicosController = require('./controllers/topicosController');
+const aulasController = require('./controllers/aulasController');
 
 // ROTAS PARA ESTUDANTES
 router.get('/estudantes', estudantesController.store);
@@ -20,5 +21,9 @@ router.post('/professores/:professor_id/disciplinas', disciplinasController.stor
 // ROTAS PARA TÓPICOS
 router.get('/disciplinas/:disciplina_id/topicos', topicosController.index);
 router.post('/disciplinas/:disciplina_id/topicos', topicosController.store);
+
+// ROTAS PARA AULAS
+router.get('/aulas', aulasController.criarAula);
+router.post('/aulas/criar', aulasController.criarAula);
 
 module.exports = router;
