@@ -1,178 +1,218 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap');
 
-*{
+/* RESETANDO CSS */
+* {
     margin: 0;
     border: 0;
     padding: 0;
+    outline: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    font-size: 62.5%;
 }
 
-.fab, .far {
-    font-weight: 400;
-    font-size: 2em;
+/* VARIÁVEIS */
+:root {
+    --azul-primario: #282d53;
+    --cinza-primario: #e6e6e6;
+    --azul-escuro-destaque: #181B32;
+    --rosa-roxo-gradiente: linear-gradient(to right, #5d14a9, #89199c);
+    --rosa-dark-magenta: #89199C;
+    --roxo-purple: #5d14a9;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--azul-primario);
+    height: 100vh;
+}
+
+header {
+    color: #fff;
 }
 
 button {
     background: none;
-    color: #fdfaec;
+    color: #fff;
+    cursor: pointer;
 }
+
+input {
+    border: none;
+    text-align: center;
+}
+
+::-webkit-input-placeholder{
+    color: gray;
+    opacity: 0.5;
+}
+
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 .container {
     width: 80%;
     max-width: 100%;
     margin: 0 auto;
 }
 
-body {
-    background: linear-gradient(to right, #181b32, #202441);
-    height: 100vh;
-}
-
-/* HEADER */
-header{
-    background: linear-gradient(to right, #5d14a9, #89199c);
-    color: blanchedalmond;
+/* NAVBAR: logo, pesquisa e perfil */
+header .navbar-logo-pesquisa-perfil {
+    background: var(--rosa-roxo-gradiente);
 }
 
 header .container {
+    height: 6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
 }
 
-header .container .barra-pesquisa{
-    width: 80%;
-    border: none;
+header .logo h1 {
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+header .barra-pesquisa{
+    width: 50%;
 }
  
-header .container .barra-pesquisa input {
+header .barra-pesquisa input {
     width: 100%;
-    height: 3em;
-    border-radius: 10px;
-    border: none;
-    text-align: center;
-    font-size:1em;
+    height: 3.5rem;
+    border-radius: 3rem;
+    color: var(--rosa-dark-magenta);
+    font-size: 1.7rem;
 }
 
-.profile-picture {
-    width: 4em;
-    border-radius: 50%;
+header .foto-perfil .far {
+    font-size: 2.5rem;
 }
+
+/* HEADER: dashboard, biblioteca e fórum */
+header .navbar-dashboard-biblioteca-forum {
+    background: var(--azul-escuro-destaque);
+}
+
+header .navbar-dashboard-biblioteca-forum button {
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
 
 /* MAIN */
-
-main {
-    height: 100vh;
-}
-
-main .container-botoes{
-    background: #282d53;
-    width: 100%;
-    border-top: none;
-}
-
-main .container-botoes .botoes {
+main .content-container {
+    background: var(--cinza-primario);
+    /* background: rgb(240, 240, 240); */
+    padding: 7rem;
+    max-width: 80%;
+    margin: auto;
+    height: 83rem;
+    margin-top: 15rem;
+    border-radius: 1rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 4em;
+    flex-direction: column;
 }
 
-
-main .container-botoes .botoes button {
-    font-size: 18px;
-    cursor: pointer;
+main .content-container p {
+    color: var(--azul-escuro-destaque);
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
 }
 
-main .container p {
-    color: blanchedalmond;
-    font-size: 25px;
-    padding-top: 60px;
+main .add-material-cabecalho {
+    margin-bottom: 4rem;
 }
 
-/* main section.add-material form{
-    border: dotted 5px blanchedalmond;
-} */
-
-main .container .nome-curso {
-    background-color: #D6D6F6;
-    font-size: 40px;
-    color: black;
-    border-radius: 15px;
-    padding: .5em;
-    margin: .5em 0 .5em 0;
+main .lista-topicos {
+    font-size: 3rem;
+    margin-top: 7rem;
+    margin-bottom: 10rem;
 }
 
-
-main .container section.add-material {
-    margin-top: 15px;
-    background: #282d53;
-    padding: 1em;
-    border-radius: 5px;
+main .lista-topicos button {
+    color: gray;
 }
 
-main .container section.add-material form {
-    width: 100%;
-    padding-top: .5em;
+main .add-material-cabecalho button {
+    background: var(--rosa-roxo-gradiente);
+    border-radius: 0.4rem;
+    font-size: 2rem;
+    font-weight: 300;
+    width: 9rem;
+    margin-right: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-main .container section.add-material form label {
-    font-size: 25px;
-    color: blanchedalmond;
-}
-
-main .container section.add-material form input {
-    width: 100%;
-    margin-bottom: .5em;
-    border-radius: 10px;
+main .add-material-cabecalho input {
+    width: 80%;
+    height: 3rem;
+    /* border: solid 0.1rem var(--roxo-purple); */
+    border-radius: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
-    font-size: 17px;
-    height: 4em;
+    font-size: 2rem;
+    color: gray;
 }
 
-main .container section.add-material form input.input-file {
-    color: blanchedalmond;
-    border-radius: 5px;
+main ::-webkit-input-placeholder{
+    color: gray;
+    opacity: 0.5;
+    font-size: 1.6rem;
+    font-weight: 300;
 }
 
-main .container section.add-material form input:placeholder{
-    font-size:1em;
-    text-align:left;
+main .add-material-cabecalho .file {
+    text-decoration: none;
+    border: none;
+    border-radius: 0;
+    list-style: none;
+    color: var(--cinza-primario);
+    font-size: 1.4rem;
 }
-  
 
-main .container section.add-material form textarea {
+main .add-material form #descricao-titulo {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--azul-escuro-destaque);
+}
+
+main .add-material form textarea {
     width: 100%;
-height: 200px;
-border: solid 2px blanchedalmond;
-border-radius: 5px;
-padding: 1em;
+    height: 20rem;
+    border: solid 0.1rem var(--roxo-purple);
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color: gray;
 }
 
-main .container section.add-material form button {
-    width: 100%;
-    background-color: #198754;
-    font-size: 25px;
-    border-radius: 10px;
-    height: 3em;
-    margin-top: .5em;
+main .add-material #adicionar-aula {
+    background-color: #5dda3d;
+    /* background: var(--rosa-roxo-gradiente); */
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
-button.add-aula {
-    background-color:#e07a5f;
-    border-radius: 5px;
-    font-size:1.5em;
-    padding: .5em;
-}
 
 /* FOOTER */
-
 footer {
     text-align: center;
-    height: 90px;
-    margin-top: 50px;
-    background: #282d53;
+    height: 8rem;
+    margin-top: 8rem;
+    background: var(--azul-escuro-destaque);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,8 +221,10 @@ footer {
     width: 100%;
     color: white;
     text-align: center;
+    
 }
 
-footer p {
-    color: blanchedalmond;
+footer h2 {
+    font-size: 1.3rem;
+    font-weight: 300;
 }

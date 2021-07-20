@@ -3,68 +3,59 @@
     </head>
 
     <body>
-        <header>
-            <div class="container">
-                <div class="logo">
-                    <h2>SaberDigital</h2>
-                </div>
-                <div class="barra-pesquisa">
-                    <input type="text" placeholder="Buscar outras bases de conhecimento" id="barra-pesquisa"
-                        name="barra-pesquisa">
-                </div>
-                <div class="logado">
-                    <button><i class="far fa-user"></i></button>
-                </div>
-            </div>
-        </header>
-        <main>
+        <%- include('./partials/header') %>
+            <main>
 
-            <div class="container-botoes">
-                <div class="container botoes">
-                    <button>MEU DASHBOARD</button>
-                    <button>BIBLIOTECA</button>
-                    <button>FÓRUM</button>
-                </div>
-            </div>
-
-            <div class="content-container">
                 <div class="container">
+                    <div class="content-container">
 
-                    <p><strong> Criar novo curso / plano de estudo</strong> </p>
-                    <!-- <form id="curso" action="">
-                        <input class="nome-curso" name="nome-curso" type="text" placeholder="Digite o nome do curso">
-                    </form> -->
+                        <section class="add-material">
 
-                    <section class="add-material">
+                            <p>EDITAR AULA</p>
 
-                        <a href="#">
-                            <button class="add-aula"><strong>+ Adicionar Aula</strong></button>
-                        </a>
+                            <form id="aula" action="/aulas/edicao" method="POST">
+                                <!-- <div class="lista-topicos">
+                                    <button>tópico</button>
+                                    <input type="text" name="topico" placeholder="escolha o topico">
+                                </div> -->
 
-                        <form id="aula" action="/aulas/edicao" method="POST">
-                            <input type="text" name="nome" placeholder="Digite o nome da aula">
-                            <br>
-                            <input type="url" name="url" placeholder="Insira a URL ou ID do vídeo: YouTube ou Vimeo">
-                            <br>
-                            <label><strong>Ou faça upload:</label>
-                            <input class="file-input file" type="file" multiple>
-                            <br>
-                            <label>Descrição e Referências</label>
-                            <br>
-                            <textarea name="descricao" id="descricao" placeholder="Escreva aqui a descrição"></textarea>
-                            <br>
-                            <button type="submit">CRIAR CURSO</button>
-                        </form>
+                                <div class="add-material-cabecalho">
+                                    <div>
+                                        <button>tópico</button>
+                                        <input type="text" name="topico" placeholder="escolha um tópico">
+                                    </div>
 
+                                    <div>
+                                        <button>aula</button>
+                                        <input type="url" name="titulo-aula" placeholder="digite o nome da aula">
+                                    </div>
 
-                    </section>
+                                    <div>
+                                        <button>vídeo</button>
+                                        <input type="url" name="url"
+                                            placeholder="Insira a URL ou ID do vídeo (youTube ou vimeo)">
+                                    </div>
 
-                    <a href="#">
-                        <button class="add-aula"><strong>+ Adicionar Aula</strong></button>
-                    </a>
+                                    <div>
+                                        <button>pdf</button>
+                                        <input class="file" type="file" multiple>
+                                    </div>
+                                </div>
+
+                                <label id="descricao-titulo">Descrição</label>
+                                <br>
+                                <textarea name="descricao" id="descricao"
+                                    placeholder="Escreva aqui a descrição"></textarea>
+                                <br>
+                                <button id="adicionar-aula" type="submit">ADICIONAR AULA</button>
+                            </form>
+
+                        </section>
+
+                    </div>
                 </div>
-        </main>
-        <%- include('./partials/footer') %>
+            </main>
+            <%- include('./partials/footer') %>
     </body>
 
     </html>
