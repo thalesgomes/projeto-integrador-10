@@ -6,7 +6,8 @@
   <body>
     <main class="container">
       <h2>login</h2>
-      <form action="/usuarios/login" method="POST">
+
+      <form action="/login" method="POST">
         <div class="input-field">
           <input type="email" name="email" id="email" placeholder="informe o seu nome">
           <div class="underline"></div>
@@ -17,24 +18,28 @@
         </div>
         <input type="submit" value="continue">
       </form>
+
       <div class="footer">
-        <span>ou conecte com sua rede social</span>
+        <span>ainda não possui cadastro?</span>
+
         <div class="social-field">
           <div class="social-field-twitter">
-            <a href="#">
+            <a href="/cadastro">
               <i class="fab fa-google"></i>
-              sign in with google
+              registre-se aqui
             </a>
           </div>
         </div>
-        <div class="social-field">
+
+        <!-- <div class="social-field">
           <div class="social-field-facebook">
             <a href="#">
               <i class="fab fa-facebook-f"></i>
               sign in with facebook
             </a>
           </div>
-        </div>
+        </div> -->
+
       </div>
     </main>
   </body>
