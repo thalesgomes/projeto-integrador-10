@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/professores/:id_professor/disciplinas/:id_disciplina/topicos/form', topicosController.formRender);
 
 // OBTER TODOS OS TÓPICOS DE DETERMINADA DISCIPLINA
-router.get('/disciplinas/:id_disciplina/topicos', topicosController.show);
+router.get('/professores/:id_professor/disciplinas/:id_disciplina/topicos', topicosController.show);
 
 // OBTER APENAS UM TÓPICO DE DETERMINADA DISCIPLINA
 // router.get('/disciplinas/:id_disciplina/topicos/:id_topico', topicosController.index);

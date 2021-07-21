@@ -1,0 +1,58 @@
+<%- include('./partials/head') %>
+    <link rel="stylesheet" href="/stylesheets/topicos.css">
+    </head>
+
+    <body>
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <h2>SaberDigital</h2>
+                </div>
+                <div class="barra-pesquisa">
+                    <input type="text" placeholder="Buscar outras bases de conhecimento" id="barra-pesquisa"
+                        name="barra-pesquisa">
+                </div>
+                <div class="logado">
+                    <button><i class="far fa-user"></i></button>
+                </div>
+            </div>
+        </header>
+        <main>
+
+            <div class="container-botoes">
+                <div class="container botoes">
+                    <button>MEU DASHBOARD</button>
+                    <button>BIBLIOTECA</button>
+                    <button>FÓRUM</button>
+                </div>
+            </div>
+
+            <div class="content container">
+
+                <div class="featured-image-curso"></div>
+
+                <div class="nome-curso">
+                    <h2><%= nome_disciplina %></h2>
+                </div>
+
+                <div class="container-topicos-curso">
+                    <ol class="topicos-curso">
+
+                        <% if (topicos.length == 0) { %>
+                            <p><%= "não há tópicos cadastrados para essa disciplina" %></p>
+                        
+                        <% } else { %>
+                            <% topicos.forEach(topico => { %>
+                                <a href=""><li><%= topico.nome %></li></a>
+                            <% }) %>
+                        <% } %>
+
+                </div>
+
+            </div>
+        </main>
+        <%= topicos.nome %>
+    </body>
+    <%- include('./partials/footer') %>
+
+        </html>

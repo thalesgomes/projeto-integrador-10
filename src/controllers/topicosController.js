@@ -13,8 +13,16 @@ const topicosController = {
   },
 
   show: async (req, res) => {
-    const topicos = await Topico.findAll();
-    return res.json(topicos);
+    const { id_disciplina } = req.params;
+    const { id_professor } = req.params;
+
+    const { nome, topicos } = await Disciplina.findByPk(id_disciplina, {
+      include: { association: 'topicos' },
+    });
+
+    res.render('topicos', {
+      nome_disciplina: nome, topicos, id_disciplina, id_professor,
+    });
   },
 
   store: async (req, res) => {

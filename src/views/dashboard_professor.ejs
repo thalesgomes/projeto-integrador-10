@@ -17,7 +17,7 @@
                     <% if (disciplinas.length > 0) { %>
                         <% disciplinas.forEach(disciplina => { %>
                             <div class="lista-cursos">
-                                <div class="curso"><a href="#"><li><%= disciplina.nome %></li></a></div>
+                                <div class="curso"><a href="/professores/<%= id_professor %>/disciplinas/<%= disciplina.id %>/topicos"><li><%= disciplina.nome %></li></a></div>
                             </div>
                         <% }) %>                        
                     <% } %>
