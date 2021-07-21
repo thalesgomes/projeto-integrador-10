@@ -18,7 +18,8 @@
     "install": "^0.13.0",
     "mysql2": "^2.2.5",
     "npm": "^7.20.0",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "uuidv4": "^6.2.11"
   },
   "devDependencies": {
     "eslint": "^7.30.0",
