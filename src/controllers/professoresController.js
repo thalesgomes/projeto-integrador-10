@@ -1,6 +1,13 @@
-const { Professor } = require('../database/models/index');
+const { Disciplina, Professor } = require('../database/models/index');
 
 const professoresController = {
+
+  dashboardRender: async (req, res) => {
+    const disciplinas = await Disciplina.findAll();
+    const { id_professor } = req.params;
+    res.render('dashboard_professor', { disciplinas, id_professor });
+  },
+
   show: async (req, res) => {
     const professores = await Professor.findAll();
 

@@ -3,6 +3,9 @@ const professoresController = require('../controllers/professoresController');
 
 const router = express.Router();
 
+// RENDERIZAÇÃO DO DASHBOARD
+router.get('/dashboard/professores/:id_professor', professoresController.dashboardRender);
+
 // OBTER TODOS OS PROFESSORES
 router.get('/professores/', professoresController.show);
 
