@@ -3,6 +3,9 @@ const topicosController = require('../controllers/topicosController');
 
 const router = express.Router();
 
+// RENDERIZAÇÃO DA VIEW DO FORMULÁRIO
+router.get('/professores/:id_professor/disciplinas/:id_disciplina/topicos/form', topicosController.formRender);
+
 // OBTER TODOS OS TÓPICOS DE DETERMINADA DISCIPLINA
 router.get('/disciplinas/:id_disciplina/topicos', topicosController.show);
 
@@ -10,7 +13,7 @@ router.get('/disciplinas/:id_disciplina/topicos', topicosController.show);
 // router.get('/disciplinas/:id_disciplina/topicos/:id_topico', topicosController.index);
 
 // CADASTRAR UM TÓPICO DE DETERMINADA DISCIPLINA
-router.post('/disciplinas/:id_disciplina/topicos', topicosController.store);
+router.post('/professores/:id_professor/disciplinas/:id_disciplina/topicos', topicosController.store);
 
 // ATUALIZAR UM TÓPICO DE DETERMINADA DISCIPLINA
 // router.post('/disciplinas/:id_disciplina/topicos/:id_topico', topicosController.update);
