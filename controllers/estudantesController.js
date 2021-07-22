@@ -11,6 +11,7 @@ const estudantesController = {
         const estudante = await Estudante.create({ id, nome, sobrenome, email, senha, categoria })
         res.json(estudante)
     }
+
 }
 
 module.exports = estudantesController;

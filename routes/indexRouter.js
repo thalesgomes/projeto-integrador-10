@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const aulasController = require('../controllers/aulasController');
 const criarAulaController = require('../controllers/criarAulaController');
 
 
@@ -33,5 +34,7 @@ router.get('/forum', (req, res) => {
 router.get('/forum/topicos', (req, res) => {
   res.render('forum_topicos');
 });
+
+router.get('/aulas/biblioteca/professores', aulasController.listaProfessor)
 
 module.exports = router;

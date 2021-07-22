@@ -13,7 +13,7 @@ const professoresController = {
 
         res.json(professores)
     },
-
+    
     store: async (req, res) => {
         const { id, nome, sobrenome, email, senha, categoria } = req.body;
         const professor = await Professor.create({ id, nome, sobrenome, email, senha, categoria })

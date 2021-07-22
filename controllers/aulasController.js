@@ -16,7 +16,15 @@ const aulasController = {
         });
 
         res.json(aula)
-    } 
+    },
+    listaProfessor: async (req, res) => {
+
+        let listaProfessores = await Professor.findAll();
+
+        console.log(listaProfessores)
+
+        return res.render('professor_disciplina');      
+    }
 
 }
 
