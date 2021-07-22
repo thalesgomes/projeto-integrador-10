@@ -3,30 +3,29 @@ const { Disciplina, Topico } = require('../database/models/index');
 const topicosController = {
   formRender: async (req, res) => {
     const { id_disciplina } = req.params;
-    const { id_professor } = req.params;
 
     const { topicos } = await Disciplina.findByPk(id_disciplina, {
       include: { association: 'topicos' },
     });
 
-    res.render('topicos_form', { topicos, id_disciplina, id_professor });
+    res.render('topicos_form', { topicos, id_disciplina });
   },
 
   show: async (req, res) => {
     const { id_disciplina } = req.params;
-    const { id_professor } = req.params;
 
     const { nome, topicos } = await Disciplina.findByPk(id_disciplina, {
       include: { association: 'topicos' },
     });
 
     res.render('topicos', {
-      nome_disciplina: nome, topicos, id_disciplina, id_professor,
+      nome_disciplina: nome,
+      topicos,
+      id_disciplina,
     });
   },
 
   store: async (req, res) => {
-    const { id_professor } = req.params;
     const { id_disciplina } = req.params;
     const { nome } = req.body;
 
@@ -43,7 +42,7 @@ const topicosController = {
 
     const id_topico = topico.id;
 
-    return res.redirect(`/professores/${id_professor}/disciplinas/${id_disciplina}/topicos/${id_topico}/aulas/form`);
+    return res.redirect(`/disciplinas/${id_disciplina}/topicos/${id_topico}/aulas/form`);
   },
 };
 

@@ -9,20 +9,31 @@
 
                     <div class="saudacoes">
                         <img class="saudacoes-icone" src="https://avatarfiles.alphacoders.com/152/152922.jpg">
-                        <h2>olá, <%= nome %>  </h2>
+                        <h2>olá, <%= nome %>
+                        </h2>
                     </div>
 
-                    <div class="titulo-meus-cursos">meus cursos</div>
-                    
-                    <% if (disciplinas.length > 0) { %>
-                        <% disciplinas.forEach(disciplina => { %>
-                            <div class="lista-cursos">
-                                <div class="curso"><a href="/professores/<%= id %>/disciplinas/<%= disciplina.id %>/topicos"><li><%= disciplina.nome %></li></a></div>
-                            </div>
-                        <% }) %>                        
-                    <% } %>
+                    <div class="titulo-meus-cursos">minhas disciplinas</div>
 
-                    <a href="/professores/<%= id %>/disciplinas/form"><h2><%= "cadastrar novo curso" %></h2></a>
+                    <% if (disciplinas.length> 0) { %>
+                        <div class="lista-cursos">
+                            <% disciplinas.forEach(disciplina=> { %>
+
+                                <div class="curso"><a href="/disciplinas/<%= disciplina.id %>/topicos">
+                                        <li>
+                                            <%= disciplina.nome %>
+                                        </li>
+                                    </a></div>
+
+                                <% }) %>
+                        </div>
+                        <% } %>
+
+                            <a href="/disciplinas/form">
+                                <h2>
+                                    <%= "cadastrar nova disciplina" %>
+                                </h2>
+                            </a>
 
                 </div>
             </main>
