@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { Professor } = require('../database/models');
+const { Professor, Estudante } = require('../database/models');
 
 const loginController = {
 
@@ -18,28 +18,30 @@ const loginController = {
         const { senha } = professor;
 
         if (!bcrypt.compareSync(senhaForm, senha)) {
-          return res.json('usuário(a) ou senha incorretos');
+          return res.json('senha incorreta');
         }
 
-        return res.redirect('/dashboard');
+        req.session.professor = professor;
+
+        return res.redirect('/professor/dashboard');
       });
     }
 
-    // const estudantes = await Estudante.findAll({ where: { email } });
+    const estudantes = await Estudante.findAll({ where: { email } });
 
-    // if (estudantes.length > 0 || estudantes === undefined) {
-    //   estudantes.forEach((estudante) => {
-    //     const { senha } = estudante;
+    if (estudantes.length > 0 || estudantes === undefined) {
+      estudantes.forEach((estudante) => {
+        const { senha } = estudante;
 
-    //     if (!bcrypt.compareSync(senhaForm, senha)) {
-    //       return res.json('usuário(a) ou senha incorretos');
-    //     }
+        if (!bcrypt.compareSync(senhaForm, senha)) {
+          return res.json('senha incorreta');
+        }
 
-    //     req.session = estudante;
+        req.session.estudante = estudante;
 
-    //     return res.redirect('/dashboard');
-    //   });
-    // }
+        return res.redirect('/aluno/dashboard');
+      });
+    }
 
     return res.json('usuário(a) não existe');
   },
