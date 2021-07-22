@@ -5,9 +5,12 @@ const session = require('express-session');
 // import of routers
 const renderRouter = require('./routes/renderRouter');
 const loginRouter = require('./routes/loginRouter');
+const cadastroRouter = require('./routes/cadastroRouter');
 const professoresRouter = require('./routes/professoresRouter');
+const estudantesRouter = require('./routes/estudantesRouter');
 const disciplinasRouter = require('./routes/disciplinasRouter');
 const topicosRouter = require('./routes/topicosRouter');
+const authMid = require('./middlewares/authMid');
 
 const app = express();
 
@@ -30,10 +33,12 @@ app.use(session({
 }));
 
 // routes and middlewares
-app.use('/', renderRouter);
+app.use('/', cadastroRouter);
 app.use('/', loginRouter);
-app.use('/', professoresRouter);
-app.use('/', disciplinasRouter);
-app.use('/', topicosRouter);
+app.use('/', authMid, renderRouter);
+app.use('/', authMid, estudantesRouter);
+app.use('/', authMid, professoresRouter);
+app.use('/', authMid, disciplinasRouter);
+app.use('/', authMid, topicosRouter);
 
 module.exports = app;

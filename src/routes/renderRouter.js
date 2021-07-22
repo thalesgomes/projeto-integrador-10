@@ -22,8 +22,4 @@ router.get('/forum/topicos', (req, res) => {
   res.render('forum_topicos');
 });
 
-router.get('/usuarios/cadastro', (req, res) => {
-  res.render('usuarios_cadastro');
-});
-
 module.exports = router;
