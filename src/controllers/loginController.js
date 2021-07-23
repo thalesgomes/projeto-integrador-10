@@ -8,16 +8,15 @@ const loginController = {
   },
 
   auth: async (req, res) => {
-    const { email } = req.body;
-    const senhaForm = req.body.senha;
+    const { email, senha } = req.body;
 
     const professores = await Professor.findAll({ where: { email } });
 
     if (professores.length > 0 || professores !== undefined) {
       professores.forEach((professor) => {
-        const { senha } = professor;
+        const { senha: senhaHash } = professor;
 
-        if (!bcrypt.compareSync(senhaForm, senha)) {
+        if (!bcrypt.compareSync(senha, senhaHash)) {
           return res.json('senha incorreta');
         }
 
@@ -31,9 +30,9 @@ const loginController = {
 
     if (estudantes.length > 0 || estudantes === undefined) {
       estudantes.forEach((estudante) => {
-        const { senha } = estudante;
+        const { senha: senhaHash } = estudante;
 
-        if (!bcrypt.compareSync(senhaForm, senha)) {
+        if (!bcrypt.compareSync(senha, senhaHash)) {
           return res.json('senha incorreta');
         }
 
