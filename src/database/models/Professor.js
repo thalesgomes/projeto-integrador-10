@@ -31,5 +31,14 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'professores',
   });
 
+  Professor.associate = (models) => {
+    Professor.belongsToMany(models.Disciplina, {
+      through: models.ProfessorDisciplina,
+      foreignKey: 'fk_professor',
+      otherKey: 'fk_disciplina',
+      as: 'disciplinas',
+    });
+  };
+
   return Professor;
 };
