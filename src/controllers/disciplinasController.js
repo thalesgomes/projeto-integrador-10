@@ -1,9 +1,22 @@
-const { Disciplina, ProfessorDisciplina } = require('../database/models');
+const { Disciplina, Professor, ProfessorDisciplina } = require('../database/models');
 
 const disciplinasController = {
 
   formRender: async (req, res) => {
-    const disciplinas = await Disciplina.findAll({});
+    const { id } = req.session.professor;
+
+    const professores = await Professor.findAll({
+      where: { id },
+      include: {
+        association: 'disciplinas',
+      },
+    });
+
+    let disciplinas;
+
+    professores.forEach((professor) => {
+      disciplinas = professor.disciplinas;
+    });
 
     res.render('disciplinas_form', { disciplinas });
   },
