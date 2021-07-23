@@ -9,26 +9,23 @@ const loginController = {
 
   auth: async (req, res) => {
     const { email, senha } = req.body;
+    const [professor] = await Professor.findAll({ where: { email } });
 
-    const professores = await Professor.findAll({ where: { email } });
+    if (professor) {
+      const { senha: senhaHash } = professor;
 
-    if (professores.length > 0 || professores !== undefined) {
-      professores.forEach((professor) => {
-        const { senha: senhaHash } = professor;
+      if (!bcrypt.compareSync(senha, senhaHash)) {
+        return res.json('senha incorreta');
+      }
 
-        if (!bcrypt.compareSync(senha, senhaHash)) {
-          return res.json('senha incorreta');
-        }
+      req.session.professor = professor;
 
-        req.session.professor = professor;
-
-        return res.redirect('/professor/dashboard');
-      });
+      return res.redirect('/professor/dashboard');
     }
 
     const estudantes = await Estudante.findAll({ where: { email } });
 
-    if (estudantes.length > 0 || estudantes === undefined) {
+    if (estudantes.length > 0 || estudantes !== undefined) {
       estudantes.forEach((estudante) => {
         const { senha: senhaHash } = estudante;
 
