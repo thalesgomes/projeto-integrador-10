@@ -10,6 +10,9 @@ const professoresRouter = require('./routes/professoresRouter');
 const estudantesRouter = require('./routes/estudantesRouter');
 const disciplinasRouter = require('./routes/disciplinasRouter');
 const topicosRouter = require('./routes/topicosRouter');
+const bibliotecaRouter = require('./routes/bibliotecaRouter');
+
+// import of middlewares
 const authMid = require('./middlewares/authMid');
 
 const app = express();
@@ -40,5 +43,6 @@ app.use('/', authMid, estudantesRouter);
 app.use('/', authMid, professoresRouter);
 app.use('/', authMid, disciplinasRouter);
 app.use('/', authMid, topicosRouter);
+app.use('/', authMid, bibliotecaRouter);
 
 module.exports = app;
