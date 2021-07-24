@@ -35,7 +35,7 @@ const loginController = {
 
         req.session.estudante = estudante;
 
-        return res.redirect('/aluno/dashboard');
+        return res.redirect('/estudante/dashboard');
       });
     }
 
