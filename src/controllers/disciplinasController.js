@@ -3,22 +3,25 @@ const { Disciplina, Professor, ProfessorDisciplina } = require('../database/mode
 const disciplinasController = {
 
   formRender: async (req, res) => {
+    if (!req.session.professor) {
+      return res.json('professor não logado');
+    }
+
     const { id } = req.session.professor;
 
-    const professores = await Professor.findAll({
+    const [professor] = await Professor.findAll({
       where: { id },
       include: {
         association: 'disciplinas',
       },
     });
 
-    let disciplinas;
+    console.log(professor);
 
-    professores.forEach((professor) => {
-      disciplinas = professor.disciplinas;
-    });
+    const { disciplinas } = professor;
+    // console.log(disciplinas);
 
-    res.render('disciplinas_form', { disciplinas });
+    return res.render('disciplinas_form', { disciplinas });
   },
 
   store: async (req, res) => {

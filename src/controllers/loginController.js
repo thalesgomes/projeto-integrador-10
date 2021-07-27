@@ -9,7 +9,7 @@ const loginController = {
 
   auth: async (req, res) => {
     const { email, senha } = req.body;
-    const [professor] = await Professor.findAll({ where: { email } });
+    const professor = await Professor.findOne({ where: { email } });
 
     if (professor) {
       const { senha: senhaHash } = professor;
