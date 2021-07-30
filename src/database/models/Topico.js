@@ -17,6 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: 'CASCADE',
       onDelete: 'RESTRICT',
     },
+    fk_professor: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      references: { model: 'professores', key: 'id' },
+      onUpdate: 'CASCADE',
+      onDelete: 'RESTRICT',
+    },
   },
   {
     tableName: 'topicos',
@@ -26,6 +33,11 @@ module.exports = (sequelize, DataTypes) => {
     Topico.belongsTo(models.Disciplina, {
       foreignKey: 'fk_disciplina',
       as: 'disciplina',
+    });
+
+    Topico.belongsTo(models.Professor, {
+      foreignKey: 'fk_professor',
+      as: 'professor',
     });
   };
 

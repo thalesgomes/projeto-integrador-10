@@ -38,6 +38,11 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'fk_disciplina',
       as: 'disciplinas',
     });
+
+    Professor.hasMany(models.Topico, {
+      foreignKey: 'fk_professor',
+      as: 'topicos',
+    });
   };
 
   return Professor;

@@ -13,7 +13,7 @@
 
                             <p>EDITAR AULA</p>
 
-                            <form id="aula" action="/aulas/edicao" method="POST">
+                            <form id="aula" action="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas" method="POST">
                                 <!-- <div class="lista-topicos">
                                     <button>tópico</button>
                                     <input type="text" name="topico" placeholder="escolha o topico">
@@ -21,30 +21,25 @@
 
                                 <div class="add-material-cabecalho">
                                     <div>
-                                        <button>tópico</button>
-                                        <input type="text" name="topico" placeholder="escolha um tópico">
-                                    </div>
-
-                                    <div>
                                         <button>aula</button>
-                                        <input type="url" name="titulo-aula" placeholder="digite o nome da aula">
+                                        <input type="text" name="nome" placeholder="digite o nome da aula">
                                     </div>
 
                                     <div>
                                         <button>vídeo</button>
-                                        <input type="url" name="url"
+                                        <input type="url" name="url_aula"
                                             placeholder="Insira a URL ou ID do vídeo (youTube ou vimeo)">
                                     </div>
 
-                                    <div>
+                                    <!-- <div>
                                         <button>pdf</button>
                                         <input class="file" type="file" multiple>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <label id="descricao-titulo">Descrição</label>
                                 <br>
-                                <textarea name="descricao" id="descricao"
+                                <textarea name="descricao_aula" id="descricao-titulo"
                                     placeholder="Escreva aqui a descrição"></textarea>
                                 <br>
                                 <button id="adicionar-aula" type="submit">ADICIONAR AULA</button>

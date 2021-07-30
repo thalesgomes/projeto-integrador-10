@@ -39,13 +39,14 @@
                     <ol class="topicos-curso">
 
                         <% if (topicos.length == 0) { %>
-                            <p><%= "não há tópicos cadastrados para essa disciplina" %></p>
+                            <p><%= "não há tópicos cadastrados para essa disciplina. "  %> <a href="/disciplinas/<%= id_disciplina %>/topicos/form">Cadastrar novo tópico</a></p>
                         
                         <% } else { %>
                             <% topicos.forEach(topico => { %>
                                 <a href=""><li><%= topico.nome %></li></a>
                             <% }) %>
                         <% } %>
+                        <%= aulasLista.nome %> 
 
                 </div>
 

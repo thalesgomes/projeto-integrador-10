@@ -16,7 +16,7 @@ const disciplinasController = {
       },
     });
 
-    console.log(professor);
+    // console.log(professor);
 
     const { disciplinas } = professor;
     // console.log(disciplinas);

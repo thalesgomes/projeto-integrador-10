@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const { uuid } = require('uuidv4');
-const { Estudante, Professor } = require('../database/models');
+const { Estudante, Professor, ProfessorDisciplina } = require('../database/models');
 
 const cadastroController = {
 
@@ -17,10 +17,18 @@ const cadastroController = {
       email,
       senha,
       categoria,
+      disciplina
     } = req.body;
 
     const hashSenha = bcrypt.hashSync(senha, 10);
 
+    console.log(nome,
+      sobrenome,
+      email,
+      senha,
+      categoria,
+      disciplina);
+      
     if (categoria === 'estudante') {
       await Estudante.create({
         id,
@@ -42,6 +50,11 @@ const cadastroController = {
         email,
         senha: hashSenha,
         categoria,
+      });
+
+      await ProfessorDisciplina.create({
+        fk_professor: id,
+        fk_disciplina: disciplina
       });
 
       return res.redirect('/usuarios/login');

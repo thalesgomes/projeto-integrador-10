@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('topicos', {
+    await queryInterface.createTable('aulas', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -11,6 +11,29 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      conteudo: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      url_aula: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      descricao_aula: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      arquivo_aula: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      fk_professor: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: { model: 'professores', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
+      },
       fk_disciplina: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -18,10 +41,10 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
-      fk_professor: {
-        type: Sequelize.STRING,
+      fk_topico: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'professores', key: 'id' },
+        references: { model: 'topicos', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
@@ -37,6 +60,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('topicos');
+    await queryInterface.dropTable('disciplinas');
   },
 };
