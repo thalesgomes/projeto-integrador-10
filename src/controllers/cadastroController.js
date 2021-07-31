@@ -4,9 +4,7 @@ const { Estudante, Professor, ProfessorDisciplina } = require('../database/model
 
 const cadastroController = {
 
-  cadastroRender: async (req, res) => {
-    res.render('usuarios_cadastro');
-  },
+  cadastroRender: async (req, res) => res.render('usuarios_cadastro'),
 
   cadastrar: async (req, res) => {
     const id = uuid();
@@ -17,18 +15,11 @@ const cadastroController = {
       email,
       senha,
       categoria,
-      disciplina
+      disciplina,
     } = req.body;
 
     const hashSenha = bcrypt.hashSync(senha, 10);
 
-    console.log(nome,
-      sobrenome,
-      email,
-      senha,
-      categoria,
-      disciplina);
-      
     if (categoria === 'estudante') {
       await Estudante.create({
         id,
@@ -54,7 +45,7 @@ const cadastroController = {
 
       await ProfessorDisciplina.create({
         fk_professor: id,
-        fk_disciplina: disciplina
+        fk_disciplina: disciplina,
       });
 
       return res.redirect('/usuarios/login');

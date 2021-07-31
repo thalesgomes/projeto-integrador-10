@@ -16,10 +16,7 @@ const disciplinasController = {
       },
     });
 
-    // console.log(professor);
-
     const { disciplinas } = professor;
-    // console.log(disciplinas);
 
     return res.render('disciplinas_form', { disciplinas });
   },

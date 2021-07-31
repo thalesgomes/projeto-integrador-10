@@ -3,9 +3,7 @@ const { Professor, Estudante } = require('../database/models');
 
 const loginController = {
 
-  loginRender: (req, res) => {
-    res.render('usuarios_login');
-  },
+  loginRender: (req, res) => res.render('usuarios_login'),
 
   auth: async (req, res) => {
     const { email, senha } = req.body;

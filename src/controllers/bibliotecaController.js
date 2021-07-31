@@ -9,7 +9,7 @@ const bibliotecaController = {
       },
     });
 
-    res.render('biblioteca_teste', { professores });
+    return res.render('biblioteca_teste', { professores });
   },
 };
 

@@ -8,7 +8,7 @@ const topicosController = {
       include: { association: 'topicos' },
     });
 
-    res.render('topicos_form', { topicos, id_disciplina });
+    return res.render('topicos_form', { topicos, id_disciplina });
   },
 
   show: async (req, res) => {
@@ -23,13 +23,9 @@ const topicosController = {
       include: ['aulas'],
     });
 
-    // topicos.forEach((topico) => {
-    //   const { aulas } = topico;
-    // });
-
     const { nome } = await Disciplina.findByPk(id_disciplina);
 
-    res.render('topicos', {
+    return res.render('topicos', {
       nome_disciplina: nome,
       topicos,
       id_disciplina,
