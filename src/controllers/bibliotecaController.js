@@ -3,11 +3,17 @@ const { Professor } = require('../database/models');
 const bibliotecaController = {
 
   show: async (req, res) => {
-    const professores = await Professor.findAll({
-      include: {
-        association: 'disciplinas',
-      },
-    });
+    let professores;
+
+    try {
+      professores = await Professor.findAll({
+        include: {
+          association: 'disciplinas',
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
     return res.render('biblioteca_teste', { professores });
   },

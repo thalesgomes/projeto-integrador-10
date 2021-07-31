@@ -7,7 +7,13 @@ const loginController = {
 
   auth: async (req, res) => {
     const { email, senha } = req.body;
-    const professor = await Professor.findOne({ where: { email } });
+    let professor;
+
+    try {
+      professor = await Professor.findOne({ where: { email } });
+    } catch (error) {
+      return console.log(error);
+    }
 
     if (professor) {
       const { senha: senhaHash } = professor;
@@ -21,20 +27,24 @@ const loginController = {
       return res.redirect('/professor/dashboard');
     }
 
-    const estudantes = await Estudante.findAll({ where: { email } });
+    let estudante;
 
-    if (estudantes.length > 0 || estudantes !== undefined) {
-      estudantes.forEach((estudante) => {
-        const { senha: senhaHash } = estudante;
+    try {
+      estudante = await Estudante.findOne({ where: { email } });
+    } catch (error) {
+      return console.log(error);
+    }
 
-        if (!bcrypt.compareSync(senha, senhaHash)) {
-          return res.json('senha incorreta');
-        }
+    if (estudante) {
+      const { senha: senhaHash } = estudante;
 
-        req.session.estudante = estudante;
+      if (!bcrypt.compareSync(senha, senhaHash)) {
+        return res.json('senha incorreta');
+      }
 
-        return res.redirect('/estudante/dashboard');
-      });
+      req.session.estudante = estudante;
+
+      return res.redirect('/estudante/dashboard');
     }
 
     return res.json('usuário(a) não existe');

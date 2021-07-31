@@ -11,14 +11,18 @@ const aulasController = {
     const { nome, url_aula, descricao_aula } = req.body;
     const { id } = req.session.professor;
 
-    await Aula.create({
-      nome,
-      url_aula,
-      descricao_aula,
-      fk_professor: id,
-      fk_disciplina: id_disciplina,
-      fk_topico: id_topico,
-    });
+    try {
+      await Aula.create({
+        nome,
+        url_aula,
+        descricao_aula,
+        fk_professor: id,
+        fk_disciplina: id_disciplina,
+        fk_topico: id_topico,
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
     return res.redirect(`/disciplinas/${id_disciplina}/topicos`);
   },

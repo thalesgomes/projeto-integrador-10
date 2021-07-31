@@ -5,12 +5,18 @@ const professoresController = {
   dashboardRender: async (req, res) => {
     const { nome, id } = req.session.professor;
 
-    const [professor] = await Professor.findAll({
-      where: { id },
-      include: {
-        association: 'disciplinas',
-      },
-    });
+    let professor;
+
+    try {
+      professor = await Professor.findOne({
+        where: { id },
+        include: {
+          association: 'disciplinas',
+        },
+      });
+    } catch (error) {
+      return console.log(error);
+    }
 
     const { disciplinas } = professor;
 

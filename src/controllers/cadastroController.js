@@ -21,35 +21,45 @@ const cadastroController = {
     const hashSenha = bcrypt.hashSync(senha, 10);
 
     if (categoria === 'estudante') {
-      await Estudante.create({
-        id,
-        nome,
-        sobrenome,
-        email,
-        senha: hashSenha,
-        categoria,
-      });
+      try {
+        await Estudante.create({
+          id,
+          nome,
+          sobrenome,
+          email,
+          senha: hashSenha,
+          categoria,
+        });
+      } catch (error) {
+        console.log(error);
+      }
 
       return res.redirect('/usuarios/login');
     }
 
     if (categoria === 'professor') {
-      await Professor.create({
-        id,
-        nome,
-        sobrenome,
-        email,
-        senha: hashSenha,
-        categoria,
-      });
+      try {
+        await Professor.create({
+          id,
+          nome,
+          sobrenome,
+          email,
+          senha: hashSenha,
+          categoria,
+        });
 
-      await ProfessorDisciplina.create({
-        fk_professor: id,
-        fk_disciplina: disciplina,
-      });
+        await ProfessorDisciplina.create({
+          fk_professor: id,
+          fk_disciplina: disciplina,
+        });
+      } catch (error) {
+        console.log(error);
+      }
 
       return res.redirect('/usuarios/login');
     }
+
+    return res.json({ error: 'algo inesperado aconteceu' });
   },
 
 };

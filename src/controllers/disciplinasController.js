@@ -9,12 +9,18 @@ const disciplinasController = {
 
     const { id } = req.session.professor;
 
-    const [professor] = await Professor.findAll({
-      where: { id },
-      include: {
-        association: 'disciplinas',
-      },
-    });
+    let professor;
+
+    try {
+      professor = await Professor.findOne({
+        where: { id },
+        include: {
+          association: 'disciplinas',
+        },
+      });
+    } catch (error) {
+      return console.log(error);
+    }
 
     const { disciplinas } = professor;
 
@@ -25,19 +31,23 @@ const disciplinasController = {
     const { id: id_professor } = req.session.professor;
     const { nome, imagem } = req.body;
 
-    const disciplina = await Disciplina.create({
-      nome,
-      imagem,
-    });
+    try {
+      const disciplina = await Disciplina.create({
+        nome,
+        imagem,
+      });
 
-    const id_disciplina = disciplina.id;
+      const id_disciplina = disciplina.id;
 
-    await ProfessorDisciplina.create({
-      fk_disciplina: id_disciplina,
-      fk_professor: id_professor,
-    });
+      await ProfessorDisciplina.create({
+        fk_disciplina: id_disciplina,
+        fk_professor: id_professor,
+      });
 
-    return res.redirect(`/disciplinas/${id_disciplina}/topicos/form`);
+      return res.redirect(`/disciplinas/${id_disciplina}/topicos/form`);
+    } catch (error) {
+      return console.log(error);
+    }
   },
 };
 
