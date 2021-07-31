@@ -168,11 +168,19 @@ footer p {
 
 /*lista*/
 
-div.nome-curso {
+main .nome-curso {
     background: #89199C;
     padding: 1em;
     border-radius: 5px;
     color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+main .nome-curso a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 2rem;
 }
 
 ol a {
