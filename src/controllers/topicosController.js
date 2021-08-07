@@ -1,4 +1,4 @@
-const { Disciplina, Topico } = require('../database/models/index');
+const { Disciplina, Topico, EstudanteAula, EstudanteDisciplina } = require('../database/models/index');
 
 const topicosController = {
   formRender: async (req, res) => {
@@ -69,10 +69,29 @@ const topicosController = {
         fk_professor: id_professor
       },
       include: ['aulas'],
-    })
-    
-    res.json(topicos)
+    });
 
+    const disciplina = await Disciplina.findByPk(id_disciplina);
+
+
+    // res.json(topicos);
+    const { aulas } = topicos;
+    
+    res.render('topicos_estudante', {topicos, aulas, disciplina})
+  },
+  store_aula: async (req, res) => {
+    
+    let { id } = req.session.estudante;
+    const { id_professor, id_disciplina } = req.params;
+    
+    const aulaCriada = await EstudanteDisciplina.create({
+      fk_estudante: id,
+      fk_disciplina: id_disciplina,
+      fk_professor: id_professor
+    })
+
+    res.json(aulaCriada)
+    
   }
 };
 

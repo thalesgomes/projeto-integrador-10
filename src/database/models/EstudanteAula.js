@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const EstudanteDisciplina = sequelize.define('EstudanteDisciplina', {
+  const EstudanteAula = sequelize.define('EstudanteAula', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -13,24 +13,17 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: 'CASCADE',
       onDelete: 'RESTRICT',
     },
-    fk_disciplina: {
+    fk_aula: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: { model: 'disciplinas', key: 'id' },
+      references: { model: 'aulas', key: 'id' },
       onUpdate: 'CASCADE',
       onDelete: 'RESTRICT',
     },
-    fk_professor: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      references: { model: 'professores', key: 'id' },
-      onUpdate: 'CASCADE',
-      onDelete: 'RESTRICT',
-    }
   },
   {
-    tableName: 'estudantes_disciplinas',
+    tableName: 'estudantes_aulas',
   });
 
-  return EstudanteDisciplina;
+  return EstudanteAula;
 };

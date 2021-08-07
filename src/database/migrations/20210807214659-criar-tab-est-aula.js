@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('estudantes_disciplinas', {
+    await queryInterface.createTable('estudantes_aulas', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -14,17 +14,10 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
-      fk_disciplina: {
+      fk_aula: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'disciplinas', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
-      },
-      fk_professor: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        references: { model: 'professores', key: 'id' },
+        references: { model: 'aulas', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
@@ -40,6 +33,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('estudantes_disciplinas');
+    await queryInterface.dropTable('estudantes_aulas');
   },
 };

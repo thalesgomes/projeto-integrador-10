@@ -38,6 +38,13 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'fk_disciplina',
       as: 'disciplinas',
     });
+
+    Estudante.belongsToMany(models.Aula, {
+      through: models.EstudanteAula,
+      foreignKey: 'fk_estudante',
+      otherKey: 'fk_aula',
+      as: 'aulas',
+    });
   };
 
   return Estudante;
