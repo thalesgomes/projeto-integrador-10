@@ -49,6 +49,19 @@ const disciplinasController = {
       return console.log(error);
     }
   },
+  listar_professores: async (req, res) => {
+
+    const { id_disciplina } = req.params;
+
+    const disciplina = await Disciplina.findByPk(id_disciplina, {
+      include: { association: 'professores' }
+    }) 
+
+    // const { professores } = disciplinas
+
+    res.render('disciplinas_professores', { disciplina })
+
+  }
 };
 
 module.exports = disciplinasController;

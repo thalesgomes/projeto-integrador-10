@@ -1,4 +1,4 @@
-const { Professor } = require('../database/models');
+const { Professor, Disciplina } = require('../database/models');
 
 const bibliotecaController = {
 
@@ -17,6 +17,13 @@ const bibliotecaController = {
 
     return res.render('biblioteca_teste', { professores });
   },
+  show_disciplinas: async (req, res) => {
+
+    let disciplinas = await Disciplina.findAll();
+    
+    res.render('biblioteca', { disciplinas })
+
+  }
 };
 
 module.exports = bibliotecaController;

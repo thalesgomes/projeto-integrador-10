@@ -9,6 +9,9 @@ router.get('/disciplinas/:id_disciplina/topicos/form', topicosController.formRen
 // OBTER TODOS OS TÓPICOS DE DETERMINADA DISCIPLINA
 router.get('/disciplinas/:id_disciplina/topicos', topicosController.show);
 
+// OBTER TODOS OS TÓPICOS DE DETERMINADA DISCIPLINA DE UM PROFESSOR
+router.get('/disciplinas/:id_disciplina/:id_professor/topicos', topicosController.show_topicos);
+
 // CADASTRAR UM TÓPICO DE DETERMINADA DISCIPLINA
 router.post('/disciplinas/:id_disciplina/topicos', topicosController.store);
 

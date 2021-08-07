@@ -59,6 +59,21 @@ const topicosController = {
       return console.log(error);
     }
   },
+  show_topicos: async (req, res) => {
+
+    const { id_professor, id_disciplina } = req.params;
+
+    const topicos = await Topico.findAll({
+      where: {
+        fk_disciplina: id_disciplina,
+        fk_professor: id_professor
+      },
+      include: ['aulas'],
+    })
+    
+    res.json(topicos)
+
+  }
 };
 
 module.exports = topicosController;
