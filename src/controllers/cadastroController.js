@@ -4,7 +4,7 @@ const { Estudante, Professor, ProfessorDisciplina } = require('../database/model
 
 const cadastroController = {
 
-  cadastroRender: async (req, res) => res.render('usuarios_cadastro'),
+  renderizarFormulario: async (req, res) => res.render('usuarios_cadastro'),
 
   cadastrar: async (req, res) => {
     const id = uuid();
@@ -59,7 +59,7 @@ const cadastroController = {
       return res.redirect('/usuarios/login');
     }
 
-    return res.json({ error: 'algo inesperado aconteceu' });
+    return res.json({ erro: 'algo inesperado aconteceu' });
   },
 
 };

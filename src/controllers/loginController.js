@@ -3,48 +3,46 @@ const { Professor, Estudante } = require('../database/models');
 
 const loginController = {
 
-  loginRender: (req, res) => res.render('usuarios_login'),
+  renderizarLogin: (req, res) => res.render('usuarios_login'),
 
-  auth: async (req, res) => {
+  autenticar: async (req, res) => {
     const { email, senha } = req.body;
-    let professor;
+    let usuario;
 
     try {
-      professor = await Professor.findOne({ where: { email } });
+      usuario = await Professor.findOne({ where: { email } });
     } catch (error) {
       return console.log(error);
     }
 
-    if (professor) {
-      const { senha: senhaHash } = professor;
+    if (usuario) {
+      const { senha: senhaHash } = usuario;
 
       if (!bcrypt.compareSync(senha, senhaHash)) {
         return res.json('senha incorreta');
       }
 
-      req.session.professor = professor;
+      req.session.usuario = usuario;
 
-      return res.redirect('/professor/dashboard');
+      return res.redirect('/dashboard');
     }
 
-    let estudante;
-
     try {
-      estudante = await Estudante.findOne({ where: { email } });
+      usuario = await Estudante.findOne({ where: { email } });
     } catch (error) {
       return console.log(error);
     }
 
-    if (estudante) {
-      const { senha: senhaHash } = estudante;
+    if (usuario) {
+      const { senha: senhaHash } = usuario;
 
       if (!bcrypt.compareSync(senha, senhaHash)) {
         return res.json('senha incorreta');
       }
 
-      req.session.estudante = estudante;
+      req.session.usuario = usuario;
 
-      return res.redirect('/estudante/dashboard');
+      return res.redirect('/dashboard');
     }
 
     return res.json('usuário(a) não existe');

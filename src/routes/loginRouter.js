@@ -3,10 +3,10 @@ const loginController = require('../controllers/loginController');
 
 const router = express.Router();
 
-// RENDERIZAÇÃO DA TELA DE LOGIN
-router.get('/usuarios/login', loginController.loginRender);
+// RENDERIZAÇÃO DA VIEW DE LOGIN
+router.get('/usuarios/login', loginController.renderizarLogin);
 
 // PROCESSO DE AUTENTICAÇÃO
-router.post('/usuarios/login', loginController.auth);
+router.post('/usuarios/login', loginController.autenticar);
 
 module.exports = router;
