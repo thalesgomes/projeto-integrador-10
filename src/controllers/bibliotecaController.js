@@ -1,29 +1,34 @@
-const { Professor, Disciplina } = require('../database/models');
+const { Disciplina } = require('../database/models');
 
 const bibliotecaController = {
 
-  show: async (req, res) => {
-    let professores;
-
+  listarDisciplinas: async (req, res) => {
     try {
-      professores = await Professor.findAll({
-        include: {
-          association: 'disciplinas',
-        },
-      });
+      const disciplinas = await Disciplina.findAll();
+
+      return res.render('biblioteca_disciplinas', { disciplinas });
     } catch (error) {
       console.log(error);
     }
 
-    return res.render('biblioteca_teste', { professores });
+    return res.json({ erro: 'algo inesperado aconteceu' });
   },
-  show_disciplinas: async (req, res) => {
 
-    let disciplinas = await Disciplina.findAll();
-    
-    res.render('biblioteca', { disciplinas })
+  listarProfessores: async (req, res) => {
+    const { id_disciplina } = req.params;
 
-  }
+    try {
+      const disciplina = await Disciplina.findByPk(id_disciplina, {
+        include: { association: 'professores' },
+      });
+
+      return res.render('biblioteca_professores', { disciplina });
+    } catch (error) {
+      console.log(error);
+    }
+
+    return res.json({ erro: 'algo inesperado ocorreu' });
+  },
 };
 
 module.exports = bibliotecaController;

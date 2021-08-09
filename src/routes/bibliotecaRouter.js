@@ -3,9 +3,10 @@ const bibliotecaController = require('../controllers/bibliotecaController');
 
 const router = express.Router();
 
-// BUSCA POR DISCIPLINAS
-router.get('/biblioteca', bibliotecaController.show);
+// LISTAR DISCIPLINAS
+router.get('/disciplinas', bibliotecaController.listarDisciplinas);
 
-router.get('/biblioteca/disciplinas', bibliotecaController.show_disciplinas);
+// LISTAR PROFESSORES DE UMA DISCIPLINA
+router.get('/disciplinas/:id_disciplina/professores', bibliotecaController.listarProfessores);
 
 module.exports = router;
