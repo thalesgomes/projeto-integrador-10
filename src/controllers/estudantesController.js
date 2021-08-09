@@ -11,13 +11,19 @@ const estudantesController = {
       return res.json('apenas os estudantes podem se inscrever nas disciplinas');
     }
 
-    await EstudanteDisciplina.create({
-      fk_estudante: id_estudante,
-      fk_disciplina: id_disciplina,
-      fk_professor: id_professor,
-    });
+    try {
+      await EstudanteDisciplina.create({
+        fk_estudante: id_estudante,
+        fk_disciplina: id_disciplina,
+        fk_professor: id_professor,
+      });
 
-    return res.redirect('/dashboard');
+      return res.redirect('/dashboard');
+    } catch (error) {
+      console.log(error);
+    }
+
+    return res.json({ erro: 'algo inesperado ocorreu' });
   },
 };
 
