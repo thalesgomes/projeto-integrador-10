@@ -3,8 +3,10 @@ const aulasController = require('../controllers/aulasController');
 
 const router = express.Router();
 
-// BUSCA POR AULAS
-router.get('/disciplinas/:id_disciplina/topicos/:id_topico/aulas/form', aulasController.render);
-router.post('/disciplinas/:id_disciplina/topicos/:id_topico/aulas', aulasController.store);
+// RENDERIZAÇÃO DO FORMULÁRIO
+router.get('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_topico/aulas/form', aulasController.renderizarFormulario);
+
+// CADASTRO DE AULA
+router.post('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_topico/aulas', aulasController.cadastrar);
 
 module.exports = router;
