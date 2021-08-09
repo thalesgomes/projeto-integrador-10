@@ -1,32 +1,23 @@
-const { Estudante, EstudanteDisciplina } = require('../database/models');
+const { EstudanteDisciplina } = require('../database/models');
 
 const estudantesController = {
 
-  dashboardRender: async (req, res) => {
-    const { nome, id } = req.session.estudante;
+  inscreverDisciplina: async (req, res) => {
+    const { usuario } = req.session;
+    const { id: id_estudante } = usuario;
+    const { id_professor, id_disciplina } = req.params;
 
-    const [estudante] = await Estudante.findAll({
-      where: { id },
-      include: {
-        association: 'disciplinas',
-      },
-    });
+    if (usuario.categoria !== 'estudante') {
+      return res.json('apenas os estudantes podem se inscrever nas disciplinas');
+    }
 
-    const { disciplinas } = estudante;
-
-    return res.render('dashboard_estudante', { nome, disciplinas });
-  },
-
-  cadastrarDisciplina: async (req, res) => {
-    const { id } = req.session.estudante;
-    const { id_disciplina } = req.params;
-
-    const disciplinaCadastrada = await EstudanteDisciplina.create({
-      fk_estudante: id,
+    await EstudanteDisciplina.create({
+      fk_estudante: id_estudante,
       fk_disciplina: id_disciplina,
+      fk_professor: id_professor,
     });
 
-    return res.json(disciplinaCadastrada);
+    return res.redirect('/dashboard');
   },
 };
 
