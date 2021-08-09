@@ -9,22 +9,23 @@
 
                     <div class="saudacoes">
                         <img class="saudacoes-icone" src="https://avatarfiles.alphacoders.com/152/152922.jpg">
-                        <h2>Olá, <%= nome %></h2>
+                        <h2>Olá, <%= estudante.nome %></h2>
                     </div>
 
                     <div class="titulo-meus-cursos">meus cursos</div>
 
-                    <div class="lista-cursos">
-                        <div class="curso"><a href="#"><li>português</li></a></div>
-                        <div class="curso"><a href="#"><li>português</li></a></div>
-                        <div class="curso"><a href="#"><li>português</li></a></div>
-                        <div class="curso"><a href="#"><li>português</li></a></div>
-                        <div class="curso"><a href="#"><li>português</li></a></div>
-                        <div class="curso"><a href="#"><li>português</li></a></div>
-                        <div class="curso"><a href="#"><li>português</li></a></div>
-                        <div class="curso"><a href="#"><li>português</li></a></div>
-                        <div class="curso"><a href="#"><li>português</li></a></div>
-                    </div>
+                    <% if (disciplinas.length === 0) { %>
+                        <p><%= "não há disciplinas cadastradas"%></p>
+                    <% } else { %>
+                        <% disciplinas.forEach(disciplina=> { %>
+                            <div class="lista-cursos">
+                                <div class="curso">
+                                    <a href="/disciplinas/<%= disciplina.id %>/professores/<%= disciplina.EstudanteDisciplina.fk_professor %>/topicos">
+                                    <li><%= disciplina.nome %></li></a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } %>
 
                 </div>
             </main>
