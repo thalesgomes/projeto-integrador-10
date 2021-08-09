@@ -38,20 +38,23 @@
                 <div class="container-topicos-curso">
                     <ol class="topicos-curso">
 
-                        <% if (topicos.length == 0) { %>
-                            <p><%= "não há tópicos cadastrados para essa disciplina. "  %> <a href="/disciplinas/<%= id_disciplina %>/topicos/form">Cadastrar novo tópico</a></p>
+                        <% if (topicos.length === 0) { %>
+                            <p><%= "não há tópicos cadastrados para essa disciplina."%></p>
                         
                         <% } else { %>
-                            <% topicos.forEach(topico=> { %>
-                                <a href=""><li><%= topico.nome %></li></a>
-                            <form id="aula" action="/disciplinas/<%= disciplina.id %>/<%= topico.fk_professor %>/topicos" method="POST">
+                            <% topicos.forEach(topico => { %>
+                                <li><%= topico.nome %></li>
                                 <% topico.aulas.forEach(aula => { %>
-                                        <p><%= aula.nome %></p>
-                                        <button id="adicionar-aula" type="submit">ADICIONAR AULA</button>
-                                <% }) %>  
-                            </form>
+                                    <%= aula.nome %>
+                                <% }) %>
                             <% }) %>
                         <% } %>
+
+                        <form action="/disciplinas/<%= disciplina.id %>/professores/<%= id_professor %>/inscreverDisciplina" method="POST">
+                            <% if (topicos.length > 0) { %>
+                                <button type="submit">INSCREVA-SE</button>
+                            <% } %>
+                        </form>
 
                 </div>
 

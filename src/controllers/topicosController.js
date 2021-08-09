@@ -1,98 +1,91 @@
-const { Disciplina, Topico, EstudanteAula, EstudanteDisciplina } = require('../database/models/index');
+const { Disciplina, Topico } = require('../database/models/index');
 
 const topicosController = {
-  formRender: async (req, res) => {
-    const { id_disciplina } = req.params;
+
+  renderizarFormulario: async (req, res) => {
+    const { id_disciplina, id_professor } = req.params;
+    const { id: professor_id } = req.session.usuario;
+
+    if (professor_id !== id_professor) return res.json('usuário não autorizado');
 
     try {
       const { topicos } = await Disciplina.findByPk(id_disciplina, {
         include: { association: 'topicos' },
       });
 
-      return res.render('topicos_form', { topicos, id_disciplina });
+      return res.render('topicos_form', { topicos, id_disciplina, professor_id });
     } catch (error) {
       return console.log(error);
     }
   },
 
-  show: async (req, res) => {
-    const { id_disciplina } = req.params;
-    const { id } = req.session.professor;
-
-    try {
-      const topicos = await Topico.findAll({
-        where: {
-          fk_professor: id,
-          fk_disciplina: id_disciplina,
-        },
-        include: ['aulas'],
-      });
-
-      const { nome } = await Disciplina.findByPk(id_disciplina);
-
-      return res.render('topicos', {
-        nome_disciplina: nome,
-        topicos,
-        id_disciplina,
-      });
-    } catch (error) {
-      return console.log(error);
-    }
-  },
-
-  store: async (req, res) => {
-    const { id_disciplina } = req.params;
+  cadastrar: async (req, res) => {
+    const { id_disciplina, id_professor } = req.params;
     const { nome } = req.body;
-    const { id } = req.session.professor;
+    const { id: professor_id } = req.session.usuario;
+
+    if (professor_id !== id_professor) return res.json('usuário não autorizado');
 
     try {
       const topico = await Topico.create({
         nome,
         fk_disciplina: id_disciplina,
-        fk_professor: id,
+        fk_professor: professor_id,
       });
 
       const id_topico = topico.id;
 
-      return res.redirect(`/disciplinas/${id_disciplina}/topicos/${id_topico}/aulas/form`);
+      return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos/${id_topico}/aulas/form`);
     } catch (error) {
       return console.log(error);
     }
   },
-  show_topicos: async (req, res) => {
 
+  listar: async (req, res) => {
     const { id_professor, id_disciplina } = req.params;
+    const { usuario } = req.session;
 
-    const topicos = await Topico.findAll({
-      where: {
-        fk_disciplina: id_disciplina,
-        fk_professor: id_professor
-      },
-      include: ['aulas'],
-    });
+    if (usuario.categoria === 'professor') {
+      if (usuario.id !== id_professor) return res.json('usuário não autorizado');
 
-    const disciplina = await Disciplina.findByPk(id_disciplina);
+      try {
+        const topicos = await Topico.findAll({
+          where: {
+            fk_disciplina: id_disciplina,
+            fk_professor: id_professor,
+          },
+          include: ['aulas'],
+        });
 
+        const disciplina = await Disciplina.findByPk(id_disciplina);
 
-    // res.json(topicos);
-    const { aulas } = topicos;
-    
-    res.render('topicos_estudante', {topicos, aulas, disciplina})
+        return res.render('topicos_professor', { topicos, disciplina, id_professor });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (usuario.categoria === 'estudante') {
+      try {
+        const topicos = await Topico.findAll({
+          where: {
+            fk_disciplina: id_disciplina,
+            fk_professor: id_professor,
+          },
+          include: ['aulas'],
+        });
+
+        const disciplina = await Disciplina.findByPk(id_disciplina);
+
+        return res.render('topicos_estudante', { topicos, disciplina, id_professor });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    return res.json('algo inesperado ocorreu');
   },
-  store_aula: async (req, res) => {
-    
-    let { id } = req.session.estudante;
-    const { id_professor, id_disciplina } = req.params;
-    
-    const aulaCriada = await EstudanteDisciplina.create({
-      fk_estudante: id,
-      fk_disciplina: id_disciplina,
-      fk_professor: id_professor
-    })
 
-    res.json(aulaCriada)
-    
-  }
 };
 
 module.exports = topicosController;

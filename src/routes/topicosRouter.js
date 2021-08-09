@@ -3,18 +3,13 @@ const topicosController = require('../controllers/topicosController');
 
 const router = express.Router();
 
-// RENDERIZAÇÃO DA VIEW DO FORMULÁRIO
-router.get('/disciplinas/:id_disciplina/topicos/form', topicosController.formRender);
+// RENDERIZAÇÃO DO FORMULÁRIO DE CADASTRO DE UM TÓPICO
+router.get('/disciplinas/:id_disciplina/professores/:id_professor/topicos/form', topicosController.renderizarFormulario);
 
-// OBTER TODOS OS TÓPICOS DE DETERMINADA DISCIPLINA
-router.get('/disciplinas/:id_disciplina/topicos', topicosController.show);
+// LISTAR TÓPICOS DE DETERMINADA DISCIPLINA DE UM PROFESSOR ESPECÍFICO
+router.get('/disciplinas/:id_disciplina/professores/:id_professor/topicos', topicosController.listar);
 
-// OBTER TODOS OS TÓPICOS DE DETERMINADA DISCIPLINA DE UM PROFESSOR
-router.get('/disciplinas/:id_disciplina/:id_professor/topicos', topicosController.show_topicos);
-
-router.post('/disciplinas/:id_disciplina/:id_professor/topicos', topicosController.store_aula);
-
-// CADASTRAR UM TÓPICO DE DETERMINADA DISCIPLINA
-router.post('/disciplinas/:id_disciplina/topicos', topicosController.store);
+// CADASTRAR TÓPICO DE DETERMINADA DISCIPLINA DE UM PROFESSOR ESPECÍFICO
+router.post('/disciplinas/:id_disciplina/professores/:id_professor/topicos', topicosController.cadastrar);
 
 module.exports = router;

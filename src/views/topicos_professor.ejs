@@ -32,23 +32,26 @@
                 <div class="featured-image-curso"></div>
 
                 <div class="nome-curso">
-                    <h2><%= nome_disciplina %></h2>
-                    <a href="/disciplinas/<%= id_disciplina %>/topicos/form">+</a>
+                    <h2><%= disciplina.nome %></h2>
+                    <a href="/disciplinas/<%= disciplina.id %>/professores/<%= id_professor %>/topicos/form">+</a>
                 </div>
 
                 <div class="container-topicos-curso">
                     <ol class="topicos-curso">
 
                         <% if (topicos.length == 0) { %>
-                            <p><%= "não há tópicos cadastrados para essa disciplina. "  %> <a href="/disciplinas/<%= id_disciplina %>/topicos/form">Cadastrar novo tópico</a></p>
+                            <p>
+                                <%= "não há tópicos cadastrados para essa disciplina."%>
+                                <a href="/disciplinas/<%= disciplina.id %>/professores/<%= id_professor %>/topicos/form">
+                                    Cadastrar novo tópico
+                                </a>
+                            </p>
                         
                         <% } else { %>
                             <% topicos.forEach(topico=> { %>
                                 <a href=""><li><%= topico.nome %></li></a>
                                 <% topico.aulas.forEach(aula => { %>
-                                    <a href="#">
                                         <p><%= aula.nome %></p>
-                                    </a>
                                 <% }) %>
                             <% }) %>
                         <% } %>
