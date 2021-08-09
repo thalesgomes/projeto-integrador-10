@@ -1,28 +1,28 @@
-const { Professor } = require('../database/models');
+// const { Professor } = require('../database/models');
 
-const professoresController = {
+// const professoresController = {
 
-  dashboardRender: async (req, res) => {
-    const { nome, id } = req.session.professor;
+//   renderizarDashboard: async (req, res) => {
+//     const { nome, id } = req.session.professor;
 
-    let professor;
+//     let professor;
 
-    try {
-      professor = await Professor.findOne({
-        where: { id },
-        include: {
-          association: 'disciplinas',
-        },
-      });
-    } catch (error) {
-      return console.log(error);
-    }
+//     try {
+//       professor = await Professor.findOne({
+//         where: { id },
+//         include: {
+//           association: 'disciplinas',
+//         },
+//       });
+//     } catch (error) {
+//       return console.log(error);
+//     }
 
-    const { disciplinas } = professor;
+//     const { disciplinas } = professor;
 
-    return res.render('dashboard_professor', { nome, disciplinas });
-  },
+//     return res.render('dashboard_professor', { nome, disciplinas });
+//   },
 
-};
+// };
 
-module.exports = professoresController;
+// module.exports = professoresController;

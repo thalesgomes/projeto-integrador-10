@@ -1,9 +1,9 @@
-const express = require('express');
-const professoresController = require('../controllers/professoresController');
+// const express = require('express');
+// const professoresController = require('../controllers/professoresController');
 
-const router = express.Router();
+// const router = express.Router();
 
-// RENDERIZAÇÃO DO DASHBOARD
-router.get('/professor/dashboard', professoresController.dashboardRender);
+// // RENDERIZAÇÃO DO DASHBOARD
+// router.get('/professor/dashboard', professoresController.renderizarDashboard);
 
-module.exports = router;
+// module.exports = router;

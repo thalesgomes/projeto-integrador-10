@@ -1,14 +1,8 @@
-const express = require('express');
-const disciplinasController = require('../controllers/disciplinasController');
+// const express = require('express');
+// const disciplinasController = require('../controllers/disciplinasController');
 
-const router = express.Router();
+// const router = express.Router();
 
-// RENDERIZAÇÃO DA VIEW DO FORMULÁRIO
-router.get('/disciplinas/form', disciplinasController.formRender);
+// router.get('/disciplinas/', disciplinasController.listarDisciplinas);
 
-// CADASTRAR UM DISCIPLINA
-router.post('/disciplinas/', disciplinasController.store);
-
-router.get('/disciplina/:id_disciplina/professores', disciplinasController.listar_professores)
-
-module.exports = router;
+// module.exports = router;

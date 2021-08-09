@@ -3,15 +3,16 @@ const path = require('path');
 const session = require('express-session');
 
 // import of routers
-const renderRouter = require('./routes/renderRouter');
-const loginRouter = require('./routes/loginRouter');
 const cadastroRouter = require('./routes/cadastroRouter');
-const professoresRouter = require('./routes/professoresRouter');
-const estudantesRouter = require('./routes/estudantesRouter');
-const disciplinasRouter = require('./routes/disciplinasRouter');
-const topicosRouter = require('./routes/topicosRouter');
+const loginRouter = require('./routes/loginRouter');
+const dashboardRouter = require('./routes/dashboardRouter');
 const bibliotecaRouter = require('./routes/bibliotecaRouter');
+const estudantesRouter = require('./routes/estudantesRouter');
+// const professoresRouter = require('./routes/professoresRouter');
+// const disciplinasRouter = require('./routes/disciplinasRouter');
+const topicosRouter = require('./routes/topicosRouter');
 const aulasRouter = require('./routes/aulasRouter');
+const renderRouter = require('./routes/renderRouter');
 
 // import of middlewares
 const authMid = require('./middlewares/authMid');
@@ -39,12 +40,13 @@ app.use(session({
 // routes and middlewares
 app.use('/', cadastroRouter);
 app.use('/', loginRouter);
-app.use('/', authMid, renderRouter);
-app.use('/', authMid, estudantesRouter);
-app.use('/', authMid, professoresRouter);
-app.use('/', authMid, disciplinasRouter);
-app.use('/', authMid, topicosRouter);
+app.use('/', authMid, dashboardRouter);
 app.use('/', authMid, bibliotecaRouter);
+app.use('/', authMid, estudantesRouter);
+// app.use('/', authMid, professoresRouter);
+// app.use('/', authMid, disciplinasRouter);
+app.use('/', authMid, topicosRouter);
 app.use('/', authMid, aulasRouter);
+app.use('/', authMid, renderRouter);
 
 module.exports = app;
