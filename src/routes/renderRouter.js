@@ -2,16 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/aulas/biblioteca', (req, res) => {
-  res.render('aulas_biblioteca');
-});
-
 router.get('/aulas/emcurso', (req, res) => {
   res.render('aulas_em_curso');
-});
-
-router.get('/aulas/edicao', (req, res) => {
-  res.render('aulas_edicao');
 });
 
 router.get('/forum', (req, res) => {
