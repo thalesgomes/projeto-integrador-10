@@ -14,4 +14,8 @@ router.get('/forum/topicos', (req, res) => {
   res.render('forum_topicos');
 });
 
+router.get('/index', (req, res) => {
+  res.render('bootstrap/index');
+});
+
 module.exports = router;
