@@ -29,17 +29,12 @@
 
       <div class="content container">
 
-        <div class="titulo-aula">
-          <h2>Aula 1</h2>
-        </div>
-
         <div class="container-aula col-8">
 
           <div class="video_holder">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/SmQMZ36hJJY"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
+            <% topico.aulas.forEach(aula => { %>
+                <%- aula.url_aula %>
+            <% }) %>
           </div>
 
           <div class="container-material">
@@ -73,24 +68,14 @@
 
         <div class="container-track-curso col-4">
           <div class="nome-curso">
-            <h2>Título do Curso</h2>
+            <h2><%= topico.nome %> </h2>
           </div>
           <div class="container-topicos-curso">
             <ol class="topicos-curso">
               <a href="">
-                <li>Aula 1</li>
-              </a>
-              <a href="">
-                <li>Aula 2</li>
-              </a>
-              <a href="">
-                <li>Aula 3</li>
-              </a>
-              <a href="">
-                <li>Aula 4</li>
-              </a>
-              <a href="">
-                <li>Aula 5</li>
+                  <% topico.aulas.forEach(aula => { %>
+                    <li><%= aula.nome %> </li>
+                  <% }) %>
               </a>
           </div>
         </div>

@@ -51,7 +51,7 @@
                             <% topicos.forEach(topico=> { %>
                                 <a href=""><li><%= topico.nome %></li></a>
                                 <% topico.aulas.forEach(aula => { %>
-                                        <p><%= aula.nome %></p>
+                                    <a href="/disciplinas/<%= disciplina.id %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/<%= aula.id %>"><p><%= aula.nome %></p></a>
                                 <% }) %>
                             <% }) %>
                         <% } %>
