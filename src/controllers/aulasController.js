@@ -11,29 +11,6 @@ const aulasController = {
     return res.render('aulas_form', { id_disciplina, id_topico, professor_id });
   },
 
-  // listar: async (req, res) => {
-  //   const { id_disciplina, id_professor } = req.params;
-  //   const { id: professor_id } = req.session.usuario;
-
-  //   if (professor_id !== id_professor) return res.json('usuário não autorizado');
-
-  //   try {
-  //     const topicos = await Topico.findAll({
-  //       where: {
-  //         fk_disciplina: id_disciplina,
-  //         fk_professor: id_professor,
-  //       },
-  //       include: ['aulas'],
-  //     });
-
-  //     return res.render('aulas_em_curso', { topicos, id_professor });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
-  //   return res.json({ erro: 'algo inesperado ocorreu' });
-  // },
-
   assistir: async (req, res) => {
     const { id_disciplina, id_professor, id_topico } = req.params;
     const { usuario } = req.session;
