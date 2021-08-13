@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const sessionStore = require('./database/sessionStore/index');
 
 // import of routers
 const cadastroRouter = require('./routes/cadastroRouter');
@@ -33,7 +34,8 @@ app.use(express.static(path.resolve(__dirname, '../', 'public')));
 // express-session setup
 app.use(session({
   secret: 'saber Digital',
-  resave: true,
+  store: sessionStore,
+  resave: false,
   saveUninitialized: false,
 }));
 

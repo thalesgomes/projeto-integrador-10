@@ -7,6 +7,7 @@ const loginController = {
 
   autenticar: async (req, res) => {
     const { email, senha } = req.body;
+
     let usuario;
 
     try {
@@ -23,8 +24,9 @@ const loginController = {
       }
 
       req.session.usuario = usuario;
+      req.session.save(() => res.redirect('/dashboard'));
 
-      return res.redirect('/dashboard');
+      return;
     }
 
     try {
@@ -41,11 +43,18 @@ const loginController = {
       }
 
       req.session.usuario = usuario;
+      req.session.save(() => res.redirect('/dashboard'));
 
-      return res.redirect('/dashboard');
+      return;
     }
 
     return res.json('usuário(a) não existe');
+  },
+
+  sair: (req, res) => {
+    req.session.destroy();
+
+    return res.json('logout realizado');
   },
 };
 

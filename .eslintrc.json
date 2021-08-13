@@ -12,6 +12,7 @@
     },
     "rules": {
         "no-console": "off",
-        "camelcase": "off"
+        "camelcase": "off",
+        "consistent-return": "off"
     }
 }
