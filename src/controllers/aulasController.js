@@ -29,7 +29,7 @@ const aulasController = {
         include: ['aulas'],
       });
 
-      return res.render('aulas_em_curso', { topico, id_professor });
+      return res.render('aulas_em_curso', { topico, id_professor, id_disciplina });
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +59,43 @@ const aulasController = {
 
     return res.redirect(`/disciplinas/${id_disciplina}/professores/${professor_id}/topicos`);
   },
+
+  renderizarFormularioEdicao: async (req, res) => {
+
+    const { id_disciplina, id_professor, id_topico, id_aula} = req.params;
+
+    let aula = await Aula.findOne({
+      where: { 
+        id: id_aula,
+        fk_professor: id_professor,
+        fk_disciplina: id_disciplina,
+        fk_topico: id_topico
+      }
+    })
+
+    return res.render('aulas_form_editar', {aula, id_disciplina, id_professor, id_topico})
+
+  },
+  aulaEdicao: async (req, res) => {
+    
+    const { id_disciplina, id_professor, id_topico, id_aula} = req.params;
+    const { nome, url_aula, descricao_aula } = req.body;
+
+    let aula = await Aula.update({
+      nome,
+      url_aula,
+      descricao_aula
+    },{where: { 
+      id: id_aula,
+      fk_professor: id_professor,
+      fk_disciplina: id_disciplina,
+      fk_topico: id_topico
+    }
+  })
+
+  return res.redirect('aulas_em_curso')
+
+  }
 
 };
 

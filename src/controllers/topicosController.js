@@ -86,6 +86,35 @@ const topicosController = {
     return res.json('algo inesperado ocorreu');
   },
 
+  RenderizarFormEdicao: async (req, res) => {
+    const {id_disciplina, id_professor, id_topico} = req.params;
+    
+     let topico = await Topico.findOne({
+       where: {
+        id: id_topico,
+        fk_disciplina: id_disciplina,
+        fk_professor: id_professor,}
+     })
+
+    return res.render('topicos_form_editar', {topico, id_disciplina, id_professor} );
+
+  },
+  EditarNomeTopico: async (req, res) => {
+    const {id_disciplina, id_professor, id_topico} = req.params;
+    const {nome} = req.body
+     
+    console.log(id_disciplina, id_professor);
+    await Topico.update({
+      nome},
+      { where: {
+        id: id_topico,
+        fk_disciplina: id_disciplina,
+        fk_professor: id_professor,}
+     });
+
+     return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos`);
+
+    }  
 };
 
 module.exports = topicosController;

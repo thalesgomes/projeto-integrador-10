@@ -12,4 +12,10 @@ router.get('/disciplinas/:id_disciplina/professores/:id_professor/topicos', topi
 // CADASTRAR TÓPICO DE DETERMINADA DISCIPLINA DE UM PROFESSOR ESPECÍFICO
 router.post('/disciplinas/:id_disciplina/professores/:id_professor/topicos', topicosController.cadastrar);
 
+// LISTAR TÓPICOS DE DETERMINADA DISCIPLINA DE UM PROFESSOR ESPECÍFICO PARA EDIÇÃO
+router.get('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_topico/form', topicosController.RenderizarFormEdicao);
+
+// EDITAR NOME DE DETERMINADO TÓPICO
+router.post('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_topico', topicosController.EditarNomeTopico);
+
 module.exports = router;
