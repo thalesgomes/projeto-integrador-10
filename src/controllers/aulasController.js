@@ -61,41 +61,62 @@ const aulasController = {
   },
 
   renderizarFormularioEdicao: async (req, res) => {
+    const {
+      id_disciplina, id_professor, id_topico, id_aula,
+    } = req.params;
 
-    const { id_disciplina, id_professor, id_topico, id_aula} = req.params;
-
-    let aula = await Aula.findOne({
-      where: { 
+    const aula = await Aula.findOne({
+      where: {
         id: id_aula,
         fk_professor: id_professor,
         fk_disciplina: id_disciplina,
-        fk_topico: id_topico
-      }
-    })
+        fk_topico: id_topico,
+      },
+    });
 
-    return res.render('aulas_form_editar', {aula, id_disciplina, id_professor, id_topico})
-
+    return res.render('aulas_form_editar', {
+      aula, id_disciplina, id_professor, id_topico,
+    });
   },
+
   aulaEdicao: async (req, res) => {
-    
-    const { id_disciplina, id_professor, id_topico, id_aula} = req.params;
+    const {
+      id_disciplina, id_professor, id_topico, id_aula,
+    } = req.params;
     const { nome, url_aula, descricao_aula } = req.body;
 
-    let aula = await Aula.update({
+    await Aula.update({
       nome,
       url_aula,
-      descricao_aula
-    },{where: { 
-      id: id_aula,
-      fk_professor: id_professor,
-      fk_disciplina: id_disciplina,
-      fk_topico: id_topico
-    }
-  })
+      descricao_aula,
+    }, {
+      where: {
+        id: id_aula,
+        fk_professor: id_professor,
+        fk_disciplina: id_disciplina,
+        fk_topico: id_topico,
+      },
+    });
 
-  return res.redirect('aulas_em_curso')
+    return res.redirect('aulas_em_curso');
+  },
 
-  }
+  excluir: async (req, res) => {
+    const {
+      id_disciplina, id_professor, id_topico, id_aula,
+    } = req.params;
+
+    await Aula.destroy({
+      where: {
+        id: id_aula,
+        fk_professor: id_professor,
+        fk_disciplina: id_disciplina,
+        fk_topico: id_topico,
+      },
+    });
+
+    return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos/${id_topico}/aulas/`);
+  },
 
 };
 

@@ -18,4 +18,7 @@ router.get('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_to
 // EDITAR NOME DE DETERMINADO TÓPICO
 router.post('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_topico', topicosController.EditarNomeTopico);
 
+// EXCLUIR TÓPICO
+router.delete('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_topico', topicosController.excluir);
+
 module.exports = router;

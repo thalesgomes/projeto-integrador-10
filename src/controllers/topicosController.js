@@ -1,4 +1,4 @@
-const { Disciplina, Topico } = require('../database/models/index');
+const { Disciplina, Topico, Aula } = require('../database/models/index');
 
 const topicosController = {
 
@@ -87,34 +87,68 @@ const topicosController = {
   },
 
   RenderizarFormEdicao: async (req, res) => {
-    const {id_disciplina, id_professor, id_topico} = req.params;
-    
-     let topico = await Topico.findOne({
-       where: {
+    const { id_disciplina, id_professor, id_topico } = req.params;
+
+    const topico = await Topico.findOne({
+      where: {
         id: id_topico,
         fk_disciplina: id_disciplina,
-        fk_professor: id_professor,}
-     })
+        fk_professor: id_professor,
+      },
+    });
 
-    return res.render('topicos_form_editar', {topico, id_disciplina, id_professor} );
-
+    return res.render('topicos_form_editar', { topico, id_disciplina, id_professor });
   },
+
   EditarNomeTopico: async (req, res) => {
-    const {id_disciplina, id_professor, id_topico} = req.params;
-    const {nome} = req.body
-     
-    console.log(id_disciplina, id_professor);
-    await Topico.update({
-      nome},
-      { where: {
+    const { id_disciplina, id_professor, id_topico } = req.params;
+    const { nome } = req.body;
+
+    await Topico.update({ nome },
+      {
+        where: {
+          id: id_topico,
+          fk_disciplina: id_disciplina,
+          fk_professor: id_professor,
+        },
+      });
+
+    return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos`);
+  },
+
+  excluir: async (req, res) => {
+    const { id_disciplina, id_professor, id_topico } = req.params;
+
+    const aulas = await Aula.findAll({
+      where: {
+        fk_professor: id_professor,
+        fk_disciplina: id_disciplina,
+        fk_topico: id_topico,
+      },
+    });
+
+    aulas.forEach((aula) => {
+      Aula.destroy({
+        where: {
+          id: aula.id,
+          fk_professor: id_professor,
+          fk_disciplina: id_disciplina,
+          fk_topico: id_topico,
+        },
+      });
+    });
+
+    await Topico.destroy({
+      where: {
         id: id_topico,
         fk_disciplina: id_disciplina,
-        fk_professor: id_professor,}
-     });
+        fk_professor: id_professor,
+      },
+      include: ['aulas'],
+    });
 
-     return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos`);
-
-    }  
+    return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos/`);
+  },
 };
 
 module.exports = topicosController;

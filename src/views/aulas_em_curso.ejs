@@ -77,6 +77,9 @@
               <a href="">
                   <% topico.aulas.forEach(aula => { %>
                     <li><%= aula.nome %>  <a href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/<%= aula.id %>/form"> <button type="submit">Editar aulas</button></a></li>
+
+                    <form action="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/<%= aula.id %>/?_method=DELETE" method="POST" enctype="multipart/form-data">
+                    <button type="submit">deletar></button>></form>
                   <% }) %>
               </a>
           </div>

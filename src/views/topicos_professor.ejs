@@ -50,7 +50,9 @@
                         <% } else { %>
                             <% topicos.forEach(topico=> { %>
                                 <a href="/disciplinas/<%= disciplina.id %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas"><li><%= topico.nome %></li></a>
-                                <a href="/disciplinas/<%= disciplina.id %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/form"> <button type="submit">Editar tópico</button></a> 
+                                <a href="/disciplinas/<%= disciplina.id %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/form"> <button type="submit">Editar tópico</button></a>
+                                <form action="/disciplinas/<%= disciplina.id %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/?_method=DELETE" method="POST" enctype="multipart/form-data">
+                                    <button type="submit">deletar></button>></form>
                             <% }) %>
                         <% } %>
 

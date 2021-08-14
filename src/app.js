@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const methodOverride = require('method-override');
 const sessionStore = require('./database/sessionStore/index');
 
 // import of routers
@@ -38,6 +39,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
 
 // routes and middlewares
 app.use('/', cadastroRouter);
