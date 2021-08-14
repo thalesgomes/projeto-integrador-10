@@ -17,7 +17,7 @@ const dashboardController = {
 
         const { disciplinas } = estudante;
 
-        return res.render('dashboard_estudante', { estudante, disciplinas });
+        return res.render('dashboard_estudante', { estudante, disciplinas, id });
       } catch (error) {
         return console.log(error);
       }
@@ -32,7 +32,7 @@ const dashboardController = {
           },
         });
 
-        return res.render('dashboard_professor', { professor });
+        return res.render('dashboard_professor', { professor, id_professor: id });
       } catch (error) {
         return console.log(error);
       }

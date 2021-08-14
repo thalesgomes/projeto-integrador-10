@@ -1,9 +1,12 @@
-// const express = require('express');
-// const professoresController = require('../controllers/professoresController');
+const express = require('express');
+const professoresController = require('../controllers/professoresController');
 
-// const router = express.Router();
+const router = express.Router();
 
-// // RENDERIZAÇÃO DO DASHBOARD
-// router.get('/professor/dashboard', professoresController.renderizarDashboard);
+// RENDERIZAÇÃO DA VIEW DE EDIÇÃO
+router.get('/professores/:id_professor', professoresController.renderizarPerfilEdicao);
 
-// module.exports = router;
+// EDIÇÃO DO PERFIL
+router.post('/professores/:id_professor', professoresController.editarPerfil);
+
+module.exports = router;

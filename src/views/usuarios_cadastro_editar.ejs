@@ -14,18 +14,18 @@
       <section class="form-cadastro">
         <div class="container">
 
-          <form action="/usuarios/cadastro" method="POST">
+          <form action="/professores/<%= usuario.id %> " method="POST">
             <label for="nome">nome:</label>
-            <input type="text" name="nome" id="nome" placeholder="insira seu nome" required><br>
+            <input type="text" name="nome" id="nome" placeholder="insira seu nome" value="<%= usuario.nome %>" required><br>
 
             <label for="sobrenome">sobrenome:</label>
-            <input type="text" name="sobrenome" id="sobrenome" placeholder="insira seu sobrenome" required><br>
+            <input type="text" name="sobrenome" id="sobrenome" placeholder="insira seu sobrenome" value="<%= usuario.sobrenome %>" required><br>
 
             <label for="email">e-mail</label>
-            <input type="email" name="email" placeholder="insira seu e-mail" required><br>
+            <input type="email" name="email" placeholder="insira seu e-mail" value="<%= usuario.email %>" required><br>
             
             <label for="senha">senha:</label>
-            <input type="password" name="senha" placeholder="insira sua senha" required><br>
+            <input type="password" name="senha" placeholder="insira sua senha" value="<%= usuario.senha %>" required><br>
 
             <label for="categoria">categoria:</label>
             <select name="categoria" id="categoria">

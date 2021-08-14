@@ -1,28 +1,37 @@
-// const { Professor } = require('../database/models');
+const { Professor } = require('../database/models');
 
-// const professoresController = {
+const professoresController = {
 
-//   renderizarDashboard: async (req, res) => {
-//     const { nome, id } = req.session.professor;
+  renderizarPerfilEdicao: async (req, res) => {
+    const { usuario } = req.session;
+    // const professor = await Professor.findOne({
+    //   where: usuario.id,
+    // });
 
-//     let professor;
+    return res.render('usuarios_cadastro_editar', usuario.id);
+  },
 
-//     try {
-//       professor = await Professor.findOne({
-//         where: { id },
-//         include: {
-//           association: 'disciplinas',
-//         },
-//       });
-//     } catch (error) {
-//       return console.log(error);
-//     }
+  editarPerfil: async (req, res) => {
+    const { usuario } = req.session;
 
-//     const { disciplinas } = professor;
+    const {
+      nome, sobrenome, email, senha, categoria, disciplina,
+    } = req.body;
 
-//     return res.render('dashboard_professor', { nome, disciplinas });
-//   },
+    await Professor.update({
+      nome,
+      sobrenome,
+      email,
+      senha,
+      categoria,
+      disciplina,
+      where: {
+        id: usuario.id,
+      },
+    });
 
-// };
+    return res.redirect('/dashboard');
+  },
+};
 
-// module.exports = professoresController;
+module.exports = professoresController;
