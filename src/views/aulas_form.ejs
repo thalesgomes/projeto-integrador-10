@@ -13,7 +13,7 @@
 
                             <p>EDITAR AULA</p>
 
-                            <form id="aula" action="/disciplinas/<%= id_disciplina %>/professores/<%= professor_id %>/topicos/<%= id_topico %>/aulas" method="POST">
+                            <form id="aula" action="/disciplinas/<%= id_disciplina %>/professores/<%= professor_id %>/topicos/<%= id_topico %>/aulas" method="POST" enctype="multipart/form-data">
                                 <!-- <div class="lista-topicos">
                                     <button>tópico</button>
                                     <input type="text" name="topico" placeholder="escolha o topico">
@@ -21,14 +21,19 @@
 
                                 <div class="add-material-cabecalho">
                                     <div>
-                                        <button>aula</button>
                                         <input type="text" name="nome" placeholder="digite o nome da aula">
+                                        <button>aula</button>
                                     </div>
 
                                     <div>
-                                        <button>vídeo</button>
                                         <input type="text" name="url_aula"
-                                            placeholder="Insira a URL ou ID do vídeo (youTube ou vimeo)">
+                                        placeholder="Insira a URL ou ID do vídeo (youTube ou vimeo)">
+                                        <button>vídeo</button>
+                                    </div>
+
+                                    <div>
+                                        <input type="file" name="file" single>
+                                        <button>pdf</button>
                                     </div>
 
                                     <!-- <div>

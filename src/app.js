@@ -2,7 +2,10 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const morgan = require('morgan');
+const multer = require('multer');
 const sessionStore = require('./database/sessionStore/index');
+const multerConfig = require('./config/multer');
 
 // import of routers
 const cadastroRouter = require('./routes/cadastroRouter');
@@ -43,6 +46,9 @@ app.use(session({
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
 
+// HTTP request logger middleware for node.js
+app.use(morgan('dev'));
+
 // routes and middlewares
 app.use('/', cadastroRouter);
 app.use('/', loginRouter);
@@ -52,7 +58,7 @@ app.use('/', authMid, estudantesRouter);
 // app.use('/', authMid, professoresRouter);
 // app.use('/', authMid, disciplinasRouter);
 app.use('/', authMid, topicosRouter);
-app.use('/', authMid, aulasRouter);
+app.use('/', authMid, multer(multerConfig).single('file'), aulasRouter);
 app.use('/', authMid, renderRouter);
 
 module.exports = app;
