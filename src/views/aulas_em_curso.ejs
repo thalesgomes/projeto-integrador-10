@@ -7,9 +7,9 @@
     <body>
         <script>
 
-            function load(idVideo) {
-                document.getElementById("video_url").src = "https://www.youtube.com/embed/6-WaHhmLu18";
-
+            function load(url) {
+                document.getElementById("kelly").src = url;
+                // document.getElementsByTagName('src').innerHTML = url;
             }
 
         </script>
@@ -42,43 +42,39 @@
 
                 <div class="container-aula col-8">
 
-
-                    <div class="video_holder">
-
-                        <iframe width="782" height="440" src="" id="video_url"
+                        <iframe width="782" height="440" id="kelly" src="https://www.youtube.com/embed/HlLGoX1vbjA"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
 
-                    </div>
 
+                            <div class="container-material">
 
-                    <div class="container-material">
+                                <!-- Tab links -->
+                                <div class="tab">
+                                    <button class="tablinks" onclick="openCity(event, 'material')">Material</button>
+                                    <button class="tablinks" onclick="openCity(event, 'duvidas')">Dúvidas</button>
+                                    <button class="tablinks"
+                                        onclick="openCity(event, 'comentarios')">Comentários</button>
+                                </div>
 
-                        <!-- Tab links -->
-                        <div class="tab">
-                            <button class="tablinks" onclick="openCity(event, 'material')">Material</button>
-                            <button class="tablinks" onclick="openCity(event, 'duvidas')">Dúvidas</button>
-                            <button class="tablinks" onclick="openCity(event, 'comentarios')">Comentários</button>
-                        </div>
+                                <!-- Tab content -->
+                                <div id="material" class="tabcontent">
+                                    <h3>Material da Aula</h3>
+                                    <p>Como colar e ser descolado?</p>
+                                </div>
 
-                        <!-- Tab content -->
-                        <div id="material" class="tabcontent">
-                            <h3>Material da Aula</h3>
-                            <p>Como colar e ser descolado?</p>
-                        </div>
+                                <div id="duvidas" class="tabcontent">
+                                    <h3>Dúvidas</h3>
+                                    <p>Qual a cor do cavalo branco de napoleão?</p>
+                                </div>
 
-                        <div id="duvidas" class="tabcontent">
-                            <h3>Dúvidas</h3>
-                            <p>Qual a cor do cavalo branco de napoleão?</p>
-                        </div>
+                                <div id="comentarios" class="tabcontent">
+                                    <h3>Comentários</h3>
+                                    <p>Zezinho: Que aula chata!</p>
+                                </div>
 
-                        <div id="comentarios" class="tabcontent">
-                            <h3>Comentários</h3>
-                            <p>Zezinho: Que aula chata!</p>
-                        </div>
-
-                    </div>
+                            </div>
 
                 </div>
 
@@ -88,21 +84,18 @@
                             <%= topico.nome %>
                         </h2>
                     </div>
+
                     <div class="container-topicos-curso">
                         <ol class="topicos-curso">
-                            <a href="">
                                 <% topico.aulas.forEach((aula, index)=> { %>
-                                    <li> <span onclick="load(`aula<%- index %>`)">
-                                            <%= index %>
-                                                <%= aula.nome %>
+                                    <li> <span onclick="load(`<%- aula.url_aula %>`)">
+                                            <%= aula.nome %>
                                         </span>
-                                        <div style="display: none;" id="`aula<%- index %>`">
-                                            <%= aula.url_aula %>
-                                        </div>
-                                        <a
+                                    </li>
+
+                                    <a
                                             href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/<%= aula.id %>/form">
                                             <button type="submit">Editar aulas</button></a>
-                                    </li>
 
                                     <form
                                         action="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/<%= aula.id %>/?_method=DELETE"
@@ -110,7 +103,6 @@
                                         <button type="submit">deletar></button>>
                                     </form>
                                     <% }) %>
-                            </a>
                     </div>
                 </div>
             </div>
