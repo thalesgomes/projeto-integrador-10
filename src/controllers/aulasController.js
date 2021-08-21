@@ -29,11 +29,8 @@ const aulasController = {
         include: ['aulas'],
       });
 
-      const { aulas } = topico;
-      const { url_aula: aulaPadrao } = aulas[0];
-
       return res.render('aulas_em_curso', {
-        topico, aulaPadrao, id_professor, id_disciplina,
+        topico, id_professor, id_disciplina,
       });
     } catch (error) {
       console.log(error);
@@ -62,7 +59,7 @@ const aulasController = {
       console.log(error);
     }
 
-    return res.redirect(`/disciplinas/${id_disciplina}/professores/${professor_id}/topicos`);
+    return res.redirect(`/disciplinas/${id_disciplina}/professores/${professor_id}/topicos/${id_topico}/aulas`);
   },
 
   renderizarFormularioEdicao: async (req, res) => {

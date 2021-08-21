@@ -39,69 +39,82 @@
 
                 <div class="container-aula col-8">
 
-                        <iframe width="782" height="440" id="kelly" src="<%- aulaPadrao %>"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                    <% if (topico.aulas.length == 0) { %>
+                        <p>
+                            <%= "não há aulas cadastradas nessa disciplina."%>
+                            <a href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/form">
+                                Cadastrar nova aula
+                            </a>
+                        </p>
 
+                        <% } else { %>
 
-                            <div class="container-material">
-
-                                <!-- Tab links -->
-                                <div class="tab">
-                                    <button class="tablinks" onclick="openCity(event, 'material')">Material</button>
-                                    <button class="tablinks" onclick="openCity(event, 'duvidas')">Dúvidas</button>
-                                    <button class="tablinks"
-                                        onclick="openCity(event, 'comentarios')">Comentários</button>
+                            <iframe width="782" height="440" id="kelly" src="<%- topico.aulas[0].url_aula %>"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+    
+                                <div class="container-material">
+    
+                                    <!-- Tab links -->
+                                    <div class="tab">
+                                        <button class="tablinks" onclick="openCity(event, 'material')">Material</button>
+                                        <button class="tablinks" onclick="openCity(event, 'duvidas')">Dúvidas</button>
+                                        <button class="tablinks"
+                                            onclick="openCity(event, 'comentarios')">Comentários</button>
+                                    </div>
+    
+                                    <!-- Tab content -->
+                                    <div id="material" class="tabcontent">
+                                        <h3>Material da Aula</h3>
+                                        <p>Como colar e ser descolado?</p>
+                                    </div>
+    
+                                    <div id="duvidas" class="tabcontent">
+                                        <h3>Dúvidas</h3>
+                                        <p>Qual a cor do cavalo branco de napoleão?</p>
+                                    </div>
+    
+                                    <div id="comentarios" class="tabcontent">
+                                        <h3>Comentários</h3>
+                                        <p>Zezinho: Que aula chata!</p>
+                                    </div>
+    
                                 </div>
-
-                                <!-- Tab content -->
-                                <div id="material" class="tabcontent">
-                                    <h3>Material da Aula</h3>
-                                    <p>Como colar e ser descolado?</p>
-                                </div>
-
-                                <div id="duvidas" class="tabcontent">
-                                    <h3>Dúvidas</h3>
-                                    <p>Qual a cor do cavalo branco de napoleão?</p>
-                                </div>
-
-                                <div id="comentarios" class="tabcontent">
-                                    <h3>Comentários</h3>
-                                    <p>Zezinho: Que aula chata!</p>
-                                </div>
-
-                            </div>
-
-                </div>
-
-                <div class="container-track-curso col-4">
-                    <div class="nome-curso">
-                        <h2>
-                            <%= topico.nome %>
-                        </h2>
+                    </div>
+    
+                    <div class="container-track-curso col-4">
+                        <div class="nome-curso">
+                            <h2>
+                                <%= topico.nome %>
+                                <a href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/form">
+                                    + aula
+                                </a>
+                            </h2>
+                        </div>
+    
+                        <div class="container-topicos-curso">
+                            <ol class="topicos-curso">
+                                    <% topico.aulas.forEach((aula, index)=> { %>
+                                        <li> <span onclick="load(`<%- aula.url_aula %>`)">
+                                                <%= aula.nome %>
+                                            </span>
+                                        </li>
+    
+                                        <a
+                                                href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/<%= aula.id %>/form">
+                                                <button type="submit">Editar aulas</button></a>
+    
+                                        <form
+                                            action="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/<%= aula.id %>/?_method=DELETE"
+                                            method="POST" enctype="multipart/form-data">
+                                            <button type="submit">deletar></button>>
+                                        </form>
+                                        <% }) %>
+                        </div>
                     </div>
 
-                    <div class="container-topicos-curso">
-                        <ol class="topicos-curso">
-                                <% topico.aulas.forEach((aula, index)=> { %>
-                                    <li> <span onclick="load(`<%- aula.url_aula %>`)">
-                                            <%= aula.nome %>
-                                        </span>
-                                    </li>
-
-                                    <a
-                                            href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/<%= aula.id %>/form">
-                                            <button type="submit">Editar aulas</button></a>
-
-                                    <form
-                                        action="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas/<%= aula.id %>/?_method=DELETE"
-                                        method="POST" enctype="multipart/form-data">
-                                        <button type="submit">deletar></button>>
-                                    </form>
-                                    <% }) %>
-                    </div>
-                </div>
+                    <% } %>
             </div>
             </div>
             </div>
