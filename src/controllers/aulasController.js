@@ -29,7 +29,12 @@ const aulasController = {
         include: ['aulas'],
       });
 
-      return res.render('aulas_em_curso', { topico, id_professor, id_disciplina });
+      const { aulas } = topico;
+      const { url_aula: aulaPadrao } = aulas[0];
+
+      return res.render('aulas_em_curso', {
+        topico, aulaPadrao, id_professor, id_disciplina,
+      });
     } catch (error) {
       console.log(error);
     }

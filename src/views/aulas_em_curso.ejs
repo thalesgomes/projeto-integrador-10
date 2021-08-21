@@ -1,18 +1,15 @@
 <%- include('./partials/head') %>
     <link rel="stylesheet" href="/stylesheets/aulas_em_curso.css">
-
+    
+    <script>
+        function load(url) {
+            document.getElementById("kelly").src = url;
+        }
+    </script>
 
     </head>
 
     <body>
-        <script>
-
-            function load(url) {
-                document.getElementById("kelly").src = url;
-                // document.getElementsByTagName('src').innerHTML = url;
-            }
-
-        </script>
 
         <header>
             <div class="container">
@@ -42,7 +39,7 @@
 
                 <div class="container-aula col-8">
 
-                        <iframe width="782" height="440" id="kelly" src="https://www.youtube.com/embed/HlLGoX1vbjA"
+                        <iframe width="782" height="440" id="kelly" src="<%- aulaPadrao %>"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
