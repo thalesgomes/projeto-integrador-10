@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "build": "webpack -w",
+    "start": "nodemon ./bin/www --ignore public --ignore frontend"
   },
   "keywords": [],
   "author": "",

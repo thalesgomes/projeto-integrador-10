@@ -25,7 +25,7 @@ const authMid = require('./middlewares/authMid');
 const app = express();
 
 // view engine setup
-app.set('views', path.resolve(__dirname, 'views'));
+app.set('views', path.resolve(__dirname, '../', 'frontend', 'views'));
 app.set('view engine', 'ejs');
 
 // parser
@@ -52,6 +52,7 @@ app.use(morgan('dev'));
 // routes and middlewares
 app.use('/', cadastroRouter);
 app.use('/', loginRouter);
+app.use('/', renderRouter);
 app.use('/', authMid, dashboardRouter);
 app.use('/', authMid, bibliotecaRouter);
 app.use('/', authMid, estudantesRouter);
@@ -59,6 +60,5 @@ app.use('/', authMid, estudantesRouter);
 // app.use('/', authMid, disciplinasRouter);
 app.use('/', authMid, topicosRouter);
 app.use('/', authMid, multer(multerConfig).single('file'), aulasRouter);
-app.use('/', authMid, renderRouter);
 
 module.exports = app;
