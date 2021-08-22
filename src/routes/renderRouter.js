@@ -2,6 +2,14 @@ const express = require('express');
 
 const router = express.Router();
 
+router.get('/login', (req, res) => {
+  res.render('pages/login');
+});
+
+router.get('/inicial', (req, res) => {
+  res.render('pages/inicial');
+});
+
 router.get('/topicos', (req, res) => {
   res.render('pages/topicos_professor');
 });

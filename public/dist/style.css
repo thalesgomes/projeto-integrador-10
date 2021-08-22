@@ -7829,12 +7829,59 @@ body {
 /*!**************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./frontend/assets/style/style.css ***!
   \**************************************************************************************************************************/
-#button {
+#button__primary {
   background-color: #e900c6;
   border: none;
   font-weight: 500;
   padding: 0.5rem; }
 
+#button__secondary {
+  background-color: #000024;
+  border: solid 0.1rem #dcdcdc;
+  color: #dcdcdc; }
+
+/* LOGIN SESSION */
+#login__logo {
+  color: #dcdcdc; }
+
+#login__rigthSide {
+  height: 100vh;
+  background-color: #dcdcdc; }
+
+#login__form {
+  background-color: #000024;
+  width: 25rem;
+  border-radius: 1rem;
+  padding: 3rem; }
+
+#login__title {
+  color: #00e9ab; }
+
+#input__email {
+  background-color: #000024;
+  border: solid 0.1rem #00e9ab; }
+
+#input__password {
+  background-color: #000024;
+  border: solid 0.1rem #00e9ab; }
+
+#login__paragraph {
+  color: #dcdcdc; }
+
+/* DASHBOARD SESSION */
+#dashboard__icons {
+  font-size: 3rem;
+  color: #dcdcdc; }
+
+#dashboard__title {
+  font-size: 1.2rem;
+  color: #dcdcdc; }
+
+#dashboard__paragraph {
+  font-size: 1rem;
+  color: #dcdcdc; }
+
+/* TOPICS SESSION */
 #topics__button {
   background-color: #000024;
   border: solid 0.2rem #00e9ab;
@@ -7846,11 +7893,7 @@ body {
   color: #dcdcdc;
   font-size: 1rem; }
 
-#button__addLesson {
-  background-color: #000024;
-  border: solid 0.1rem #dcdcdc;
-  color: #dcdcdc; }
-
+/* LESSONS SESSION */
 #lesson__title {
   color: #dcdcdc;
   font-size: 1rem; }
