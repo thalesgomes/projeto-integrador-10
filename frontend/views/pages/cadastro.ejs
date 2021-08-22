@@ -1,0 +1,49 @@
+<%- include('./partials/head') %>
+
+    <body>
+
+        <div id="register__container">
+
+            <form id="register__form">
+
+                <div class="mb-3">
+                    <span id="register_fields">nome:</span>
+                    <label for="nome" class="form-label"></label>
+                    <input type="text" class="form-control" id="input__form" placeholder="digite o seu nome">
+                </div>
+
+                <div class="mb-3">
+                    <span id="register_fields">sobrenome:</span>
+                    <label for="sobrenome" class="form-label"></label>
+                    <input type="text" class="form-control" id="input__form" placeholder="digite o seu sobrenome">
+                </div>
+
+                <div class="mb-3">
+                    <span id="register_fields">email:</span>
+                    <label for="email" class="form-label"></label>
+                    <input type="email" class="form-control" id="input__form" placeholder="digite o seu email"
+                        aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                    <span id="register_fields">senha:</span>
+                    <label for="senha" class="form-label"></label>
+                    <input type="password" class="form-control" id="input__form" placeholder="digite a sua senha">
+                </div>
+
+                <span id="register_fields">categoria:</span>
+                <select class="form-select" id="register__category">
+                    <option value="estudante">estudante</option>
+                    <option value="professor">professor</option>
+                </select>
+
+                <button type="submit" class="btn btn-primary my-3" id="button__primary">CADASTRAR</button>
+
+            </form>
+        </div>
+
+
+        <script src="./dist/bundle.js"></script>
+    </body>
+
+    </html>

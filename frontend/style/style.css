@@ -4,13 +4,42 @@
 #button__primary {
     background-color: #e900c6;
     border: none;
-    font-weight: 500;
+    font-weight: bold;
     padding: 0.5rem;
 }
 
 #button__secondary {
     background-color: #000024;
     border: solid 0.1rem #dcdcdc;
+    color: #dcdcdc;
+}
+
+#input__form {
+    background-color: #000024;
+    border: solid 0.1rem #00e9ab;
+}
+
+/* REGISTER SESSION */
+#register__container {
+    background-color: #dcdcdc;
+    height: 100vh;
+}
+
+#register__form {
+    background-color: #000024;
+    width: 25rem;
+    border-radius: 1rem;
+    padding: 3rem;
+}
+
+#register_fields {
+    color: #00e9ab;
+    font-size: 1.1rem;
+}
+
+#register__category {
+    background-color: #000024;
+    border: solid 0.1rem #00e9ab;
     color: #dcdcdc;
 }
 
@@ -33,16 +62,6 @@
 
 #login__title {
     color: #00e9ab;
-}
-
-#input__email {
-    background-color: #000024;
-    border: solid 0.1rem #00e9ab;
-}
-
-#input__password {
-    background-color: #000024;
-    border: solid 0.1rem #00e9ab;
 }
 
 #login__paragraph {
