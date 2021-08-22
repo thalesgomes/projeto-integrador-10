@@ -101,6 +101,10 @@ body {
   color: #dcdcdc;
   font-size: 1rem; }
 
+#topics__icons {
+  font-size: 1.2rem;
+  color: #00e9ab; }
+
 /* LESSONS SESSION */
 #lesson__title {
   color: #dcdcdc;
