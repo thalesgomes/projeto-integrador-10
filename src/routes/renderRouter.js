@@ -18,6 +18,10 @@ router.get('/topicos', (req, res) => {
   res.render('pages/topicos_professor');
 });
 
+router.get('/topicos__form', (req, res) => {
+  res.render('pages/topicos_form');
+});
+
 router.get('/aulas', (req, res) => {
   res.render('pages/aulas_em_curso');
 });

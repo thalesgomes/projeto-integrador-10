@@ -1,0 +1,25 @@
+<%- include('./partials/head') %>
+
+    <body>
+
+        <%- include('./partials/navbar') %>
+
+            <div class="container" id="topics__container">
+
+                <form class="my-5 p-3" id="topics__form">
+
+                    <div class="mb-3">
+                        <span id="topics_fields">nome do tópico:</span>
+                        <label for="nome" class="form-label"></label>
+                        <input type="text" class="form-control" id="input__topicsForm" placeholder="digite o nome do tópico">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary my-3" id="button__secondary">adicionar</button>
+
+                </form>
+            </div>
+
+            <script src="./dist/bundle.js"></script>
+    </body>
+
+    </html>

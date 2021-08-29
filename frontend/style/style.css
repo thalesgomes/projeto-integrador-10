@@ -103,6 +103,17 @@
     color: #00e9ab;
 }
 
+#topics__form {
+    width: 40rem;
+    background-color: #f0f0f0;
+    border-radius: 0.5rem;
+}
+
+#input__topicsForm {
+    background-color: #f0f0f0;
+    border: solid 0.1rem #9b9b9b;
+}
+
 /* LESSONS SESSION */
 #lesson__title {
     color: #dcdcdc;
