@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     imagem: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
@@ -21,21 +21,21 @@ module.exports = (sequelize, DataTypes) => {
 
   Disciplina.associate = (models) => {
     Disciplina.hasMany(models.Topico, {
-      foreignKey: 'fk_disciplina',
+      foreignKey: 'id_disciplina',
       as: 'topicos',
     });
 
     Disciplina.belongsToMany(models.Professor, {
       through: models.ProfessorDisciplina,
-      foreignKey: 'fk_disciplina',
-      otherKey: 'fk_professor',
+      foreignKey: 'id_disciplina',
+      otherKey: 'id_professor',
       as: 'professores',
     });
 
     Disciplina.belongsToMany(models.Estudante, {
       through: models.EstudanteDisciplina,
-      foreignKey: 'fk_disciplina',
-      otherKey: 'fk_estudante',
+      foreignKey: 'id_disciplina',
+      otherKey: 'id_estudante',
       as: 'estudantes',
     });
   };

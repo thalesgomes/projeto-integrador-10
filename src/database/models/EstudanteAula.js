@@ -6,14 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false,
     },
-    fk_estudante: {
+    id_estudante: {
       type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'estudantes', key: 'id' },
       onUpdate: 'CASCADE',
       onDelete: 'RESTRICT',
     },
-    fk_aula: {
+    id_aula: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'aulas', key: 'id' },

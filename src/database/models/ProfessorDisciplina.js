@@ -6,14 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false,
     },
-    fk_professor: {
+    id_professor: {
       type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'professores', key: 'id' },
       onUpdate: 'CASCADE',
       onDelete: 'RESTRICT',
     },
-    fk_disciplina: {
+    id_disciplina: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'disciplinas', key: 'id' },

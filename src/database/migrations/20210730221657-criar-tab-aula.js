@@ -11,37 +11,37 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      url: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       conteudo: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      url_aula: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      descricao_aula: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      arquivo_aula: {
+      descricao: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      fk_professor: {
+      arquivo: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      id_professor: {
         type: Sequelize.STRING,
         allowNull: false,
         references: { model: 'professores', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
-      fk_disciplina: {
+      id_disciplina: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'disciplinas', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
-      fk_topico: {
+      id_topico: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'topicos', key: 'id' },

@@ -7,14 +7,14 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      fk_estudante: {
+      id_estudante: {
         type: Sequelize.STRING,
         allowNull: false,
         references: { model: 'estudantes', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
-      fk_aula: {
+      id_aula: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'aulas', key: 'id' },

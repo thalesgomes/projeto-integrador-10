@@ -34,13 +34,13 @@ module.exports = (sequelize, DataTypes) => {
   Professor.associate = (models) => {
     Professor.belongsToMany(models.Disciplina, {
       through: models.ProfessorDisciplina,
-      foreignKey: 'fk_professor',
-      otherKey: 'fk_disciplina',
+      foreignKey: 'id_professor',
+      otherKey: 'id_disciplina',
       as: 'disciplinas',
     });
 
     Professor.hasMany(models.Topico, {
-      foreignKey: 'fk_professor',
+      foreignKey: 'id_professor',
       as: 'topicos',
     });
   };

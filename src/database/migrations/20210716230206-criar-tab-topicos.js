@@ -11,14 +11,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      fk_disciplina: {
+      id_disciplina: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'disciplinas', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
-      fk_professor: {
+      id_professor: {
         type: Sequelize.STRING,
         allowNull: false,
         references: { model: 'professores', key: 'id' },

@@ -10,37 +10,37 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    url: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     conteudo: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    url_aula: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    descricao_aula: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    arquivo_aula: {
+    descricao: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    fk_professor: {
+    arquivo: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    id_professor: {
       type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'professores', key: 'id' },
       onUpdate: 'CASCADE',
       onDelete: 'RESTRICT',
     },
-    fk_disciplina: {
+    id_disciplina: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'disciplinas', key: 'id' },
       onUpdate: 'CASCADE',
       onDelete: 'RESTRICT',
     },
-    fk_topico: {
+    id_topico: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'topicos', key: 'id' },
@@ -54,14 +54,14 @@ module.exports = (sequelize, DataTypes) => {
 
   Aula.associate = (models) => {
     Aula.belongsTo(models.Topico, {
-      foreignKey: 'fk_topico',
+      foreignKey: 'id_topico',
       as: 'topico',
     });
 
     Aula.belongsToMany(models.Estudante, {
       through: models.EstudanteAula,
-      foreignKey: 'fk_aula',
-      otherKey: 'fk_estudante',
+      foreignKey: 'id_aula',
+      otherKey: 'id_estudante',
       as: 'estudantes',
     });
   };

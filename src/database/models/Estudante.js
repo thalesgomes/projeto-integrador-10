@@ -34,15 +34,15 @@ module.exports = (sequelize, DataTypes) => {
   Estudante.associate = (models) => {
     Estudante.belongsToMany(models.Disciplina, {
       through: models.EstudanteDisciplina,
-      foreignKey: 'fk_estudante',
-      otherKey: 'fk_disciplina',
+      foreignKey: 'id_estudante',
+      otherKey: 'id_disciplina',
       as: 'disciplinas',
     });
 
     Estudante.belongsToMany(models.Aula, {
       through: models.EstudanteAula,
-      foreignKey: 'fk_estudante',
-      otherKey: 'fk_aula',
+      foreignKey: 'id_estudante',
+      otherKey: 'id_aula',
       as: 'aulas',
     });
   };

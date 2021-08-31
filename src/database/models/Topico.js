@@ -10,14 +10,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    fk_disciplina: {
+    id_disciplina: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'disciplinas', key: 'id' },
       onUpdate: 'CASCADE',
       onDelete: 'RESTRICT',
     },
-    fk_professor: {
+    id_professor: {
       type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'professores', key: 'id' },
@@ -31,17 +31,17 @@ module.exports = (sequelize, DataTypes) => {
 
   Topico.associate = (models) => {
     Topico.belongsTo(models.Disciplina, {
-      foreignKey: 'fk_disciplina',
+      foreignKey: 'id_disciplina',
       as: 'disciplina',
     });
 
     Topico.belongsTo(models.Professor, {
-      foreignKey: 'fk_professor',
+      foreignKey: 'id_professor',
       as: 'professor',
     });
 
     Topico.hasMany(models.Aula, {
-      foreignKey: 'fk_topico',
+      foreignKey: 'id_topico',
       as: 'aulas',
     });
   };

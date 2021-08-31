@@ -7,21 +7,21 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      fk_estudante: {
+      id_estudante: {
         type: Sequelize.STRING,
         allowNull: false,
         references: { model: 'estudantes', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
-      fk_disciplina: {
+      id_disciplina: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'disciplinas', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
-      fk_professor: {
+      id_professor: {
         type: Sequelize.STRING,
         allowNull: false,
         references: { model: 'professores', key: 'id' },
