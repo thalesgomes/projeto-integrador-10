@@ -1,125 +1,206 @@
 const { Aula, Topico } = require('../database/models');
 
 const aulasController = {
-
   renderizarFormulario: (req, res) => {
-    const { id_disciplina, id_professor, id_topico } = req.params;
-    const { id: professor_id } = req.session.usuario;
+    const { categoria } = req.session.usuario;
+    const { id_disciplina, id_topico } = req.params;
 
-    if (professor_id !== id_professor) return res.json('usuário não autorizado');
+    if (categoria === 'estudante')
+      return res
+        .status(401)
+        .json({ erro: 'apenas professor(a) tem acesso ao formulário' });
 
-    return res.render('aulas_form', { id_disciplina, id_topico, professor_id });
-  },
-
-  assistir: async (req, res) => {
-    const { id_disciplina, id_professor, id_topico } = req.params;
-    const { usuario } = req.session;
-
-    if (usuario.categoria === 'professor' && usuario.id !== id_professor) {
-      return res.json('usuário não autorizado');
-    }
-
-    try {
-      const topico = await Topico.findOne({
-        where: {
-          id: id_topico,
-          fk_disciplina: id_disciplina,
-          fk_professor: id_professor,
-        },
-        include: ['aulas'],
-      });
-
-      return res.render('aulas_em_curso', {
-        topico, id_professor, id_disciplina,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-
-    return res.json({ erro: 'algo inesperado ocorreu' });
+    return res
+      .status(200)
+      .render('pages/form_aulas', { id_disciplina, id_topico });
   },
 
   cadastrar: async (req, res) => {
-    const { id_disciplina, id_topico, id_professor } = req.params;
-    const { nome, url_aula, descricao_aula } = req.body;
-    const { id: professor_id } = req.session.usuario;
+    const { id: id_professor, categoria } = req.session.usuario;
+    const { id_disciplina, id_topico } = req.params;
+    const { nome, url } = req.body;
 
-    if (professor_id !== id_professor) return res.json('usuário não autorizado');
+    if (categoria === 'estudante')
+      return res
+        .status(401)
+        .json({ erro: 'apenas professor(a) pode cadastrar aulas' });
 
     try {
       await Aula.create({
+        id_professor,
+        id_disciplina,
+        id_topico,
         nome,
-        url_aula,
-        descricao_aula,
-        fk_professor: professor_id,
-        fk_disciplina: id_disciplina,
-        fk_topico: id_topico,
+        url,
       });
     } catch (error) {
       console.log(error);
+      return res.status(400).json({
+        erro: 'não foi possível cadastrar a aula. Verifique os dados enviados e tente novamente',
+      });
     }
 
-    return res.redirect(`/disciplinas/${id_disciplina}/professores/${professor_id}/topicos/${id_topico}/aulas`);
+    return res
+      .status(201)
+      .redirect(`/disciplinas/${id_disciplina}/topicos/${id_topico}/aulas`);
   },
 
-  renderizarFormularioEdicao: async (req, res) => {
-    const {
-      id_disciplina, id_professor, id_topico, id_aula,
-    } = req.params;
+  listar: async (req, res) => {
+    const { id, categoria } = req.session.usuario;
+    const { id_disciplina, id_topico, id_professor } = req.params;
 
-    const aula = await Aula.findOne({
-      where: {
-        id: id_aula,
-        fk_professor: id_professor,
-        fk_disciplina: id_disciplina,
-        fk_topico: id_topico,
-      },
-    });
+    if (categoria === 'estudante') {
+      try {
+        const topico = await Topico.findOne({
+          where: {
+            id_professor,
+            id_disciplina,
+            id: id_topico,
+          },
+          include: ['aulas'],
+        });
 
-    return res.render('aulas_form_editar', {
-      aula, id_disciplina, id_professor, id_topico,
-    });
+        return res.status(200).render('pages/estudante_aulas', {
+          id_professor,
+          id_disciplina,
+          id_topico,
+          topico,
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+          erro: 'não foi possível listar as aulas. Tente novamente mais tarde',
+        });
+      }
+    }
+
+    if (categoria === 'professor') {
+      try {
+        const topico = await Topico.findOne({
+          where: {
+            id_professor: id,
+            id_disciplina,
+            id: id_topico,
+          },
+          include: ['aulas'],
+        });
+
+        return res.status(200).render('pages/professor_aulas', {
+          id_disciplina,
+          id_topico,
+          topico,
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+          erro: 'não foi possível listar as aulas. Tente novamente mais tarde',
+        });
+      }
+    }
+
+    return res.status(500).json({ erro: 'algo inesperado ocorreu' });
   },
 
-  aulaEdicao: async (req, res) => {
-    const {
-      id_disciplina, id_professor, id_topico, id_aula,
-    } = req.params;
-    const { nome, url_aula, descricao_aula } = req.body;
+  renderizarFormEdicao: async (req, res) => {
+    const { id: id_professor, categoria } = req.session.usuario;
+    const { id_disciplina, id_topico, id_aula } = req.params;
 
-    await Aula.update({
-      nome,
-      url_aula,
-      descricao_aula,
-    }, {
-      where: {
-        id: id_aula,
-        fk_professor: id_professor,
-        fk_disciplina: id_disciplina,
-        fk_topico: id_topico,
-      },
-    });
+    if (categoria === 'estudante')
+      return res.status(401).json({
+        erro: 'apenas professor(a) tem acesso ao formulário de edição',
+      });
 
-    return res.redirect('aulas_em_curso');
+    try {
+      const aula = await Aula.findOne({
+        where: {
+          id_professor,
+          id_disciplina,
+          id_topico,
+          id: id_aula,
+        },
+      });
+
+      return res.status(200).render('pages/form_aulas_edicao', {
+        id_disciplina,
+        id_professor,
+        id_topico,
+        id_aula,
+        aula,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        erro: 'não foi possível renderizar o formulário de edição da aula',
+      });
+    }
+  },
+
+  editar: async (req, res) => {
+    const { id: id_professor, categoria } = req.session.usuario;
+    const { id_disciplina, id_topico, id_aula } = req.params;
+    const { nome, url } = req.body;
+
+    if (categoria === 'estudante')
+      return res
+        .status(401)
+        .json({ erro: 'apenas professor(a) pode editar uma aula' });
+
+    try {
+      await Aula.update(
+        {
+          nome,
+          url,
+        },
+        {
+          where: {
+            id_professor,
+            id_disciplina,
+            id_topico,
+            id: id_aula,
+          },
+        },
+      );
+
+      return res
+        .status(201)
+        .redirect(`/disciplinas/${id_disciplina}/topicos/${id_topico}/aulas`);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        erro: 'não foi possível editar a aula. Verifique os dados enviados e tente novamente',
+      });
+    }
   },
 
   excluir: async (req, res) => {
-    const {
-      id_disciplina, id_professor, id_topico, id_aula,
-    } = req.params;
+    const { id: id_professor, categoria } = req.session.usuario;
+    const { id_disciplina, id_topico, id_aula } = req.params;
 
-    await Aula.destroy({
-      where: {
-        id: id_aula,
-        fk_professor: id_professor,
-        fk_disciplina: id_disciplina,
-        fk_topico: id_topico,
-      },
-    });
+    if (categoria === 'estudante')
+      return res
+        .status(401)
+        .json({ erro: 'apenas professor(a) pode apagar uma aula' });
 
-    return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos/${id_topico}/aulas/`);
+    try {
+      await Aula.destroy({
+        where: {
+          id_professor,
+          id_disciplina,
+          id_topico,
+          id: id_aula,
+        },
+      });
+
+      return res
+        .status(200)
+        .redirect(`/disciplinas/${id_disciplina}/topicos/${id_topico}/aulas/`);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        erro: 'não foi possível apagar a aula. Verifique os dados enviados e tente novamente',
+      });
+    }
   },
-
 };
 
 module.exports = aulasController;

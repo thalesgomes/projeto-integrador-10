@@ -1,0 +1,83 @@
+<%- include('./includes/head') %>
+
+  <script>
+    function load(url) {
+      document.getElementById("embed_url").src = url;
+    }
+  </script>
+
+  <body>
+
+    <%- include('./includes/navbar') %>
+
+      <div class="container my-5">
+
+        <div class="row">
+
+          <% if (topico.aulas.length == 0) { %>
+            <p>
+                não há aulas cadastradas para esse tópico.
+                <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/form">
+                    Cadastrar nova aula
+                </a>
+            </p>
+
+            <% } else { %>
+
+              <div class="col-md-6">
+
+                <iframe width="560" height="315" id="embed_url" src="<%- topico.aulas[0].url %>"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+
+              </div>
+
+              <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" id="botao_primario"><%= topico.nome %></button>
+
+                <% topico.aulas.forEach((aula, index)=> { %>
+
+                  <p onclick="load(`<%- aula.url %>`)" id="aulas_titulo">
+                    <%= aula.nome %>
+
+                    <!-- BOTÃO PARA EDITAR UMA AULA -->
+                    <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/<%= aula.id %>/form">
+                      <i class="far fa-edit"></i>
+                    </a>
+
+                    <!-- BOTÃO PARA APAGAR UM TÓPICO -->
+                  <form
+                  action="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/<%= aula.id %>/?_method=DELETE"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                  <button id="aulas_botao_deletar" type="submit">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+
+                </form>
+                  </p>
+
+                <% }) %>
+
+
+                <button type="button" class="btn btn-primary" id="botao_secundario">
+                  <i class="fas fa-plus"></i>
+                    <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/form">
+                      aula
+                    </a>
+                </button>
+
+              </div>
+
+            <% } %>
+
+        </div>
+
+      </div>
+
+  </body>
+
+  </html>
