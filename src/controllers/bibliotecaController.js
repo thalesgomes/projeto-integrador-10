@@ -1,33 +1,19 @@
 const { Disciplina } = require('../database/models');
 
 const bibliotecaController = {
-
-  listarDisciplinas: async (req, res) => {
+  listar: async (req, res) => {
     try {
-      const disciplinas = await Disciplina.findAll();
-
-      return res.render('biblioteca_disciplinas', { disciplinas });
-    } catch (error) {
-      console.log(error);
-    }
-
-    return res.json({ erro: 'algo inesperado aconteceu' });
-  },
-
-  listarProfessores: async (req, res) => {
-    const { id_disciplina } = req.params;
-
-    try {
-      const disciplina = await Disciplina.findByPk(id_disciplina, {
+      const disciplinas = await Disciplina.findAll({
         include: { association: 'professores' },
       });
 
-      return res.render('biblioteca_professores', { disciplina });
+      return res.status(200).render('pages/biblioteca', { disciplinas });
     } catch (error) {
       console.log(error);
+      return res
+        .status(400)
+        .json({ erro: 'não foi possível listar as disciplinas' });
     }
-
-    return res.json({ erro: 'algo inesperado ocorreu' });
   },
 };
 

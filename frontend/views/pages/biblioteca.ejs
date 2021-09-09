@@ -1,0 +1,53 @@
+<%- include('./includes/head') %>
+
+  <body>
+
+    <%- include('./includes/navbar') %>
+
+      <div class="container mt-5">
+
+          <div class="row">
+
+            <% disciplinas.forEach(disciplina=> { %>
+
+              <div>
+                <button
+                  class="btn btn-primary mt-2 p-2"
+                  id="topicos_toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#tpcs_togg_collap">
+                  <%= disciplina.nome %>
+                </button>
+              </div>
+
+              <% if (disciplina.professores.length==0) { %>
+                <div class="collapse" id="tpcs_togg_collap">
+                  <p>
+                     - não há professores(as) inscritos(as).
+                  </p>
+                </div>
+
+                <% } else { %>
+
+                  <% disciplina.professores.forEach(professor=> { %>
+                    <div class="collapse" id="tpcs_togg_collap">
+                      <p id="topicos_aulas_titulo">
+                        <a href="/disciplinas/<%= disciplina.id %>/professores/<%= professor.id %>/topicos">
+                          <%= professor.nome %> <%= professor.sobrenome %>
+                        </a>
+                      </p>
+                    </div>
+                  <% }) %>
+
+                <% } %>
+
+            <% }) %>
+
+          </div>
+
+      </div>
+
+  </body>
+
+  </html>
