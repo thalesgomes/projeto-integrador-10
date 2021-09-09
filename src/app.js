@@ -17,7 +17,6 @@ const estudantesRouter = require('./routes/estudantesRouter');
 // const disciplinasRouter = require('./routes/disciplinasRouter');
 const topicosRouter = require('./routes/topicosRouter');
 const aulasRouter = require('./routes/aulasRouter');
-const renderRouter = require('./routes/renderRouter');
 
 // import of middlewares
 const authMid = require('./middlewares/authMid');
@@ -36,12 +35,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.resolve(__dirname, '../', 'public')));
 
 // express-session setup
-app.use(session({
-  secret: 'saber Digital',
-  store: sessionStore,
-  resave: false,
-  saveUninitialized: false,
-}));
+app.use(
+  session({
+    secret: 'saber Digital',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
@@ -52,7 +53,6 @@ app.use(morgan('dev'));
 // routes and middlewares
 app.use('/', cadastroRouter);
 app.use('/', loginRouter);
-app.use('/', renderRouter);
 app.use('/', authMid, dashboardRouter);
 app.use('/', authMid, bibliotecaRouter);
 app.use('/', authMid, estudantesRouter);

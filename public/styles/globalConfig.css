@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap');
+
+/* RESETANDO CSS */
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+/* VARIÁVEIS */
+:root {
+  --primary-blue: #000024;
+  --secondary-magenta: #e900c6;
+  --tertiary-green: #00e9ab;
+  --cinza: #dcdcdc;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+html {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  /* font-size: 62.5%; */
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #000024;
+  height: 100vh;
+}
+
+input {
+  border: none;
+  text-align: center;
+}
+
+::-webkit-input-placeholder {
+  color: #dcdcdc;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #dcdcdc;
+}
+
+p {
+  color: #dcdcdc;
+}

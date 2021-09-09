@@ -1,0 +1,157 @@
+@import './globalConfig.css';
+
+#botao_primario {
+  background-color: #e900c6;
+  border: none;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+#botao_secundario {
+  background-color: #000024;
+  border: solid 0.1rem #dcdcdc;
+  color: #dcdcdc;
+}
+
+#botao_terciario {
+  background-color: #dcdcdc;
+  border: none;
+  color: #000024;
+}
+
+#form_campos_titulo {
+  color: #00e9ab;
+  font-size: 1rem;
+}
+
+#form_input {
+  background-color: #000024;
+  border: solid 0.1rem #00e9ab;
+  color: #dcdcdc;
+  font-size: 1rem;
+}
+
+/* SESSÃO CADASTRO DO USUÁRIO */
+#cadastro_wrapper {
+  background-color: #dcdcdc;
+  height: 100vh;
+}
+
+#cadastro_form {
+  background-color: #000024;
+  width: 25rem;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+#cadastro_categorias {
+  background-color: #000024;
+  border: solid 0.1rem #00e9ab;
+  color: #dcdcdc;
+}
+
+#cadastro_disciplinas {
+  background-color: #000024;
+  border: solid 0.1rem #00e9ab;
+  color: #dcdcdc;
+}
+
+/* SESSÃO LOGIN */
+#login_wrapper {
+  height: 100vh;
+}
+
+#login_logo {
+  color: #dcdcdc;
+}
+
+#login_lado_direito {
+  background-color: #dcdcdc;
+}
+
+#login_form {
+  background-color: #000024;
+  width: 23rem;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+#login_titulo {
+  color: #00e9ab;
+}
+
+#login_paragrafo {
+  color: #dcdcdc;
+}
+
+/* SESSÃO DASHBOARD */
+#dashboard_icones {
+  font-size: 3rem;
+  color: #dcdcdc;
+}
+
+#dashboard_titulo {
+  font-size: 1.2rem;
+  color: #dcdcdc;
+}
+
+#dashboard_paragrafo {
+  font-size: 1rem;
+  color: #dcdcdc;
+}
+
+/* SESSÃO TÓPICOS */
+#topicos_form {
+  width: 35rem;
+  background-color: #f0f0f0;
+  border-radius: 0.5rem;
+}
+
+#topicos_form_input {
+  background-color: #f0f0f0;
+  border: solid 0.1rem #9b9b9b;
+}
+
+#topicos_toggle {
+  background-color: #000024;
+  border: solid 0.2rem #00e9ab;
+  color: #e900c6;
+  font-size: 1.2rem;
+  width: 80%;
+}
+
+#topicos_icones {
+  font-size: 1.2rem;
+  color: #00e9ab;
+}
+
+#topicos_botao_deletar {
+  background: none;
+}
+
+#topicos_aulas_titulo {
+  color: #dcdcdc;
+  font-size: 1rem;
+}
+
+/* SESSÃO AULAS */
+#aulas_form {
+  width: 37rem;
+  background-color: #f0f0f0;
+  border-radius: 0.5rem;
+}
+
+#aulas_form_input {
+  background-color: #f0f0f0;
+  border: solid 0.1rem #9b9b9b;
+}
+
+#aulas_titulo {
+  color: #dcdcdc;
+  font-size: 1rem;
+}
+
+#aulas_botao_deletar {
+  background: none;
+  color: #fff;
+}
