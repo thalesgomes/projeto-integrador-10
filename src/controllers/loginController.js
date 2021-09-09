@@ -58,7 +58,7 @@ const loginController = {
   sair: (req, res) => {
     req.session.destroy();
 
-    return res.status(200).json({ sucesso: 'logout realizado' });
+    return res.status(200).redirect('/login');
   },
 };
 

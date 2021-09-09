@@ -10,6 +10,6 @@ router.get('/login', loginController.renderizarLogin);
 router.post('/login', loginController.autenticar);
 
 // PROCESSO DE LOGOUT
-router.get('/usuarios/logout', loginController.sair);
+router.get('/logout', loginController.sair);
 
 module.exports = router;
