@@ -1,29 +1,30 @@
 const { EstudanteDisciplina } = require('../database/models');
 
 const estudantesController = {
-
   inscreverDisciplina: async (req, res) => {
-    const { usuario } = req.session;
-    const { id: id_estudante } = usuario;
+    const { id: id_estudante, categoria } = req.session.usuario;
     const { id_professor, id_disciplina } = req.params;
 
-    if (usuario.categoria !== 'estudante') {
-      return res.json('apenas os estudantes podem se inscrever nas disciplinas');
+    if (categoria !== 'estudante') {
+      return res
+        .status(401)
+        .json('apenas os estudantes podem se inscrever nas disciplinas');
     }
 
     try {
       await EstudanteDisciplina.create({
-        fk_estudante: id_estudante,
-        fk_disciplina: id_disciplina,
-        fk_professor: id_professor,
+        id_professor,
+        id_disciplina,
+        id_estudante,
       });
 
-      return res.redirect('/dashboard');
+      return res.status(200).redirect('/dashboard');
     } catch (error) {
       console.log(error);
+      return res.status(400).json({
+        erro: 'não possível realizar a inscrição. Tente novamente mais tarde',
+      });
     }
-
-    return res.json({ erro: 'algo inesperado ocorreu' });
   },
 };
 

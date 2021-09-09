@@ -31,18 +31,20 @@
           </div>
 
           <% if (disciplinas.length> 0) { %>
-            <div class="lista-cursos">
+
+            <div>
               <% disciplinas.forEach(disciplina=> { %>
 
-                <div class="curso"><a href="/disciplinas/<%= disciplina.id %>/topicos">
-                    <li>
+                <div>
+                  <a href="/disciplinas/<%= disciplina.id %>/professores/<%= disciplina.EstudanteDisciplina.id_professor %>/topicos">
                       <%= disciplina.nome %>
-                    </li>
-                  </a></div>
+                  </a>
+                </div>
 
-                <% }) %>
+              <% }) %>
             </div>
-            <% } %>
+
+          <% } %>
 
         </div>
 

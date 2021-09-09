@@ -8,16 +8,14 @@ const dashboardController = {
       try {
         const estudante = await Estudante.findOne({
           where: { id },
-          include: {
-            association: 'disciplinas',
-          },
+          include: ['disciplinas'],
         });
 
         const { disciplinas } = estudante;
 
         return res.status(200).render('pages/estudante_dashboard', {
-          estudante,
           disciplinas,
+          estudante,
           id,
         });
       } catch (error) {
