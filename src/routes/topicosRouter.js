@@ -4,21 +4,39 @@ const topicosController = require('../controllers/topicosController');
 const router = express.Router();
 
 // RENDERIZAÇÃO DO FORMULÁRIO DE CADASTRO DE UM TÓPICO
-router.get('/disciplinas/:id_disciplina/professores/:id_professor/topicos/form', topicosController.renderizarFormulario);
+router.get(
+  '/disciplinas/:id_disciplina/topicos/form',
+  topicosController.renderizarFormulario,
+);
 
-// LISTAR TÓPICOS DE DETERMINADA DISCIPLINA DE UM PROFESSOR ESPECÍFICO
-router.get('/disciplinas/:id_disciplina/professores/:id_professor/topicos', topicosController.listar);
+// (PROFESSOR) LISTAR TÓPICOS
+router.get('/disciplinas/:id_disciplina/topicos', topicosController.listar);
 
-// CADASTRAR TÓPICO DE DETERMINADA DISCIPLINA DE UM PROFESSOR ESPECÍFICO
-router.post('/disciplinas/:id_disciplina/professores/:id_professor/topicos', topicosController.cadastrar);
+// CADASTRAR TÓPICO
+router.post('/disciplinas/:id_disciplina/topicos', topicosController.cadastrar);
 
-// LISTAR TÓPICOS DE DETERMINADA DISCIPLINA DE UM PROFESSOR ESPECÍFICO PARA EDIÇÃO
-router.get('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_topico/form', topicosController.RenderizarFormEdicao);
+// RENDERIZAÇÃO DO FORMULÁRIO DE EDIÇÃO DE UM TÓPICO
+router.get(
+  '/disciplinas/:id_disciplina/topicos/:id_topico/form',
+  topicosController.renderizarFormEdicao,
+);
 
-// EDITAR NOME DE DETERMINADO TÓPICO
-router.post('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_topico', topicosController.EditarNomeTopico);
+// EDITAR TÓPICO
+router.post(
+  '/disciplinas/:id_disciplina/topicos/:id_topico',
+  topicosController.editar,
+);
 
 // EXCLUIR TÓPICO
-router.delete('/disciplinas/:id_disciplina/professores/:id_professor/topicos/:id_topico', topicosController.excluir);
+router.delete(
+  '/disciplinas/:id_disciplina/topicos/:id_topico',
+  topicosController.excluir,
+);
+
+// (ESTUDANTE) LISTAR TÓPICOS
+router.get(
+  '/disciplinas/:id_disciplina/professores/:id_professor/topicos',
+  topicosController.listar,
+);
 
 module.exports = router;

@@ -1,153 +1,232 @@
 const { Disciplina, Topico, Aula } = require('../database/models/index');
 
 const topicosController = {
-
   renderizarFormulario: async (req, res) => {
-    const { id_disciplina, id_professor } = req.params;
-    const { id: professor_id } = req.session.usuario;
+    const { id: id_professor, categoria } = req.session.usuario;
+    const { id_disciplina } = req.params;
 
-    if (professor_id !== id_professor) return res.json('usuário não autorizado');
+    if (categoria === 'estudante')
+      return res
+        .status(401)
+        .json({ erro: 'apenas professor(a) tem acesso ao formulário' });
 
     try {
       const { topicos } = await Disciplina.findByPk(id_disciplina, {
         include: { association: 'topicos' },
       });
 
-      return res.render('topicos_form', { topicos, id_disciplina, professor_id });
+      return res.status(200).render('pages/form_topicos', {
+        id_professor,
+        id_disciplina,
+        topicos,
+      });
     } catch (error) {
-      return console.log(error);
+      console.log(error);
+      return res
+        .status(400)
+        .json({ erro: 'não foi possível carregar a página de formulário' });
     }
   },
 
   cadastrar: async (req, res) => {
-    const { id_disciplina, id_professor } = req.params;
+    const { id: id_professor, categoria } = req.session.usuario;
+    const { id_disciplina } = req.params;
     const { nome } = req.body;
-    const { id: professor_id } = req.session.usuario;
 
-    if (professor_id !== id_professor) return res.json('usuário não autorizado');
+    if (categoria === 'estudante')
+      return res
+        .status(401)
+        .json({ erro: 'apenas professor(a) pode cadastrar um tópico' });
 
     try {
       const topico = await Topico.create({
+        id_professor,
+        id_disciplina,
         nome,
-        fk_disciplina: id_disciplina,
-        fk_professor: professor_id,
       });
 
-      const id_topico = topico.id;
+      // const id_topico = topico.id;
 
-      return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos/${id_topico}/aulas/form`);
+      return res
+        .status(201)
+        .redirect(
+          `/disciplinas/${id_disciplina}/topicos/${topico.id}/aulas/form`,
+        );
     } catch (error) {
-      return console.log(error);
+      console.log(error);
+      return res.status(400).json({
+        erro: 'não foi possível cadastrar o tópico. Verifique os dados e tente novamente',
+      });
     }
   },
 
   listar: async (req, res) => {
-    const { id_professor, id_disciplina } = req.params;
-    const { usuario } = req.session;
+    const { id, categoria } = req.session.usuario;
+    const { id_disciplina, id_professor } = req.params;
 
-    if (usuario.categoria === 'professor') {
-      if (usuario.id !== id_professor) return res.json('usuário não autorizado');
-
+    if (categoria === 'professor') {
       try {
         const topicos = await Topico.findAll({
           where: {
-            fk_disciplina: id_disciplina,
-            fk_professor: id_professor,
+            id_professor: id,
+            id_disciplina,
           },
           include: ['aulas'],
         });
 
         const disciplina = await Disciplina.findByPk(id_disciplina);
 
-        return res.render('topicos_professor', { topicos, disciplina, id_professor });
+        return res.status(200).render('pages/professor_topicos', {
+          id_disciplina,
+          disciplina,
+          topicos,
+          id,
+        });
       } catch (error) {
         console.log(error);
+        return res.status(400).json({
+          erro: 'não foi possível carregar os tópicos. Tente novamente mais tarde',
+        });
       }
     }
 
-    if (usuario.categoria === 'estudante') {
+    if (categoria === 'estudante') {
       try {
         const topicos = await Topico.findAll({
           where: {
-            fk_disciplina: id_disciplina,
-            fk_professor: id_professor,
+            id_professor,
+            id_disciplina,
           },
           include: ['aulas'],
         });
 
         const disciplina = await Disciplina.findByPk(id_disciplina);
 
-        return res.render('topicos_estudante', { topicos, disciplina, id_professor });
+        return res.status(200).render('pages/estudante_topicos', {
+          id_professor,
+          id_disciplina,
+          disciplina,
+          topicos,
+        });
       } catch (error) {
         console.log(error);
+        return res.status(400).json({
+          erro: 'não foi possível carregar os tópicos. Tente novamente mais tarde',
+        });
       }
     }
 
-    return res.json('algo inesperado ocorreu');
+    return res.status(500).json({ erro: 'algo inesperado ocorreu' });
   },
 
-  RenderizarFormEdicao: async (req, res) => {
-    const { id_disciplina, id_professor, id_topico } = req.params;
+  renderizarFormEdicao: async (req, res) => {
+    const { id: id_professor, categoria } = req.session.usuario;
+    const { id_disciplina, id_topico } = req.params;
 
-    const topico = await Topico.findOne({
-      where: {
-        id: id_topico,
-        fk_disciplina: id_disciplina,
-        fk_professor: id_professor,
-      },
-    });
+    if (categoria === 'estudante')
+      return res
+        .status(401)
+        .json({ erro: 'apenas professor(a) tem acesso ao formulário' });
 
-    return res.render('topicos_form_editar', { topico, id_disciplina, id_professor });
-  },
-
-  EditarNomeTopico: async (req, res) => {
-    const { id_disciplina, id_professor, id_topico } = req.params;
-    const { nome } = req.body;
-
-    await Topico.update({ nome },
-      {
+    try {
+      const topico = await Topico.findOne({
         where: {
+          id_professor,
+          id_disciplina,
           id: id_topico,
-          fk_disciplina: id_disciplina,
-          fk_professor: id_professor,
         },
       });
 
-    return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos`);
+      return res.status(200).render('pages/form_topicos_edicao', {
+        id_professor,
+        id_disciplina,
+        id_topico,
+        topico,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        erro: 'não foi possível renderizar o formulário de edição do tópico',
+      });
+    }
+  },
+
+  editar: async (req, res) => {
+    const { id: id_professor, categoria } = req.session.usuario;
+    const { id_disciplina, id_topico } = req.params;
+    const { nome } = req.body;
+
+    if (categoria === 'estudante')
+      return res
+        .status(401)
+        .json({ erro: 'apenas professor(a) pode editar um tópico' });
+
+    try {
+      await Topico.update(
+        { nome },
+        {
+          where: {
+            id_professor,
+            id_disciplina,
+            id: id_topico,
+          },
+        },
+      );
+
+      return res.status(201).redirect(`/disciplinas/${id_disciplina}/topicos`);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        erro: 'não foi possível editar o tópico. Verifique os dados enviados e tente novamente',
+      });
+    }
   },
 
   excluir: async (req, res) => {
-    const { id_disciplina, id_professor, id_topico } = req.params;
+    const { id: id_professor, categoria } = req.session.usuario;
+    const { id_disciplina, id_topico } = req.params;
 
-    const aulas = await Aula.findAll({
-      where: {
-        fk_professor: id_professor,
-        fk_disciplina: id_disciplina,
-        fk_topico: id_topico,
-      },
-    });
+    if (categoria === 'estudante')
+      return res
+        .status(401)
+        .json({ erro: 'apenas professor(a) pode apagar um tópico' });
 
-    aulas.forEach((aula) => {
-      Aula.destroy({
+    try {
+      const aulas = await Aula.findAll({
         where: {
-          id: aula.id,
-          fk_professor: id_professor,
-          fk_disciplina: id_disciplina,
-          fk_topico: id_topico,
+          id_professor,
+          id_disciplina,
+          id_topico,
         },
       });
-    });
 
-    await Topico.destroy({
-      where: {
-        id: id_topico,
-        fk_disciplina: id_disciplina,
-        fk_professor: id_professor,
-      },
-      include: ['aulas'],
-    });
+      aulas.forEach((aula) => {
+        Aula.destroy({
+          where: {
+            id_professor,
+            id_disciplina,
+            id_topico,
+            id: aula.id,
+          },
+        });
+      });
 
-    return res.redirect(`/disciplinas/${id_disciplina}/professores/${id_professor}/topicos/`);
+      await Topico.destroy({
+        where: {
+          id_professor,
+          id_disciplina,
+          id: id_topico,
+        },
+        include: ['aulas'],
+      });
+
+      return res.status(200).redirect(`/disciplinas/${id_disciplina}/topicos/`);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        erro: 'não foi possível apagar o tópico. Tente novamente mais tarde',
+      });
+    }
   },
 };
 

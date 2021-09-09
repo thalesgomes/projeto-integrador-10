@@ -1,0 +1,62 @@
+<%- include('./includes/head') %>
+
+  <body>
+
+    <%- include('./includes/navbar') %>
+
+      <div class="container mt-5">
+
+        <% if (topicos.length==0) { %>
+          <p>
+            <%= "não há tópicos cadastrados para essa disciplina." %>
+          </p>
+
+          <% } else { %>
+
+            <div class="row">
+
+              <% topicos.forEach(topico=> { %>
+
+                <div>
+                  <button
+                    class="btn btn-primary mt-2 p-2"
+                    id="topicos_toggle"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#tpcs_togg_collap">
+                    <%= topico.nome %>
+                  </button>
+                </div>
+
+                <% if (topico.aulas.length==0) { %>
+                  <div class="collapse" id="tpcs_togg_collap">
+                    <p>
+                      não há aulas cadastradas para esse tópico.
+                    </p>
+                  </div>
+
+                  <% } else { %>
+
+                    <% topico.aulas.forEach(aula=> { %>
+                      <div class="collapse" id="tpcs_togg_collap">
+                        <p id="topicos_aulas_titulo">
+                          <a href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/aulas">
+                            - <%= aula.nome %>
+                          </a>
+                        </p>
+                      </div>
+                    <% }) %>
+
+                  <% } %>
+
+              <% }) %>
+
+            </div>
+
+          <% } %>
+
+      </div>
+
+  </body>
+
+  </html>
