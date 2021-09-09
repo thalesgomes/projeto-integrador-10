@@ -1,0 +1,63 @@
+<%- include('./includes/head') %>
+<link rel="stylesheet" href="../../public/styles/style.css">
+
+    <body>
+
+        <div class="row">
+
+            <div class="col-md-3 my-5 mb-5" id="login__leftSide">
+
+                <h1 id="login__logo">SABER DIGITAL</h1>
+
+                <p id="login__paragraph">
+
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minus maiores asperiores harum quia
+                    obcaecati odio fuga veritatis, accusamus quisquam iure, eaque quam adipisci eius doloremque sint
+                    perferendis enim vitae?
+
+                </p>
+
+            </div>
+
+            <div class="col-md" id="login__rigthSide">
+
+                <form action="/login" method="post" class="my-5" id="login__form">
+
+                    <h3 id="login__title">login</h3>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label"></label>
+                        <input type="email" name="email" class="form-control" id="input__form"
+                            placeholder="digite o seu email" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label"></label>
+                        <input type="password" name="senha" class="form-control" placeholder="digite a sua senha"
+                            id="input__form">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mb-5" id="button__primary">ENTRAR</button>
+
+                    <p id="login__paragraph">ainda não possui cadastro?</p>
+
+                    <button type="submit" class="btn btn-primary" id="button__secondary">
+                        <div class="social-field">
+                            <div class="social-field-twitter">
+                                <a href="/cadastro">
+                                    registre-se aqui
+                                </a>
+                            </div>
+                        </div>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <%- include('./includes/script') %>
+    </body>
+
+    </html>

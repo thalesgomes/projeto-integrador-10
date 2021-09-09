@@ -2,8 +2,7 @@ const bcrypt = require('bcrypt');
 const { Professor, Estudante } = require('../database/models');
 
 const loginController = {
-
-  renderizarLogin: (req, res) => res.render('usuarios_login'),
+  renderizarLogin: (req, res) => res.status(200).render('pages/login'),
 
   autenticar: async (req, res) => {
     const { email, senha } = req.body;
@@ -13,18 +12,21 @@ const loginController = {
     try {
       usuario = await Professor.findOne({ where: { email } });
     } catch (error) {
-      return console.log(error);
+      console.log(error);
+      return res
+        .status(400)
+        .json({ erro: 'não foi possível encontrar o usuário' });
     }
 
     if (usuario) {
       const { senha: senhaHash } = usuario;
 
       if (!bcrypt.compareSync(senha, senhaHash)) {
-        return res.json('senha incorreta');
+        return res.status(400).json({ erro: 'senha incorreta' });
       }
 
       req.session.usuario = usuario;
-      req.session.save(() => res.redirect('/dashboard'));
+      req.session.save(() => res.status(200).redirect('/dashboard'));
 
       return;
     }
@@ -32,29 +34,31 @@ const loginController = {
     try {
       usuario = await Estudante.findOne({ where: { email } });
     } catch (error) {
-      return console.log(error);
+      return res
+        .status(400)
+        .json({ erro: 'não foi possível encontrar o usuário' });
     }
 
     if (usuario) {
       const { senha: senhaHash } = usuario;
 
       if (!bcrypt.compareSync(senha, senhaHash)) {
-        return res.json('senha incorreta');
+        return res.status(400).json({ erro: 'senha incorreta' });
       }
 
       req.session.usuario = usuario;
-      req.session.save(() => res.redirect('/dashboard'));
+      req.session.save(() => res.status(200).redirect('/dashboard'));
 
       return;
     }
 
-    return res.json('usuário(a) não existe');
+    return res.status(400).json({ erro: 'usuário(a) não existe' });
   },
 
   sair: (req, res) => {
     req.session.destroy();
 
-    return res.json('logout realizado');
+    return res.status(200).json({ sucesso: 'logout realizado' });
   },
 };
 
