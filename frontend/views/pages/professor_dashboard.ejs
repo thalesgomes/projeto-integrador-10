@@ -1,0 +1,55 @@
+<%- include('./includes/head') %>
+
+  <body>
+
+    <%- include('./includes/navbar') %>
+
+      <div class="container">
+
+        <div class="row py-5 text-center">
+
+          <div class="col-md-6">
+
+            <i class="fas fa-book" id="dashboard_icones"></i>
+            <h2 class="my-2" id="dashboard_titulo">BIBLIOTECA</h2>
+            <p id="dashboard_paragrafo">encontre aqui todas as disciplinas</p>
+
+          </div>
+
+          <div class="col-md-6">
+
+            <i class="far fa-clipboard" id="dashboard_icones"></i>
+            <h2 class="my-2" id="dashboard_titulo">ANOTAÇÕES</h2>
+            <p id="dashboard_paragrafo">...a gente sabe que às vezes dá aquele branco...</p>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div>
+            <span id="botao_terciario">meus cursos</span>
+          </div>
+
+          <% if (disciplinas.length> 0) { %>
+            <div class="lista-cursos">
+              <% disciplinas.forEach(disciplina=> { %>
+
+                <div class="curso"><a href="/disciplinas/<%= disciplina.id %>/topicos">
+                    <li>
+                      <%= disciplina.nome %>
+                    </li>
+                  </a></div>
+
+                <% }) %>
+            </div>
+            <% } %>
+
+        </div>
+
+      </div>
+
+  </body>
+
+  </html>
