@@ -15,11 +15,35 @@
 
             <div class="row">
 
-              <form action="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/inscricao" method="post">
-                <button type="submit">
-                  + disciplina
-                </button>
-              </form>
+              <div>
+
+                <% let disciplinaCadastrada %>
+
+                <% for (let i = 0; i < disciplinasCadastradas.length; i++) { %>
+                  <% disciplinaCadastrada = disciplinasCadastradas[i]%>
+
+                  <% if(disciplinaCadastrada.EstudanteDisciplina.id_professor === id_professor) {%>
+                    <p>disciplina cadastrada</p>
+                      <% break %>
+                  <% } %>
+
+                  <% disciplinaCadastrada = null %>
+
+                <% } %>
+
+                <% if (disciplinaCadastrada === null) { %>
+
+                  <p>disciplina não cadastrada</p>
+
+                  <form action="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/inscricao" method="post">
+                    <button type="submit">
+                      + disciplina
+                    </button>
+                  </form>
+
+                <% } %>
+
+              </div>
 
               <% topicos.forEach(topico=> { %>
 

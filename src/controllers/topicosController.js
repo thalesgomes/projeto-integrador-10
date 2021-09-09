@@ -1,4 +1,9 @@
-const { Disciplina, Topico, Aula } = require('../database/models/index');
+const {
+  Disciplina,
+  Estudante,
+  Topico,
+  Aula,
+} = require('../database/models/index');
 
 const topicosController = {
   renderizarFormulario: async (req, res) => {
@@ -100,12 +105,17 @@ const topicosController = {
           include: ['aulas'],
         });
 
-        const disciplina = await Disciplina.findByPk(id_disciplina);
+        const { disciplinas } = await Estudante.findOne({
+          where: { id },
+          include: ['disciplinas'],
+        });
+
+        const disciplinasCadastradas = disciplinas;
 
         return res.status(200).render('pages/estudante_topicos', {
           id_professor,
           id_disciplina,
-          disciplina,
+          disciplinasCadastradas,
           topicos,
         });
       } catch (error) {
