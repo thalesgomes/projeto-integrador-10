@@ -76,7 +76,11 @@ const topicosController = {
             id_professor: id,
             id_disciplina,
           },
-          include: ['aulas'],
+          order: [[{ model: Aula, as: 'aulas' }, 'id', 'DESC']],
+          include: {
+            model: Aula,
+            as: 'aulas',
+          },
         });
 
         const disciplina = await Disciplina.findByPk(id_disciplina);
@@ -102,7 +106,11 @@ const topicosController = {
             id_professor,
             id_disciplina,
           },
-          include: ['aulas'],
+          order: [[{ model: Aula, as: 'aulas' }, 'id', 'DESC']],
+          include: {
+            model: Aula,
+            as: 'aulas',
+          },
         });
 
         const { disciplinas } = await Estudante.findOne({
