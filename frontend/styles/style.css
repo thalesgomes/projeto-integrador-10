@@ -74,15 +74,30 @@
   height: 100vh;
 }
 
+#login_erros {
+  background-color: #ececec;
+  color: red;
+  z-index: 12;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+}
+
 #login_logo {
+  font-size: 3rem;
   color: #dcdcdc;
 }
 
+#login_lado_esquerdo {
+  width: 30%;
+}
+
 #login_lado_direito {
+  width: 70%;
   background-color: #dcdcdc;
 }
 
-#login_form {
+#login_form_wrapper {
   background-color: #000024;
   width: 23rem;
   border-radius: 1rem;
@@ -91,6 +106,8 @@
 
 #login_titulo {
   color: #00e9ab;
+  font-size: 2rem;
+  margin-bottom: 0.1rem;
 }
 
 #login_paragrafo {

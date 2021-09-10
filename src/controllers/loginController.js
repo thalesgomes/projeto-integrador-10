@@ -1,58 +1,74 @@
 const bcrypt = require('bcrypt');
+const validator = require('validator');
 const { Professor, Estudante } = require('../database/models');
 
 const loginController = {
-  renderizarLogin: (req, res) => res.status(200).render('pages/login'),
+  renderizarLogin: (req, res) => {
+    const erros = [];
+    res.status(200).render('pages/login', { erros });
+  },
 
   autenticar: async (req, res) => {
     const { email, senha } = req.body;
+    const erros = [];
 
-    let usuario;
+    if (!validator.isEmail(email)) {
+      erros.push('email inválido');
+    }
+
+    if (
+      !validator.isLength(senha, {
+        min: 5,
+        max: 30,
+      })
+    ) {
+      erros.push('senha inválida');
+    }
+
+    if (erros.length > 0) {
+      return res.status(400).render('pages/login', { erros });
+    }
 
     try {
-      usuario = await Professor.findOne({ where: { email } });
+      const usuario = await Professor.findOne({ where: { email } });
+
+      if (usuario) {
+        const { senha: senhaHash } = usuario;
+
+        if (!bcrypt.compareSync(senha, senhaHash)) {
+          erros.push('senha não confere');
+          return res.status(400).render('pages/login', { erros });
+        }
+
+        req.session.usuario = usuario;
+        return req.session.save(() => res.status(200).redirect('/dashboard'));
+      }
     } catch (error) {
       console.log(error);
-      return res
-        .status(400)
-        .json({ erro: 'não foi possível encontrar o usuário' });
-    }
-
-    if (usuario) {
-      const { senha: senhaHash } = usuario;
-
-      if (!bcrypt.compareSync(senha, senhaHash)) {
-        return res.status(400).json({ erro: 'senha incorreta' });
-      }
-
-      req.session.usuario = usuario;
-      req.session.save(() => res.status(200).redirect('/dashboard'));
-
-      return;
+      return res.status(500).json({ erro: 'algo inesperado ocorreu' });
     }
 
     try {
-      usuario = await Estudante.findOne({ where: { email } });
-    } catch (error) {
-      return res
-        .status(400)
-        .json({ erro: 'não foi possível encontrar o usuário' });
-    }
+      const usuario = await Estudante.findOne({ where: { email } });
 
-    if (usuario) {
-      const { senha: senhaHash } = usuario;
+      if (usuario) {
+        const { senha: senhaHash } = usuario;
 
-      if (!bcrypt.compareSync(senha, senhaHash)) {
-        return res.status(400).json({ erro: 'senha incorreta' });
+        if (!bcrypt.compareSync(senha, senhaHash)) {
+          erros.push('senha não confere');
+          return res.status(400).render('pages/login', { erros });
+        }
+
+        req.session.usuario = usuario;
+        return req.session.save(() => res.status(200).redirect('/dashboard'));
       }
-
-      req.session.usuario = usuario;
-      req.session.save(() => res.status(200).redirect('/dashboard'));
-
-      return;
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ erro: 'algo inesperado ocorreu' });
     }
 
-    return res.status(400).json({ erro: 'usuário(a) não existe' });
+    erros.push('usuário não existe');
+    return res.status(400).render('pages/login', { erros });
   },
 
   sair: (req, res) => {
