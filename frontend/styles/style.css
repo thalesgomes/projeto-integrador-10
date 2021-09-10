@@ -32,9 +32,22 @@
 }
 
 /* SESSÃO CADASTRO DO USUÁRIO */
-#cadastro_wrapper {
+#cadastro_wrapper_erros {
+  background-color: #dcdcdc;
+}
+
+#cadastro_wrapper_form {
   background-color: #dcdcdc;
   height: 100vh;
+}
+
+#cadastro_erros {
+  background-color: #ececec;
+  color: red;
+  z-index: 12;
+  padding: 1rem;
+  margin: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
 }
 
 #cadastro_form {

@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const { uuid } = require('uuidv4');
+const validator = require('validator');
 
 const {
   Estudante,
@@ -8,13 +9,33 @@ const {
 } = require('../database/models');
 
 const cadastroController = {
-  renderizarFormulario: async (req, res) =>
-    res.status(200).render('pages/cadastro'),
+  renderizarFormulario: async (req, res) => {
+    const erros = [];
+    return res.status(200).render('pages/cadastro', { erros });
+  },
 
   cadastrar: async (req, res) => {
     const id = uuid();
-
     const { nome, sobrenome, email, senha, categoria, disciplina } = req.body;
+
+    const erros = [];
+
+    if (!validator.isEmail(email)) {
+      erros.push('email inválido');
+    }
+
+    if (
+      !validator.isLength(senha, {
+        min: 5,
+        max: 30,
+      })
+    ) {
+      erros.push('a senha precisa conter entre 5 e 30 caracteres');
+    }
+
+    if (erros.length > 0) {
+      return res.status(400).render('pages/cadastro', { erros });
+    }
 
     const hashSenha = bcrypt.hashSync(senha, 10);
 
