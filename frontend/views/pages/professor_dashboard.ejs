@@ -10,9 +10,9 @@
 
           <div class="col-md-6">
 
-            <i class="fas fa-book" id="dashboard_icones"></i>
-            <h2 class="my-2" id="dashboard_titulo">BIBLIOTECA</h2>
-            <p id="dashboard_paragrafo">encontre aqui todas as disciplinas</p>
+            <i class="fas fa-square-root-alt" id="dashboard_icones"></i>
+            <h2 class="my-2" id="dashboard_titulo">EXERCÍCIOS</h2>
+            <p id="dashboard_paragrafo">encontre aqui todas as suas provas e exercícios</p>
 
           </div>
 
@@ -26,27 +26,21 @@
 
         </div>
 
-        <div class="row">
-
-          <div>
-            <span id="botao_terciario">meus cursos</span>
-          </div>
-
-          <% if (disciplinas.length> 0) { %>
-            <div class="lista-cursos">
-              <% disciplinas.forEach(disciplina=> { %>
-
-                <div class="curso"><a href="/disciplinas/<%= disciplina.id %>/topicos">
-                    <li>
-                      <%= disciplina.nome %>
-                    </li>
-                  </a></div>
-
-                <% }) %>
-            </div>
-            <% } %>
-
+        <div>
+          <span style="border-radius: 0;" id="falso_btn_terciario">meus cursos</span>
         </div>
+
+        <% if (disciplinas.length> 0) { %>
+          <% disciplinas.forEach(disciplina=> { %>
+            <a href="/disciplinas/<%= disciplina.id %>/topicos">
+
+              <p class="my-3" id="dashboard_curso">
+                - <%= disciplina.nome %>
+              </p>
+
+            </a>
+            <% }) %>
+              <% } %>
 
       </div>
 

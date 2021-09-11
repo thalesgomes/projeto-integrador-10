@@ -14,13 +14,16 @@
 
         <div class="row">
 
-          <% if (topico.aulas.length == 0) { %>
-            <p>
-                não há aulas cadastradas para esse tópico.
-                <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/form">
-                    Cadastrar nova aula
-                </a>
-            </p>
+          <% if (topico.aulas.length==0) { %>
+            <div id="topicos_paragrafo">
+              <p>Não há aulas cadastradas para nesse tópico.</p>
+            </div>
+
+            <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/form">
+              <button class="btn btn-primary" id="botao_primario">
+                + nova aula
+              </button>
+            </a>
 
             <% } else { %>
 
@@ -35,44 +38,59 @@
 
               <div class="col-md-6">
 
-                <button type="button" class="btn btn-primary" id="botao_primario"><%= topico.nome %></button>
+                <div class="d-flex align-items-center mb-2">
+
+                  <a href="/disciplinas/<%= id_disciplina %>/topicos/">
+                    <button type="button" class="btn btn-primary" id="botao_terciario">
+                      <%= topico.nome %>
+                    </button>
+                  </a>
+
+                  <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/form">
+                    <button type="button" class="btn btn-primary" id="aulas_btn_add">
+                      <i class="fas fa-plus"></i>
+                      aula
+                    </button>
+                  </a>
+
+                </div>
+
 
                 <% topico.aulas.forEach((aula, index)=> { %>
+                  <div class="d-flex align-items-center" id="aulas_grupo">
 
-                  <p onclick="load(`<%- aula.url %>`)" id="aulas_titulo">
-                    <%= aula.nome %>
+                    <div>
+                      <p onclick="load(`<%- aula.url %>`)" id="aulas_titulo">
+                        - <%= aula.nome %>
+                      </p>
+                    </div>
 
-                    <!-- BOTÃO PARA EDITAR UMA AULA -->
-                    <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/<%= aula.id %>/form">
-                      <i class="far fa-edit"></i>
-                    </a>
+                    <div>
+                      <!-- BOTÃO PARA EDITAR UMA AULA -->
+                      <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/<%= aula.id %>/form">
+                        <i class="far fa-edit" id="aulas_icones"></i>
+                      </a>
+                    </div>
 
-                    <!-- BOTÃO PARA APAGAR UM TÓPICO -->
-                  <form
-                  action="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/<%= aula.id %>/?_method=DELETE"
-                  method="post"
-                  enctype="multipart/form-data">
+                    <div>
+                      <!-- BOTÃO PARA APAGAR UM TÓPICO -->
+                      <form
+                        action="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/<%= aula.id %>/?_method=DELETE"
+                        method="post" enctype="multipart/form-data">
 
-                  <button id="aulas_botao_deletar" type="submit">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
+                        <button id="aulas_botao_deletar" type="submit">
+                          <i class="far fa-trash-alt" id="aulas_icones"></i>
+                        </button>
 
-                </form>
-                  </p>
+                      </form>
+                    </div>
 
-                <% }) %>
-
-
-                <button type="button" class="btn btn-primary" id="botao_secundario">
-                  <i class="fas fa-plus"></i>
-                    <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/form">
-                      aula
-                    </a>
-                </button>
+                  </div>
+                  <% }) %>
 
               </div>
 
-            <% } %>
+              <% } %>
 
         </div>
 

@@ -2,6 +2,7 @@
 
 #botao_primario {
   background-color: #e900c6;
+  color: #000024;
   border: none;
   font-weight: bold;
   padding: 0.5rem;
@@ -17,6 +18,28 @@
   background-color: #dcdcdc;
   border: none;
   color: #000024;
+  font-weight: bold;
+}
+
+#falso_btn_primario {
+  background-color: #e900c6;
+  color: #000024;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+}
+
+#falso_btn_secundario {
+  background-color: #e900c6;
+  color: #000024;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+}
+
+#falso_btn_terciario {
+  background-color: #dcdcdc;
+  color: #000024;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
 }
 
 #form_campos_titulo {
@@ -130,11 +153,28 @@
   color: #dcdcdc;
 }
 
+#dashboard_curso {
+  color: #e900c6;
+  font-size: 1.3rem;
+}
+
 /* SESSÃO TÓPICOS */
+#topicos_paragrafo {
+  font-size: 1.3rem;
+}
+
 #topicos_form {
   width: 35rem;
   background-color: #f0f0f0;
   border-radius: 0.5rem;
+}
+
+#topicos_form_btn_voltar {
+  background-color: #cccccc;
+  border: none;
+  color: #000024;
+  font-weight: bold;
+  margin-left: 1.2rem;
 }
 
 #topicos_form_input {
@@ -153,6 +193,16 @@
 #topicos_icones {
   font-size: 1.2rem;
   color: #00e9ab;
+  margin-left: 0.7rem;
+}
+
+#topicos_icones_add_aula {
+  border: solid 0.1rem #e900c6;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  color: #dcdcdc;
+  margin: 1rem 0rem;
 }
 
 #topicos_botao_deletar {
@@ -161,7 +211,8 @@
 
 #topicos_aulas_titulo {
   color: #dcdcdc;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  margin: 0.2rem 0rem;
 }
 
 /* SESSÃO AULAS */
@@ -177,11 +228,24 @@
 }
 
 #aulas_titulo {
+  color: #00e9ab;
+  font-size: 1.1rem;
+  margin: 0rem 0rem;
+}
+
+#aulas_btn_add {
+  margin-left: 1.5rem;
+  border-color: #e900c6;
+  background: none;
   color: #dcdcdc;
-  font-size: 1rem;
 }
 
 #aulas_botao_deletar {
   background: none;
-  color: #fff;
+}
+
+#aulas_icones {
+  /* font-size: 1.2rem; */
+  color: #e900c6;
+  margin-left: 0.7rem;
 }
