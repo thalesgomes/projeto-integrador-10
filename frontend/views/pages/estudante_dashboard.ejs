@@ -24,29 +24,28 @@
 
         </div>
 
-        <div class="row">
+        <div>
+          <span style="border-radius: 0;" id="falso_btn_terciario">meus cursos</span>
+        </div>
+
+        <% if (disciplinas.length> 0) { %>
 
           <div>
-            <span id="botao_terciario">meus cursos</span>
-          </div>
+            <% disciplinas.forEach(disciplina=> { %>
 
-          <% if (disciplinas.length> 0) { %>
-
-            <div>
-              <% disciplinas.forEach(disciplina=> { %>
-
-                <div>
-                  <a href="/disciplinas/<%= disciplina.id %>/professores/<%= disciplina.EstudanteDisciplina.id_professor %>/topicos">
-                      <%= disciplina.nome %>
-                  </a>
-                </div>
+              <div>
+                <a
+                  href="/disciplinas/<%= disciplina.id %>/professores/<%= disciplina.EstudanteDisciplina.id_professor %>/topicos">
+                    <p class="my-3" id="dashboard_curso">
+                      - <%= disciplina.nome %>
+                    </p>
+                </a>
+              </div>
 
               <% }) %>
-            </div>
+          </div>
 
-          <% } %>
-
-        </div>
+        <% } %>
 
       </div>
 

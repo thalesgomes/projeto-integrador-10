@@ -7,9 +7,9 @@
       <div class="container mt-5">
 
         <% if (topicos.length==0) { %>
-          <p>
-            <%= "não há tópicos cadastrados para essa disciplina." %>
-          </p>
+          <div id="topicos_paragrafo">
+            <p>Não há tópicos cadastrados para essa disciplina.</p>
+          </div>
 
           <% } else { %>
 
@@ -23,8 +23,7 @@
                   <% disciplinaCadastrada = disciplinasCadastradas[i]%>
 
                   <% if(disciplinaCadastrada.EstudanteDisciplina.id_professor === id_professor) {%>
-                    <p>disciplina cadastrada</p>
-                      <% break %>
+                    <% break %>
                   <% } %>
 
                   <% disciplinaCadastrada = null %>
@@ -32,8 +31,6 @@
                 <% } %>
 
                 <% if (disciplinaCadastrada === null) { %>
-
-                  <p>disciplina não cadastrada</p>
 
                   <form action="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/inscricao" method="post">
                     <button type="submit">

@@ -32,7 +32,12 @@
 
               <div class="col-md-6">
 
-                <button type="button" class="btn btn-primary" id="botao_primario"><%= topico.nome %></button>
+                <a href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos">
+                  <button type="button" class="btn btn-primary" id="botao_primario">
+                    <%= topico.nome %>
+                  </button>
+                </a>
+
 
                 <% topico.aulas.forEach((aula, index)=> { %>
 
