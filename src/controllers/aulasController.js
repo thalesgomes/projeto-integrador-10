@@ -1,4 +1,4 @@
-const { Aula, Topico } = require('../database/models');
+const { Aula, Topico, Arquivo } = require('../database/models');
 
 const aulasController = {
   renderizarFormulario: (req, res) => {
@@ -44,23 +44,36 @@ const aulasController = {
     }
 
     try {
-      await Aula.create({
+      const { id } = await Aula.create({
         id_professor,
         id_disciplina,
         id_topico,
         nome,
         url,
       });
+
+      if (req.file) {
+        const { originalname, filename, path } = req.file;
+
+        await Arquivo.create({
+          id_aula: id,
+          originalname,
+          filename,
+          path,
+        });
+      }
+
+      return res
+        .status(201)
+        .redirect(
+          `/disciplinas/${id_disciplina}/topicos/${id_topico}/aulas/${id}`,
+        );
     } catch (error) {
       console.log(error);
       return res.status(400).json({
         erro: 'não foi possível cadastrar a aula. Verifique os dados enviados e tente novamente',
       });
     }
-
-    return res
-      .status(201)
-      .redirect(`/disciplinas/${id_disciplina}/topicos/${id_topico}/aulas`);
   },
 
   listar: async (req, res) => {

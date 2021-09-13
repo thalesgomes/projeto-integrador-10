@@ -67,6 +67,11 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'id_estudante',
       as: 'estudantes',
     });
+
+    Aula.hasMany(models.Arquivo, {
+      foreignKey: 'id_aula',
+      as: 'arquivos',
+    });
   };
 
   return Aula;
