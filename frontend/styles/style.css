@@ -67,6 +67,14 @@
   border-radius: 0.5rem;
 }
 
+#form_erros {
+  background-color: #ececec;
+  color: red;
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+}
+
 /* SESSÃO CADASTRO DO USUÁRIO */
 #cadastro_wrapper_form {
   background-color: #dcdcdc;

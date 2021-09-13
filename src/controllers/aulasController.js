@@ -10,9 +10,11 @@ const aulasController = {
         .status(401)
         .json({ erro: 'apenas professor(a) tem acesso ao formulário' });
 
+    const erros = [];
+
     return res
       .status(200)
-      .render('pages/form_aulas', { id_disciplina, id_topico });
+      .render('pages/form_aulas', { id_disciplina, id_topico, erros });
   },
 
   cadastrar: async (req, res) => {
@@ -24,6 +26,22 @@ const aulasController = {
       return res
         .status(401)
         .json({ erro: 'apenas professor(a) pode cadastrar aulas' });
+
+    const erros = [];
+
+    if (nome === '' || nome === ' ') {
+      erros.push('título da aula não pode estar vazio');
+    }
+
+    if (url === '' || url === ' ') {
+      erros.push('informe o link da videoaula');
+    }
+
+    if (erros.length > 0) {
+      return res
+        .status(200)
+        .render('pages/form_aulas', { id_disciplina, id_topico, erros });
+    }
 
     try {
       await Aula.create({
@@ -120,12 +138,15 @@ const aulasController = {
         },
       });
 
+      const erros = [];
+
       return res.status(200).render('pages/form_aulas_edicao', {
         id_disciplina,
         id_professor,
         id_topico,
         id_aula,
         aula,
+        erros,
       });
     } catch (error) {
       console.log(error);
@@ -146,6 +167,36 @@ const aulasController = {
         .json({ erro: 'apenas professor(a) pode editar uma aula' });
 
     try {
+      const aula = await Aula.findOne({
+        where: {
+          id_professor,
+          id_disciplina,
+          id_topico,
+          id: id_aula,
+        },
+      });
+
+      const erros = [];
+
+      if (nome === '' || nome === ' ') {
+        erros.push('título da aula não pode estar vazio');
+      }
+
+      if (url === '' || url === ' ') {
+        erros.push('informe o link da videoaula');
+      }
+
+      if (erros.length > 0) {
+        return res.status(200).render('pages/form_aulas_edicao', {
+          id_disciplina,
+          id_professor,
+          id_topico,
+          id_aula,
+          aula,
+          erros,
+        });
+      }
+
       await Aula.update(
         {
           nome,
