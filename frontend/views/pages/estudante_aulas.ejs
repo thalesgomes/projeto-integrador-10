@@ -33,7 +33,7 @@
               <div class="col-md-6">
 
                 <a href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos">
-                  <button type="button" class="btn btn-primary" id="botao_primario">
+                  <button type="button" class="mb-2 btn btn-primary" id="botao_primario">
                     <%= topico.nome %>
                   </button>
                 </a>
@@ -42,7 +42,7 @@
                 <% topico.aulas.forEach((aula, index)=> { %>
 
                   <p onclick="load(`<%- aula.url %>`)" id="aulas_titulo">
-                    <%= aula.nome %>
+                    - <%= aula.nome %>
                   </p>
 
                 <% }) %>

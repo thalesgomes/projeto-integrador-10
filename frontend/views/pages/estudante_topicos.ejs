@@ -33,7 +33,7 @@
                 <% if (disciplinaCadastrada === null) { %>
 
                   <form action="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/inscricao" method="post">
-                    <button type="submit">
+                    <button class="mb-2" id="falso_btn_terciario" type="submit">
                       + disciplina
                     </button>
                   </form>
@@ -57,7 +57,7 @@
 
                 <% if (topico.aulas.length==0) { %>
                   <div class="collapse" id="tpcs_togg_collap">
-                    <p>
+                    <p id="topicos_aulas_titulo">
                       não há aulas cadastradas para esse tópico.
                     </p>
                   </div>
