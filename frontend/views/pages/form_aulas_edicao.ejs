@@ -9,6 +9,7 @@
         <form
           action="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas/<%= id_aula %>"
           method="post"
+          enctype="multipart/form-data"
           class="my-5 p-3"
           id="aulas_form">
 
@@ -30,7 +31,7 @@
               value="<%= aula.url %>">
 
             <label for="nome" class="form-label"></label>
-            <input type="file" name="arquivo" single class="form-control" id="aulas_form_input">
+            <input type="file" name="file" single class="form-control" id="aulas_form_input">
 
           </div>
 

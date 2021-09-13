@@ -6,7 +6,7 @@
 
       <div class="container">
 
-        <form action="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas" method="post" class="my-5 p-3"
+        <form action="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/aulas" method="post" enctype="multipart/form-data" class="my-5 p-3"
           id="aulas_form">
 
           <div class="mb-3">
@@ -21,7 +21,7 @@
             <input type="text" name="url" class="form-control" id="aulas_form_input" placeholder="utilize este FORMATO: https://www.youtube.com/embed/link">
 
             <label for="nome" class="form-label"></label>
-            <input type="file" name="arquivo" single class="form-control" id="aulas_form_input">
+            <input type="file" name="file" single class="form-control" id="aulas_form_input">
 
           </div>
 
