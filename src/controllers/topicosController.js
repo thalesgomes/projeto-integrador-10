@@ -20,10 +20,13 @@ const topicosController = {
         include: { association: 'topicos' },
       });
 
+      const erros = [];
+
       return res.status(200).render('pages/form_topicos', {
         id_professor,
         id_disciplina,
         topicos,
+        erros,
       });
     } catch (error) {
       console.log(error);
@@ -42,6 +45,20 @@ const topicosController = {
       return res
         .status(401)
         .json({ erro: 'apenas professor(a) pode cadastrar um tópico' });
+
+    const erros = [];
+
+    if (nome === '' || nome === ' ') {
+      erros.push('título do tópico não pode estar vazio');
+    }
+
+    if (erros.length > 0) {
+      return res.status(400).render('pages/form_topicos', {
+        id_professor,
+        id_disciplina,
+        erros,
+      });
+    }
 
     try {
       const topico = await Topico.create({
@@ -155,11 +172,14 @@ const topicosController = {
         },
       });
 
+      const erros = [];
+
       return res.status(200).render('pages/form_topicos_edicao', {
         id_professor,
         id_disciplina,
         id_topico,
         topico,
+        erros,
       });
     } catch (error) {
       console.log(error);
@@ -180,6 +200,30 @@ const topicosController = {
         .json({ erro: 'apenas professor(a) pode editar um tópico' });
 
     try {
+      const topico = await Topico.findOne({
+        where: {
+          id_professor,
+          id_disciplina,
+          id: id_topico,
+        },
+      });
+
+      const erros = [];
+
+      if (nome === '' || nome === ' ') {
+        erros.push('título do tópico não pode estar vazio');
+      }
+
+      if (erros.length > 0) {
+        return res.status(400).render('pages/form_topicos_edicao', {
+          id_professor,
+          id_disciplina,
+          id_topico,
+          topico,
+          erros,
+        });
+      }
+
       await Topico.update(
         { nome },
         {

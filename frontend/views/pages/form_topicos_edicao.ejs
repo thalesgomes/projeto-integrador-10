@@ -19,6 +19,16 @@
 
         </form>
 
+        <% if (erros.length > 0) { %>
+          <div>
+            <% erros.forEach(erro => { %>
+              <span id="erros">
+                <%= erro %>
+              </span>
+            <% }) %>
+          </div>
+        <% } %>
+
       </div>
 
   </body>

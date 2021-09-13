@@ -26,8 +26,8 @@
 
             <a href="/disciplinas/<%= id_disciplina %>/topicos/form">
               <button class="btn btn-primary" id="botao_terciario">
-                  + tópico
-                </button>
+                + tópico
+              </button>
             </a>
 
             <% topicos.forEach(topico=> { %>
@@ -76,21 +76,19 @@
                         </a>
                       </p>
                     </div>
-                    <% }) %>
+                  <% }) %>
 
-                      <% } %>
+                <% } %>
 
-                        <div class="collapse" id="tpcs_togg_collap">
-                          <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= topico.id %>/aulas/form">
-                            <i class="fas fa-plus" id="topicos_icones_add_aula"> aula</i>
-                          </a>
-                        </div>
+                <div class="collapse" id="tpcs_togg_collap">
+                  <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= topico.id %>/aulas/form">
+                    <i class="fas fa-plus" id="topicos_icones_add_aula"> aula</i>
+                  </a>
+                </div>
 
-                        <% }) %>
+              <% }) %>
 
-
-
-                          <% } %>
+            <% } %>
           </div>
 
   </body>

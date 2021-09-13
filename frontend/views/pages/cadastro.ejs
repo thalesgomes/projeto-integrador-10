@@ -62,9 +62,9 @@
       </form>
 
       <% if (erros.length > 0) { %>
-        <div style="z-index: 11" class="d-flex flex-column justify-content-around align-items-end" id="cadastro_wrapper_erros">
+        <div class="d-flex flex-column justify-content-around align-items-end" id="wrapper_erros">
           <% erros.forEach(erro => { %>
-            <span id="cadastro_erros">
+            <span id="erros">
               <%= erro %>
             </span>
           <% }) %>

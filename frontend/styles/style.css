@@ -54,23 +54,23 @@
   font-size: 1rem;
 }
 
-/* SESSÃO CADASTRO DO USUÁRIO */
-#cadastro_wrapper_erros {
+#wrapper_erros {
   background-color: #dcdcdc;
 }
 
-#cadastro_wrapper_form {
-  background-color: #dcdcdc;
-  height: 100vh;
-}
-
-#cadastro_erros {
+#erros {
   background-color: #ececec;
   color: red;
   z-index: 12;
   padding: 1rem;
   margin: 0.5rem 1.5rem;
   border-radius: 0.5rem;
+}
+
+/* SESSÃO CADASTRO DO USUÁRIO */
+#cadastro_wrapper_form {
+  background-color: #dcdcdc;
+  height: 100vh;
 }
 
 #cadastro_form {
@@ -95,15 +95,6 @@
 /* SESSÃO LOGIN */
 #login_wrapper {
   height: 100vh;
-}
-
-#login_erros {
-  background-color: #ececec;
-  color: red;
-  z-index: 12;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.5rem;
 }
 
 #login_logo {
