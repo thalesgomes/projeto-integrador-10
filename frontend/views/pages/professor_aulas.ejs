@@ -94,9 +94,11 @@
 
         </div>
 
-        <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/arquivos">
-          <p class="my-5">MATERIAL DE APOIO</p>
-        </a>
+        <% if (topico.aulas.length > 0) { %>
+          <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/arquivos">
+            <p class="my-5">MATERIAL DE APOIO</p>
+          </a>
+        <% } %>
 
       </div>
 

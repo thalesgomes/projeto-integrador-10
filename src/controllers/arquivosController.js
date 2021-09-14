@@ -25,6 +25,7 @@ const arquivosController = {
 
         return res.status(200).render('pages/arquivos', {
           id_disciplina,
+          topico,
           aulas,
         });
       } catch (error) {

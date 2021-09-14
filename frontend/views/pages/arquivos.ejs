@@ -8,6 +8,10 @@
 
         <button class="btn btn-primary mb-2" id="botao_primario">MATERIAL DE APOIO</button>
 
+        <p>
+          TÓPICO: <%= topico.nome %>
+        </p>
+
         <% if (aulas.length==0) { %>
           <p id="topicos_aulas_titulo">
             não há aulas cadastradas para esse tópico.
@@ -16,25 +20,24 @@
 
         <% aulas.forEach(aula=> { %>
 
-          <div id="arquivos_aula_titulo">
-            <%= aula.nome %>
-          </div>
+          <% if (aula.arquivos.length > 0) { %>
+            <div id="arquivos_aula_titulo">
+              <%= aula.nome %>
+            </div>
 
-          <% if (aula.arquivos.length==0) { %>
+            <% aula.arquivos.forEach(arquivo=> { %>
 
-            <p id="topicos_aulas_titulo">
-              não há arquivos para essa aula.
-            </p>
+              <div class="d-flex align-items-center mb-3">
 
-          <% } else { %>
+                  <a href="/tmp/uploads/<%= arquivo.filename %>" target="_blank">
+                    <p id="topicos_aulas_titulo">
+                      -- <%= arquivo.originalname %>
+                    </p>
+                  </a>
 
-              <% aula.arquivos.forEach(arquivo=> { %>
-                <a href="/tmp/uploads/<%= arquivo.filename %>" target="_blank">
-                  <p class="mb-3" id="topicos_aulas_titulo">
-                    -- <%= arquivo.originalname %>
-                  </p>
-                </a>
-              <% }) %>
+              </div>
+
+            <% }) %>
 
           <% } %>
 
