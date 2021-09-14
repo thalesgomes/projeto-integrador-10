@@ -10,6 +10,7 @@ const multerConfig = require('./config/multer');
 // import of routers
 const cadastroRouter = require('./routes/cadastroRouter');
 const loginRouter = require('./routes/loginRouter');
+const homeRouter = require('./routes/homeRouter');
 const dashboardRouter = require('./routes/dashboardRouter');
 const bibliotecaRouter = require('./routes/bibliotecaRouter');
 const estudantesRouter = require('./routes/estudantesRouter');
@@ -54,6 +55,7 @@ app.use(morgan('dev'));
 // routes and middlewares
 app.use('/', cadastroRouter);
 app.use('/', loginRouter);
+app.use('/', homeRouter);
 app.use('/', authMid, dashboardRouter);
 app.use('/', authMid, bibliotecaRouter);
 app.use('/', authMid, estudantesRouter);
