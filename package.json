@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "migrations": "npx sequelize db:migrate",
+    "seeds": "npx sequelize db:seed:all",
     "build": "webpack -w",
     "start": "nodemon ./bin/www --ignore public --ignore frontend"
   },
