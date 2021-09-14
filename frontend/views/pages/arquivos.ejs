@@ -1,0 +1,53 @@
+<%- include('./includes/head') %>
+
+  <body>
+
+    <%- include('./includes/navbar') %>
+
+      <div class="container my-5">
+
+        <button class="btn btn-primary mb-2" id="botao_primario">MATERIAL DE APOIO</button>
+
+        <% if (aulas.length==0) { %>
+          <p id="topicos_aulas_titulo">
+            não há aulas cadastradas para esse tópico.
+          </p>
+        <% } %>
+
+        <% aulas.forEach(aula=> { %>
+
+          <div id="arquivos_aula_titulo">
+            <%= aula.nome %>
+          </div>
+
+          <% if (aula.arquivos.length==0) { %>
+
+            <p id="topicos_aulas_titulo">
+              não há arquivos para essa aula.
+            </p>
+
+          <% } else { %>
+
+              <% aula.arquivos.forEach(arquivo=> { %>
+                <a href="/tmp/uploads/<%= arquivo.filename %>" target="_blank">
+                  <p class="mb-3" id="topicos_aulas_titulo">
+                    -- <%= arquivo.originalname %>
+                  </p>
+                </a>
+              <% }) %>
+
+          <% } %>
+
+        <% }) %>
+
+        <a href="/disciplinas/<%= id_disciplina %>/topicos/">
+          <button class="btn btn-primary mb-2" id="botao_terciario">
+            voltar
+          </button>
+        </a>
+
+      </div>
+
+  </body>
+
+  </html>

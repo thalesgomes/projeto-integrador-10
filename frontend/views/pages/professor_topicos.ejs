@@ -25,7 +25,7 @@
           <div class="container my-5">
 
             <a href="/disciplinas/<%= id_disciplina %>/topicos/form">
-              <button class="btn btn-primary" id="botao_terciario">
+              <button class="btn btn-primary mb-2" id="botao_terciario">
                 + tópico
               </button>
             </a>
@@ -39,15 +39,23 @@
                   <%= topico.nome %>
                 </button>
 
-                <div>
-                  <!-- BOTÃO PARA EDITAR UM TÓPICO -->
+                <!-- BOTÃO MATERIAL DE APOIO -->
+                <div class="mt-2">
+                  <a href="/disciplinas/<%= id_disciplina %>/topicos/<%= topico.id %>/arquivos">
+                    <i class="far fa-folder-open" id="aulas_icones" style="font-size: 1.6rem;"></i>
+                    <!-- <i class="fas fa-file-archive" id="aulas_icones"></i> -->
+                  </a>
+                </div>
+
+                <!-- BOTÃO PARA EDITAR UM TÓPICO -->
+                <div class="mt-2">
                   <a href="/disciplinas/<%= disciplina.id %>/topicos/<%= topico.id %>/form">
                     <i class="far fa-edit" id="topicos_icones"></i>
                   </a>
                 </div>
 
-                <div>
-                  <!-- BOTÃO PARA APAGAR UM TÓPICO -->
+                <!-- BOTÃO PARA APAGAR UM TÓPICO -->
+                <div class="mt-2">
                   <form action="/disciplinas/<%= disciplina.id %>/topicos/<%= topico.id %>/?_method=DELETE"
                     method="post" enctype="multipart/form-data">
                     <button id="topicos_botao_deletar" type="submit">

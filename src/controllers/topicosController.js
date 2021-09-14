@@ -93,10 +93,12 @@ const topicosController = {
             id_professor: id,
             id_disciplina,
           },
-          // order: [[{ model: Aula, as: 'aulas' }, 'id', 'DESC']],
+          // order: [[{ model: Aula, as: 'aulas' }, 'id', 'ASC']],
           include: {
             model: Aula,
             as: 'aulas',
+            // order: [['id', 'ASC']],
+            include: ['arquivos'],
           },
         });
 
