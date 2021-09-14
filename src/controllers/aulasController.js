@@ -225,6 +225,17 @@ const aulasController = {
         },
       );
 
+      if (req.file) {
+        const { originalname, filename, path } = req.file;
+
+        await Arquivo.create({
+          id_aula,
+          originalname,
+          filename,
+          path,
+        });
+      }
+
       return res
         .status(201)
         .redirect(`/disciplinas/${id_disciplina}/topicos/${id_topico}/aulas`);
