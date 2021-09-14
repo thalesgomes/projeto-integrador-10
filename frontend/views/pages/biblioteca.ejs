@@ -6,45 +6,33 @@
 
       <div class="container mt-5">
 
-          <div class="row">
+        <% disciplinas.forEach(disciplina=> { %>
 
-            <% disciplinas.forEach(disciplina=> { %>
+          <div id="biblioteca_disciplinas_titulo">
+            <%= disciplina.nome %>
+          </div>
 
-              <div>
-                <button
-                  class="btn btn-primary mt-2 p-2"
-                  id="topicos_toggle"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#tpcs_togg_collap">
-                  <%= disciplina.nome %>
-                </button>
-              </div>
+          <div class="mb-2">
+            <% if (disciplina.professores.length==0) { %>
+              <p>
+                não há professores(as) inscritos(as).
+              </p>
 
-              <% if (disciplina.professores.length==0) { %>
-                <div class="collapse" id="tpcs_togg_collap">
-                  <p>
-                     - não há professores(as) inscritos(as).
-                  </p>
-                </div>
+              <% } else { %>
 
-                <% } else { %>
-
-                  <% disciplina.professores.forEach(professor=> { %>
-                    <div class="collapse" id="tpcs_togg_collap">
-                      <p id="topicos_aulas_titulo">
-                        <a href="/disciplinas/<%= disciplina.id %>/professores/<%= professor.id %>/topicos">
-                          <%= professor.nome %> <%= professor.sobrenome %>
-                        </a>
+                <% disciplina.professores.forEach(professor=> { %>
+                  <a href="/disciplinas/<%= disciplina.id %>/professores/<%= professor.id %>/topicos">
+                  <p id="biblioteca_professor_nome">
+                    - <%= professor.nome %> <%= professor.sobrenome %>
                       </p>
-                    </div>
+                    </a>
                   <% }) %>
 
-                <% } %>
-
-            <% }) %>
-
+                    <% } %>
           </div>
+
+
+                    <% }) %>
 
       </div>
 

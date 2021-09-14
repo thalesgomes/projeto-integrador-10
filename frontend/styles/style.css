@@ -253,3 +253,12 @@
   color: #00e9ab;
   font-size: 1.2rem;
 }
+
+#biblioteca_disciplinas_titulo {
+  font-size: 1.4rem;
+  color: #e900c6;
+}
+
+#biblioteca_professor_nome {
+  color: #00e9ab;
+}
