@@ -9,4 +9,10 @@ router.get(
   arquivosRouter.listar,
 );
 
+// EXCLUSÃO DE UM ARQUIVO
+router.delete(
+  '/disciplinas/:id_disciplina/topicos/:id_topico/arquivos/:filename',
+  arquivosRouter.excluir,
+);
+
 module.exports = router;

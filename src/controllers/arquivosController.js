@@ -1,4 +1,4 @@
-const { Topico, Aula } = require('../database/models/index');
+const { Topico, Aula, Arquivo } = require('../database/models/index');
 
 const arquivosController = {
   listar: async (req, res) => {
@@ -25,6 +25,7 @@ const arquivosController = {
 
         return res.status(200).render('pages/arquivos', {
           id_disciplina,
+          id_topico,
           topico,
           aulas,
         });
@@ -34,6 +35,27 @@ const arquivosController = {
           erro: 'não foi possível carregar os arquivos. Tente novamente mais tarde',
         });
       }
+    }
+  },
+
+  excluir: async (req, res) => {
+    const { id_disciplina, id_topico, filename } = req.params;
+
+    try {
+      await Arquivo.destroy({
+        where: { filename },
+      });
+
+      return res
+        .status(200)
+        .redirect(
+          `/disciplinas/${id_disciplina}/topicos/${id_topico}/arquivos/`,
+        );
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        erro: 'não foi possível apagar o arquivo. Tente novamente mais tarde',
+      });
     }
   },
 };

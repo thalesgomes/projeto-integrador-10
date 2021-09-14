@@ -35,6 +35,18 @@
                     </p>
                   </a>
 
+                  <!-- BOTÃO PARA APAGAR UM ARQUIVO -->
+
+                  <form
+                  action="/disciplinas/<%= id_disciplina %>/topicos/<%= id_topico %>/arquivos/<%= arquivo.filename %>/?_method=DELETE"
+                  method="post" enctype="multipart/form-data">
+
+                    <button id="aulas_botao_deletar" type="submit">
+                      <i class="far fa-trash-alt" id="topicos_icones"></i>
+                    </button>
+
+                  </form>
+
               </div>
 
             <% }) %>
