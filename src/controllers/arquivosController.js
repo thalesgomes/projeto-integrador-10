@@ -3,7 +3,7 @@ const { Topico, Aula, Arquivo } = require('../database/models/index');
 const arquivosController = {
   listar: async (req, res) => {
     const { id, categoria } = req.session.usuario;
-    const { id_disciplina, id_topico } = req.params;
+    const { id_professor, id_disciplina, id_topico } = req.params;
 
     if (categoria === 'professor') {
       try {
@@ -23,7 +23,7 @@ const arquivosController = {
 
         const { aulas } = topico;
 
-        return res.status(200).render('pages/arquivos', {
+        return res.status(200).render('pages/professor_arquivos', {
           id_disciplina,
           id_topico,
           topico,
@@ -31,7 +31,39 @@ const arquivosController = {
         });
       } catch (error) {
         console.log(error);
-        return res.status(400).json({
+        return res.status(500).json({
+          erro: 'não foi possível carregar os arquivos. Tente novamente mais tarde',
+        });
+      }
+    }
+
+    if (categoria === 'estudante') {
+      try {
+        const topico = await Topico.findOne({
+          where: {
+            id_professor,
+            id_disciplina,
+            id: id_topico,
+          },
+          include: {
+            model: Aula,
+            as: 'aulas',
+            include: ['arquivos'],
+          },
+        });
+
+        const { aulas } = topico;
+
+        return res.status(200).render('pages/estudante_arquivos', {
+          id_disciplina,
+          id_professor,
+          id_topico,
+          topico,
+          aulas,
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
           erro: 'não foi possível carregar os arquivos. Tente novamente mais tarde',
         });
       }

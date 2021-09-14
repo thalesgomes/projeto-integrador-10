@@ -53,6 +53,12 @@
 
         </div>
 
+        <% if (topico.aulas.length > 0) { %>
+          <a href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= id_topico %>/arquivos">
+            <p class="my-5">MATERIAL DE APOIO</p>
+          </a>
+        <% } %>
+
       </div>
 
   </body>

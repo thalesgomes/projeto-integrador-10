@@ -44,7 +44,8 @@
 
               <% topicos.forEach(topico=> { %>
 
-                <div>
+                <div class="d-flex align-items-center">
+
                   <button
                     class="btn btn-primary mt-2 p-2"
                     id="topicos_toggle"
@@ -53,6 +54,14 @@
                     data-bs-target="#tpcs_togg_collap">
                     <%= topico.nome %>
                   </button>
+
+                  <!-- BOTÃO MATERIAL DE APOIO -->
+                  <div class="mt-2">
+                    <a href="/disciplinas/<%= id_disciplina %>/professores/<%= id_professor %>/topicos/<%= topico.id %>/arquivos">
+                      <i class="far fa-folder-open" id="aulas_icones" style="font-size: 1.6rem;"></i>
+                    </a>
+                  </div>
+
                 </div>
 
                 <% if (topico.aulas.length==0) { %>
