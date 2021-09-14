@@ -93,7 +93,7 @@ const topicosController = {
             id_professor: id,
             id_disciplina,
           },
-          order: [[{ model: Aula, as: 'aulas' }, 'id', 'DESC']],
+          // order: [[{ model: Aula, as: 'aulas' }, 'id', 'DESC']],
           include: {
             model: Aula,
             as: 'aulas',
@@ -123,7 +123,7 @@ const topicosController = {
             id_professor,
             id_disciplina,
           },
-          order: [[{ model: Aula, as: 'aulas' }, 'id', 'DESC']],
+          // order: [[{ model: Aula, as: 'aulas' }, 'id', 'DESC']],
           include: {
             model: Aula,
             as: 'aulas',
